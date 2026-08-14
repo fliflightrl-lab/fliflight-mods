@@ -1,9 +1,9 @@
 {
   "slug": "dot-crosshair-cossx-better-crosshair",
-  "name": "Dot Crosshair - CrossX Better Crosshair",
+  "name": "Dot Crosshair — Clean PvP & Survival Crosshair (All Versions)",
   "project_type": "resourcepack",
-  "summary": "A better crosshair for pvp or survival minecraft !",
-  "body": "This will further improve your vanilla experience by changing the standard vanilla crosshair into a modern design crosshair seen in many other games.",
+  "summary": "A minimal dot crosshair that declutters your screen for PvP and survival. Works from 1.11 to the latest version.",
+  "body": "Replaces the default Minecraft crosshair with a cleaner, sharper design.\n\n**Compatible with all versions** (1.11 → latest) and works on every launcher.\nJust drop the pack in your `resourcepacks` folder and enable it — no Optifine required.\nPerfect for PvP, survival and bow aim.\n\n---\n\n**More crosshairs from the CrossX series:** [Bigger Dot](https://www.curseforge.com/minecraft/texture-packs/bigger-dot-crosshair-cossx-better-crosshair) · [CrossX](https://www.curseforge.com/minecraft/texture-packs/crossx-crossx-better-crosshair) · [Sniper](https://www.curseforge.com/minecraft/texture-packs/crossx-better-crosshair-sniper-crosshair)\n**Also try:** [Visible Ores](https://www.curseforge.com/minecraft/texture-packs/visible-ores-all-versions-and-netherite) · [Short Sword](https://www.curseforge.com/minecraft/texture-packs/pvp-sword-little-sword-all-versions)",
   "license": "All Rights Reserved",
   "categories": [
     "utility",

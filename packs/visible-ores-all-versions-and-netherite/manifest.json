@@ -1,9 +1,9 @@
 {
   "slug": "visible-ores-all-versions-and-netherite",
-  "name": "Visible Ores (all versions+) and netherite",
+  "name": "Visible Ores — See Every Ore & Netherite (Shaders Ready)",
   "project_type": "resourcepack",
-  "summary": "This mod allows you to see minerals in caves more clearly and makes netherite more visible in the Nether. Works very well with Optifine and works best with Complementary Shader.",
-  "body": "Hey everyone, thank you for installing this mod. I recommend using it with Optifine and/or complementary shaders. Thank you and enjoy! ;) leave a comment if u get any reviews :)\n\n\nThis ressourcepack allows you to see minerals in caves more clearly and makes netherite more visible in the Nether. Works very well with Optifine and works best with Complementary Shader.",
+  "summary": "Makes every ore and ancient debris stand out so you never miss diamonds. Optimized for Optifine and complementary shaders.",
+  "body": "Makes every ore and ancient debris stand out so you never miss diamonds.\n\n**Works with Optifine and complementary shaders** for the best results.\nCovers coal, copper, iron, gold, redstone, lapis, diamond, emerald, nether gold and ancient debris — including deepslate variants.\n\n---\n\n**PvP essentials:** [Dot Crosshair](https://www.curseforge.com/minecraft/texture-packs/dot-crosshair-cossx-better-crosshair) · [Short Sword](https://www.curseforge.com/minecraft/texture-packs/pvp-sword-little-sword-all-versions)",
   "license": "All Rights Reserved",
   "categories": [
     "utility",

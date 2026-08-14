@@ -1,9 +1,9 @@
 {
   "slug": "crossx-better-crosshair",
-  "name": "CrossX - Better Crosshair !",
+  "name": "Better Crosshair — Modern Clean Crosshair for PvP",
   "project_type": "resourcepack",
-  "summary": "A better crosshair for pvp or survival minecraft !",
-  "body": "This will further improve your vanilla experience by changing the standard vanilla crosshair into a modern design crosshair seen in many other games.",
+  "summary": "A modern, clean crosshair replacing the vanilla default with a sharper design seen in competitive games.",
+  "body": "Replaces the default Minecraft crosshair with a cleaner, sharper design.\n\n**Compatible with all versions** (1.11 → latest) and works on every launcher.\nJust drop the pack in your `resourcepacks` folder and enable it — no Optifine required.\nPerfect for PvP, survival and bow aim.\n\n---\n\nPart of the **CrossX series**. Original & most popular: [Dot Crosshair](https://www.curseforge.com/minecraft/texture-packs/dot-crosshair-cossx-better-crosshair)",
   "license": "All Rights Reserved",
   "categories": [
     "utility",

@@ -1,9 +1,9 @@
 {
   "slug": "all-in-diamonds-dimension",
-  "name": "Everything is In Diamonds Dimension !",
+  "name": "Diamond Dimension — A New World Made of Diamonds (NeoForge)",
   "project_type": "mod",
-  "summary": "A mod where there is a diamonds new dimension, and a craft for a flint and steel to get in this dimensions trough a diamonds portal",
-  "body": "Craft a special lighter using 9 diamond blocks and a flint & steel, then right-click to open a portal leading to the Diamond Dimension. This dimension is made entirely of diamond—blocks, mountains, and even the ground. Explore its sparkling landscapes, and make fun ! To return, simply step back through the portal or made a new one.",
+  "summary": "Craft a diamond portal and explore a whole dimension built from diamond blocks and mountains.",
+  "body": "Craft a special lighter using 9 diamond blocks and a flint & steel, then right-click to open a portal to the Diamond Dimension. This dimension is made entirely of diamond — blocks, mountains, and even the ground. To return, step back through the portal.\n\n**Requires NeoForge.**\n\n---\n\n**Looking for a resource pack?** [Visible Ores](https://www.curseforge.com/minecraft/texture-packs/visible-ores-all-versions-and-netherite) — see every ore clearly.",
   "license": "All Rights Reserved",
   "categories": [
     "equipment",
