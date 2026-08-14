@@ -178,7 +178,17 @@ def github_publish(m, token, repo, dry_run):
     v = m["version"]
     tag = f"{m['slug']}-{v['number']}"
     name = f"{m['name']} {v['number']}"
-    body = v.get("changelog", "")
+    body_lines = [m.get("summary", "").strip()]
+    cf = (m.get("links") or {}).get("website_url")
+    if cf:
+        body_lines.append("")
+        body_lines.append(f"CurseForge : {cf}")
+    body_lines.append(f"Modrinth : https://modrinth.com/project/{m['slug']}")
+    if v.get("changelog"):
+        body_lines.append("")
+        body_lines.append("## Changelog")
+        body_lines.append(v["changelog"])
+    body = "\n".join(body_lines)
     fp = file_path(m)
     print(f"[github] repo={repo} tag={tag} file={m['file']} ({os.path.getsize(fp)} B)")
     if dry_run:
