@@ -1,0 +1,51 @@
+{
+  "slug": "all-in-diamonds-dimension",
+  "name": "Everything is In Diamonds Dimension !",
+  "project_type": "mod",
+  "summary": "A mod where there is a diamonds new dimension, and a craft for a flint and steel to get in this dimensions trough a diamonds portal",
+  "body": "Craft a special lighter using 9 diamond blocks and a flint & steel, then right-click to open a portal leading to the Diamond Dimension. This dimension is made entirely of diamond—blocks, mountains, and even the ground. Explore its sparkling landscapes, and make fun ! To return, simply step back through the portal or made a new one.",
+  "license": "All Rights Reserved",
+  "categories": [
+    "equipment",
+    "adventure",
+    "worldgen"
+  ],
+  "curseforge_id": 1479652,
+  "modrinth_id": "NR54mkOD",
+  "links": {
+    "website_url": "https://www.curseforge.com/minecraft/mc-mods/all-in-diamonds-dimension",
+    "source_url": null,
+    "issues_url": null,
+    "wiki_url": ""
+  },
+  "version": {
+    "number": "1.0.0",
+    "type": "release",
+    "changelog": "Mirrored from CurseForge.",
+    "loaders": [
+      "neoforge"
+    ],
+    "game_versions": [
+      "1.21",
+      "1.21.1",
+      "1.21.2",
+      "1.21.3",
+      "1.21.4",
+      "1.21.5",
+      "1.21.6",
+      "1.21.7",
+      "1.21.8",
+      "1.21.9",
+      "1.21.10",
+      "1.21.11"
+    ]
+  },
+  "file": "diamapnds_-1.0.0-neoforge-1.21.4.jar",
+  "icon": "icon.jpg",
+  "gallery": [
+    "gallery_0.jpeg",
+    "gallery_1.jpg",
+    "gallery_2.png",
+    "gallery_3.jpeg"
+  ]
+}

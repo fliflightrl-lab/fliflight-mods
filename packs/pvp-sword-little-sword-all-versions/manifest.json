@@ -1,0 +1,76 @@
+{
+  "slug": "pvp-sword-little-sword-all-versions",
+  "name": "Pvp sword (little sword) all versions",
+  "project_type": "resourcepack",
+  "summary": "Do you see those swords that are too big, too heavy, and annoying? This resource pack makes them smaller, which is incredible in PvP.",
+  "body": "Hey everyone, thank you for installing this mod. Thank you and enjoy! ;) leave a comment if u get any reviews :)\n\nDo you see those swords that are too big, too heavy, and annoying? This resource pack makes them smaller, which is incredible in PvP.",
+  "license": "All Rights Reserved",
+  "categories": [
+    "utility",
+    "16x"
+  ],
+  "curseforge_id": 1334714,
+  "modrinth_id": "IcIJjhMO",
+  "links": {
+    "website_url": "https://www.curseforge.com/minecraft/texture-packs/pvp-sword-little-sword-all-versions",
+    "source_url": null,
+    "issues_url": null,
+    "wiki_url": null
+  },
+  "version": {
+    "number": "1.0.0",
+    "type": "release",
+    "changelog": "Mirrored from CurseForge.",
+    "loaders": [
+      "minecraft"
+    ],
+    "game_versions": [
+      "1.14",
+      "1.14.1",
+      "1.14.2",
+      "1.14.3",
+      "1.14.4",
+      "1.15",
+      "1.15.1",
+      "1.15.2",
+      "1.16",
+      "1.16.1",
+      "1.16.2",
+      "1.16.3",
+      "1.16.4",
+      "1.16.5",
+      "1.17",
+      "1.17.1",
+      "1.18",
+      "1.18.1",
+      "1.18.2",
+      "1.19",
+      "1.19.1",
+      "1.19.2",
+      "1.19.3",
+      "1.19.4",
+      "1.20",
+      "1.20.1",
+      "1.20.2",
+      "1.20.3",
+      "1.20.4",
+      "1.20.5",
+      "1.20.6",
+      "1.21",
+      "1.21.1",
+      "1.21.2",
+      "1.21.3",
+      "1.21.4",
+      "1.21.5",
+      "1.21.6",
+      "1.21.7",
+      "1.21.8"
+    ]
+  },
+  "file": "better_little_sword-1.0.0-resourcepack-1.21.4.zip",
+  "icon": "icon.png",
+  "gallery": [
+    "gallery_0.jpg",
+    "gallery_1.png"
+  ]
+}

@@ -1,0 +1,62 @@
+{
+  "slug": "visible-ores-all-versions-and-netherite",
+  "name": "Visible Ores (all versions+) and netherite",
+  "project_type": "resourcepack",
+  "summary": "This mod allows you to see minerals in caves more clearly and makes netherite more visible in the Nether. Works very well with Optifine and works best with Complementary Shader.",
+  "body": "Hey everyone, thank you for installing this mod. I recommend using it with Optifine and/or complementary shaders. Thank you and enjoy! ;) leave a comment if u get any reviews :)\n\n\nThis ressourcepack allows you to see minerals in caves more clearly and makes netherite more visible in the Nether. Works very well with Optifine and works best with Complementary Shader.",
+  "license": "All Rights Reserved",
+  "categories": [
+    "utility",
+    "16x",
+    "blocks"
+  ],
+  "curseforge_id": 1334611,
+  "modrinth_id": "SEfn6MDy",
+  "links": {
+    "website_url": "https://www.curseforge.com/minecraft/texture-packs/visible-ores-all-versions-and-netherite",
+    "source_url": null,
+    "issues_url": null,
+    "wiki_url": ""
+  },
+  "version": {
+    "number": "1.0.0",
+    "type": "release",
+    "changelog": "Mirrored from CurseForge.",
+    "loaders": [
+      "minecraft"
+    ],
+    "game_versions": [
+      "1.18",
+      "1.18.1",
+      "1.18.2",
+      "1.19",
+      "1.19.1",
+      "1.19.2",
+      "1.19.3",
+      "1.19.4",
+      "1.20",
+      "1.20.1",
+      "1.20.2",
+      "1.20.3",
+      "1.20.4",
+      "1.20.5",
+      "1.20.6",
+      "1.21",
+      "1.21.1",
+      "1.21.2",
+      "1.21.3",
+      "1.21.4",
+      "1.21.5",
+      "1.21.6",
+      "1.21.7",
+      "1.21.8"
+    ]
+  },
+  "file": "visible_ores-1.0.0-resourcepack-.zip",
+  "icon": "icon.png",
+  "gallery": [
+    "gallery_0.png",
+    "gallery_1.png",
+    "gallery_2.png"
+  ]
+}

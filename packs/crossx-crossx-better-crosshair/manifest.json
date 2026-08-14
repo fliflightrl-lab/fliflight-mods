@@ -1,0 +1,66 @@
+{
+  "slug": "crossx-crossx-better-crosshair",
+  "name": "CrossX - CROSSX Better Crosshair !",
+  "project_type": "resourcepack",
+  "summary": "A better crosshair for pvp or survival minecraft !",
+  "body": "This will further improve your vanilla experience by changing the standard vanilla crosshair into a modern design crosshair seen in many other games.",
+  "license": "All Rights Reserved",
+  "categories": [
+    "utility",
+    "16x"
+  ],
+  "curseforge_id": 1499029,
+  "modrinth_id": "1ylCihJa",
+  "links": {
+    "website_url": "https://www.curseforge.com/minecraft/texture-packs/crossx-crossx-better-crosshair",
+    "source_url": null,
+    "issues_url": null,
+    "wiki_url": null
+  },
+  "version": {
+    "number": "1.0.0",
+    "type": "release",
+    "changelog": "Mirrored from CurseForge.",
+    "loaders": [
+      "minecraft"
+    ],
+    "game_versions": [
+      "1.17",
+      "1.17.1",
+      "1.18",
+      "1.18.1",
+      "1.18.2",
+      "1.19",
+      "1.19.1",
+      "1.19.2",
+      "1.19.3",
+      "1.19.4",
+      "1.20",
+      "1.20.1",
+      "1.20.2",
+      "1.20.3",
+      "1.20.4",
+      "1.20.5",
+      "1.20.6",
+      "1.21",
+      "1.21.1",
+      "1.21.2",
+      "1.21.3",
+      "1.21.4",
+      "1.21.5",
+      "1.21.6",
+      "1.21.7",
+      "1.21.8",
+      "1.21.9",
+      "1.21.10",
+      "1.21.11",
+      "26.1"
+    ]
+  },
+  "file": "bettttttttttttttteerrrr_crosshair-1.0.0-resourcepack-1.21.4.zip",
+  "icon": "icon.png",
+  "gallery": [
+    "gallery_0.png",
+    "gallery_1.png"
+  ]
+}

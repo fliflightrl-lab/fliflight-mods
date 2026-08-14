@@ -1,0 +1,39 @@
+name: publish
+
+on:
+  workflow_dispatch:
+    inputs:
+      pack:
+        description: 'Pack slug, or "all"'
+        required: true
+        default: 'all'
+      targets:
+        description: 'Comma list: modrinth,curseforge,github,pmc'
+        required: true
+        default: 'modrinth,github,pmc'
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install deps
+        run: pip install --quiet requests
+      - name: Publish
+        env:
+          CF_API_KEY: ${{ secrets.CF_API_KEY }}
+          MR_TOKEN: ${{ secrets.MODRINTH_TOKEN }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          if [ "${{ github.event.inputs.pack }}" = "all" ]; then
+            python3 publish.py --all --targets "${{ github.event.inputs.targets }}"
+          else
+            python3 publish.py --pack "${{ github.event.inputs.pack }}" --targets "${{ github.event.inputs.targets }}"
+          fi
