@@ -1,0 +1,49 @@
+Hello CurseForge Studio team,
+
+I'm Fliflightmc, a CurseForge author (ID 123880127) publishing Minecraft resource packs. I'm reaching out because I've been unable to upload files through the API for some time, and I'd like to help you investigate what appears to be a server-side regression.
+
+WHAT'S HAPPENING
+Every request to the upload endpoint returns HTTP 400 with the message "API token is malformed", regardless of which valid API key I use. This blocks all automated uploads, so I'm currently limited to publishing manually through the website.
+
+WHAT I'VE ALREADY RULED OUT
+The read API (api.curseforge.com/v1) works perfectly with the same key (HTTP 200 on /games, /minecraft/version, /mods/{id}, etc.). I have generated multiple brand-new API keys and they are all rejected identically. I have also tested every authentication method (X-Api-Token header, x-api-key header, token query parameter, basic auth) and they all fail the same way. This started around 2026-07-15, matching the change referenced in Kira-NT/mc-publish issue #170.
+
+THE DECISIVE EVIDENCE
+Here is a raw capture of the upload request and the full response (token redacted):
+
+POST /api/projects/123880127/upload-file HTTP/1.1
+Host: minecraft.curseforge.com
+X-Api-Token: <REDACTED>
+User-Agent: fliflight-mods/1.0
+Accept: */*
+Content-Type: multipart/form-data; boundary=----fliflight-test-boundary
+Content-Length: 537
+
+------fliflight-test-boundary
+Content-Disposition: form-data; name="metadata"
+
+{"changelog": "test", "changelogType": "text", "displayName": "test", "gameVersions": [12656], "releaseType": "release"}
+------fliflight-test-boundary
+Content-Disposition: form-data; name="file"; filename="test.zip"
+Content-Type: application/zip
+
+PK... [zip bytes, sent in full]
+------fliflight-test-boundary--
+
+HTTP 400 Bad Request
+{"errorCode":3,"errorMessage":"API token is malformed. Token provided: <REDACTED>"}
+
+The key detail: the error message echoes the token back ("Token provided: ..."). This proves the server receives and parses the token - the failure is in the server-side validation of the token's format, not in how it is transmitted. Since the same token works on the read API, the token itself is valid; the legacy upload endpoint appears to reject the current token format ($2a$10$...) at the server side.
+
+WHAT I NEED
+Could you please either:
+1. Fix the legacy upload endpoint (minecraft.curseforge.com/api) so it accepts current API keys, or
+2. Confirm the officially supported upload endpoint and authentication method going forward.
+
+I'm happy to run any additional tests or provide more captures if it helps your engineering team. I'd also appreciate a rough timeline, as manual uploads for every update are becoming unsustainable.
+
+Thank you for your help.
+
+Best regards,
+Fliflightmc
+fliflight.rl@gmail.com
