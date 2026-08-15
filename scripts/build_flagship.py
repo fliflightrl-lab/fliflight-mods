@@ -20,7 +20,7 @@ from PIL import Image, ImageDraw, ImageFont
 BASE      = r"C:\Users\user\fliflight-mods"
 PACKS     = os.path.join(BASE, "packs")
 SLUG      = "pvp-essentials"
-VERSION   = "1.0.0"
+VERSION   = "1.0.1"
 PACK_NAME = "PvP Essentials"
 STAGE     = os.path.join(BASE, "build", SLUG)
 DIST      = os.path.join(BASE, "dist")
@@ -80,21 +80,32 @@ extract_source("sword", [
 ], STAGE)
 
 # ---------------------------------------------------------------- QoL: low fire
-print("[4/6] Low fire overlay (QoL)")
-# fire_0 = 16x16, fire_1 = 16x32 ; thin low-alpha strip at the bottom only
-def low_fire(w, h):
-    img = Image.new("RGBA", (w, h), (0, 0, 0, 0))
-    d = ImageDraw.Draw(img)
-    for y in range(h - 3, h):
-        d.line([(0, y), (w, y)], fill=(255, 120, 0, 70))
-    return img
+print("[4/6] Low fire overlay (QoL) — vanilla flames, bottom half kept")
+# fire_0/fire_1 are 16x512 = 32 frames of 16x16 (animation strips).
+# "Low fire" = keep the DENSE flame base (bottom half of each frame), top half transparent.
+# The 16x512 structure is preserved so the vanilla .mcmeta animation still applies.
+KEEP_FRACTION = 0.5  # tune down (0.3) for an even lower fire
+VANILLA = os.path.join(BASE, "packs", "pvp-essentials", "vanilla_src")
 
-for fn, w, h in [("fire_0.png", 16, 16), ("fire_1.png", 16, 32)]:
+def low_fire_texture(fn):
+    img = Image.open(os.path.join(VANILLA, fn)).convert("RGBA")
+    w, h = img.size
+    n = h // w  # number of frames
+    keep = max(1, int(w * KEEP_FRACTION))
+    out = Image.new("RGBA", (w, h), (0, 0, 0, 0))
+    for i in range(n):
+        frame = img.crop((0, i * w, w, (i + 1) * w))       # 16x16 frame
+        bottom = frame.crop((0, w - keep, w, w))            # flame base (bottom rows)
+        out.paste(bottom, (0, i * w + (w - keep)))
+    return out
+
+for fn in ["fire_0.png", "fire_1.png"]:
+    img = low_fire_texture(fn)
     p = os.path.join(STAGE, "assets", "minecraft", "textures", "block", fn)
     os.makedirs(os.path.dirname(p), exist_ok=True)
     with open(p, "wb") as f:
-        f.write(png_bytes(low_fire(w, h)))
-    print(f"  + assets/minecraft/textures/block/{fn}")
+        f.write(png_bytes(img))
+    print(f"  + assets/minecraft/textures/block/{fn} ({img.size[0]}x{img.size[1]}, {KEEP_FRACTION:.0%} of flame kept)")
 
 # ---------------------------------------------------------------- QoL: no pumpkin
 print("[5/6] Transparent pumpkin overlay (QoL)")

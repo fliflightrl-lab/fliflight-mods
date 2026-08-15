@@ -19,9 +19,9 @@
     "wiki_url": ""
   },
   "version": {
-    "number": "1.0.0",
+    "number": "1.0.1",
     "type": "release",
-    "changelog": "Initial release: better crosshair + visible ores + short sword + low fire + clear pumpkin.",
+    "changelog": "Fixed low fire: flames are now reduced (not removed) — visible low flames instead of an invisible overlay.",
     "loaders": [
       "minecraft"
     ],
@@ -45,7 +45,7 @@
       "1.21.8"
     ]
   },
-  "file": "pvp-essentials-1.0.0-resourcepack-1.21.4.zip",
+  "file": "pvp-essentials-1.0.1-resourcepack-1.21.4.zip",
   "icon": "icon.png",
   "gallery": [
     "01_crosshair.png",
