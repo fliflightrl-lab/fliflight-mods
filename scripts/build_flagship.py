@@ -20,7 +20,7 @@ from PIL import Image, ImageDraw, ImageFont
 BASE      = r"C:\Users\user\fliflight-mods"
 PACKS     = os.path.join(BASE, "packs")
 SLUG      = "pvp-essentials"
-VERSION   = "1.0.2"
+VERSION   = "1.0.3"
 PACK_NAME = "PvP Essentials"
 STAGE     = os.path.join(BASE, "build", SLUG)
 DIST      = os.path.join(BASE, "dist")
@@ -56,19 +56,8 @@ if os.path.isdir(STAGE):
 os.makedirs(STAGE, exist_ok=True)
 os.makedirs(DIST, exist_ok=True)
 
-print("[1/6] Crosshair (proven #1)")
+print("[1/6] Crosshair (proven #1) — the original dot")
 extract_source("dot", ["assets/minecraft/textures/gui/sprites/hud/crosshair.png"], STAGE)
-
-# override with a VISIBLE dot (the original 1px dot is too small / looks "disappeared")
-print("[1b/6] Crosshair -> visible 5x5 dot with outline")
-dot = Image.new("RGBA", (15, 15), (0, 0, 0, 0))
-dd = ImageDraw.Draw(dot)
-dd.rectangle([4, 4, 10, 10], fill=(0, 0, 0, 255))    # dark outline (contrast on bright bg)
-dd.rectangle([5, 5, 9, 9], fill=(255, 255, 255, 255))  # white core
-ch_path = os.path.join(STAGE, "assets", "minecraft", "textures", "gui", "sprites", "hud", "crosshair.png")
-with open(ch_path, "wb") as f:
-    f.write(png_bytes(dot))
-print("  + crosshair.png (5x5 white dot with outline)")
 
 print("[2/6] Visible ores (proven)")
 with zipfile.ZipFile(os.path.join(PACKS, SOURCES["ores"])) as z:
@@ -115,6 +104,14 @@ for fn, reduce in [("fire_0.png", False), ("fire_1.png", True)]:
     with open(p, "wb") as f:
         f.write(png_bytes(img))
     print(f"  + assets/minecraft/textures/block/{fn} ({'reduced' if reduce else 'vanilla'})")
+
+# CRITICAL: include the animation .mcmeta — without it the fire renders as a static,
+# non-animating PNG (the user's "no animation" bug). Block fire and overlay share these.
+for fn in ["fire_0.png", "fire_1.png"]:
+    mc = os.path.join(VANILLA, fn + ".mcmeta")
+    if os.path.exists(mc):
+        shutil.copy2(mc, os.path.join(STAGE, "assets", "minecraft", "textures", "block", fn + ".mcmeta"))
+        print(f"  + assets/minecraft/textures/block/{fn}.mcmeta (animation)")
 
 # ---------------------------------------------------------------- QoL: no pumpkin
 print("[5/6] Transparent pumpkin overlay (QoL)")
