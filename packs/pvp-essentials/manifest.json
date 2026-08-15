@@ -10,7 +10,7 @@
     "utility",
     "16x"
   ],
-  "curseforge_id": null,
+  "curseforge_id": 1653188,
   "modrinth_id": "cHpwGcrb",
   "links": {
     "website_url": "https://www.curseforge.com/members/fliflightmc/projects",
@@ -57,5 +57,6 @@
     "07_short_sword.png",
     "08_clear_pumpkin.png",
     "09_low_fire.png"
-  ]
+  ],
+  "cf_slug": "pvp-essentials-crosshair-visible-ores-sword-low-fire"
 }
