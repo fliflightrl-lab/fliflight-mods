@@ -20,7 +20,7 @@ from PIL import Image, ImageDraw, ImageFont
 BASE      = r"C:\Users\user\fliflight-mods"
 PACKS     = os.path.join(BASE, "packs")
 SLUG      = "pvp-essentials"
-VERSION   = "1.0.4"
+VERSION   = "1.0.5"
 PACK_NAME = "PvP Essentials"
 STAGE     = os.path.join(BASE, "build", SLUG)
 DIST      = os.path.join(BASE, "dist")
@@ -85,30 +85,34 @@ extract_source("sword", [
 ], STAGE)
 
 # ---------------------------------------------------------------- QoL: low fire
-print("[4/6] Low fire overlay (QoL) — fire_0 vanilla + fire_1 reduced")
-# Proven approach (LowOnFire, 13.5M downloads): keep fire_0 FULL, reduce fire_1 only.
-# Reducing BOTH layers made the fire too low / invisible (the user's bug).
+print("[4/6] Low fire overlay (QoL) — compress BOTH layers (full flame, shorter)")
+# The user rejected TRUNCATION ("coupé" = the flame tip was cut off and it just
+# stopped). Instead we VERTICALLY COMPRESS each frame: the WHOLE flame (tip AND
+# base) is resized shorter, then bottom-aligned. Result: a complete, animating
+# flame that sits LOWER instead of a chopped one.
+# Both fire_0 (back flame) and fire_1 (front flame) are compressed so the whole
+# flame is genuinely lower. The HUD "on fire" overlay reads these same block
+# textures (block atlas), so the GUI is lowered automatically ("gui inclus").
 VANILLA = os.path.join(BASE, "packs", "pvp-essentials", "vanilla_src")
-KEEP_FRACTION = 0.5  # fraction of each frame kept for fire_1
+COMPRESS_FRACTION = 0.6  # target flame height as a fraction of the 16px frame
 
-for fn, reduce in [("fire_0.png", False), ("fire_1.png", True)]:
+for fn in ["fire_0.png", "fire_1.png"]:
     src = os.path.join(VANILLA, fn)
     img = Image.open(src).convert("RGBA")
-    if reduce:
-        w, h = img.size
-        n = h // w
-        keep = max(1, int(w * KEEP_FRACTION))
-        out = Image.new("RGBA", (w, h), (0, 0, 0, 0))
-        for i in range(n):
-            frame = img.crop((0, i * w, w, (i + 1) * w))
-            bottom = frame.crop((0, w - keep, w, w))
-            out.paste(bottom, (0, i * w + (w - keep)))
-        img = out
+    w, h = img.size
+    n = h // w                      # number of 16x16 frames in the strip
+    new_h = max(1, round(w * COMPRESS_FRACTION))
+    out = Image.new("RGBA", (w, h), (0, 0, 0, 0))
+    for i in range(n):
+        frame = img.crop((0, i * w, w, (i + 1) * w))        # full 16x16 frame
+        compressed = frame.resize((w, new_h), Image.LANCZOS) # whole flame, shorter
+        out.paste(compressed, (0, i * w + (w - new_h)))      # bottom-aligned
+    img = out
     p = os.path.join(STAGE, "assets", "minecraft", "textures", "block", fn)
     os.makedirs(os.path.dirname(p), exist_ok=True)
     with open(p, "wb") as f:
         f.write(png_bytes(img))
-    print(f"  + assets/minecraft/textures/block/{fn} ({'reduced' if reduce else 'vanilla'})")
+    print(f"  + assets/minecraft/textures/block/{fn} (compressed {w}px->{new_h}px, full shape)")
 
 # CRITICAL: include the animation .mcmeta — without it the fire renders as a static,
 # non-animating PNG (the user's "no animation" bug). Block fire and overlay share these.

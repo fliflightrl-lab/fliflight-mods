@@ -19,9 +19,9 @@
     "wiki_url": ""
   },
   "version": {
-    "number": "1.0.4",
+    "number": "1.0.5",
     "type": "release",
-    "changelog": "Crosshair fix: dot now at both the modern (gui/sprites/hud) and legacy (gui/) paths so it applies on any version.",
+    "changelog": "Low fire fixed: the flame is now fully lowered (compressed, tip preserved) instead of cut off at the top. Both fire layers lowered; GUI overlay included.",
     "loaders": [
       "minecraft"
     ],
@@ -45,7 +45,7 @@
       "1.21.8"
     ]
   },
-  "file": "pvp-essentials-1.0.4-resourcepack-1.21.4.zip",
+  "file": "pvp-essentials-1.0.5-resourcepack-1.21.4.zip",
   "icon": "icon.png",
   "gallery": [
     "01_crosshair.png",
