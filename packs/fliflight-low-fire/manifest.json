@@ -1,0 +1,52 @@
+{
+  "slug": "fliflight-low-fire",
+  "name": "Low Fire \u2014 Lowered Flame Overlay (Full Animation)",
+  "project_type": "resourcepack",
+  "summary": "Lowers the fire overlay (in-world and GUI) so it never blocks your view \u2014 full flame, full animation, just shorter.",
+  "body": "Tired of the vanilla fire taking over your whole screen? This pack **lowers the flame** while keeping the complete fire animation.\\n\\n- \ud83d\udd25 **Lowered flame** \u2014 the whole fire sits lower, tip and animation intact (no cut-off flame)\\n- \ud83d\udda5\ufe0f **GUI included** \u2014 the on-screen fire overlay is lowered too\\n- \u2705 **Works on every launcher** \u2014 just drop in `resourcepacks` and enable\\n\\n---\\n\\n### \ud83d\ude80 Want everything in one pack?\\nThis feature is part of **[PvP Essentials](https://www.curseforge.com/minecraft/texture-packs/fliflight-pvp-essentials)** \u2014 the all-in-one pack with crosshair, visible ores, short sword, low fire and clear pumpkin.\\n> \ud83d\udca1 **CurseForge is the source of truth** for this pack \u2014 the most up-to-date, bug-free versions are always there first: [CurseForge page](https://www.curseforge.com/minecraft/texture-packs/fliflight-low-fire)",
+  "license": "All Rights Reserved",
+  "categories": [
+    "utility",
+    "16x"
+  ],
+  "curseforge_id": null,
+  "modrinth_id": "RIH3vxZQ",
+  "links": {
+    "website_url": "https://www.curseforge.com/members/fliflightmc/projects",
+    "source_url": null,
+    "issues_url": null,
+    "wiki_url": ""
+  },
+  "version": {
+    "number": "1.0.0",
+    "type": "release",
+    "changelog": "Initial release: lowered fire overlay with full animation (world + GUI).",
+    "loaders": [
+      "minecraft"
+    ],
+    "game_versions": [
+      "1.19",
+      "1.19.2",
+      "1.19.4",
+      "1.20",
+      "1.20.1",
+      "1.20.2",
+      "1.20.4",
+      "1.20.5",
+      "1.20.6",
+      "1.21",
+      "1.21.1",
+      "1.21.3",
+      "1.21.4",
+      "1.21.5",
+      "1.21.6",
+      "1.21.7",
+      "1.21.8"
+    ]
+  },
+  "file": "fliflight-low-fire-1.0.0-resourcepack-1.21.4.zip",
+  "icon": "icon.png",
+  "gallery": [
+    "01_lowfire.png"
+  ]
+}
