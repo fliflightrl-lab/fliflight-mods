@@ -3,7 +3,7 @@
   "name": "PvP Essentials — Crosshair, Visible Ores, Sword & Low Fire",
   "project_type": "resourcepack",
   "summary": "All-in-one PvP pack: better crosshair, visible ores, short sword, low fire and clear pumpkin. One download, everything you need.",
-  "body": "**One pack, everything you need for PvP.** Combines our three most-downloaded packs into a single flagship, plus two quality-of-life tweaks.\n\n### What's inside\n- 🎯 **Better crosshair** — clean, high-visibility dot crosshair (our #1 pack, 24k+ downloads)\n- ⛏️ **Visible ores** — every ore and ancient debris stands out, even through shaders (13k+ downloads)\n- ⚔️ **Short sword** — smaller, cleaner swords for better PvP visibility (5k+ downloads)\n- 🔥 **Low fire** — reduced fire overlay so it never blocks your view\n- 🎃 **Clear pumpkin** — no more pumpkin blur when you wear one\n\n### Why one pack?\nStop juggling 7 downloads. This is the consolidated flagship: better discoverability, one update to maintain, and all the social proof in one place.\n\n---\n\n**Also try the originals:** [Dot Crosshair](https://www.curseforge.com/minecraft/texture-packs/dot-crosshair-cossx-better-crosshair) · [Visible Ores](https://www.curseforge.com/minecraft/texture-packs/visible-ores-all-versions-and-netherite) · [Short Sword](https://www.curseforge.com/minecraft/texture-packs/pvp-sword-little-sword-all-versions)",
+  "body": "**One pack, everything you need for PvP.** Combines our three most-downloaded packs into a single flagship, plus two quality-of-life tweaks.\n\n### What's inside\n- 🎯 **Better crosshair** — clean, high-visibility dot crosshair\n- ⛏️ **Visible ores** — every ore and ancient debris stands out, even through shaders\n- ⚔️ **Short sword** — smaller, cleaner swords for better PvP visibility\n- 🔥 **Low fire** — reduced fire overlay so it never blocks your view\n- 🎃 **Clear pumpkin** — no more pumpkin blur when you wear one\n\n### ⚠️ Original packs — get the latest bug-free versions here\nThis flagship is a **convenience bundle**. Each feature comes from a dedicated **original pack** that is updated and bug-fixed **first**. For the most reliable, up-to-date version of a specific feature, download the original:\n\n| Feature | Original pack | CurseForge (source of truth) |\n|---|---|---|\n| 🎯 Crosshair | [Dot Crosshair](https://modrinth.com/resourcepack/dot-crosshair-cossx-better-crosshair) | [CurseForge](https://www.curseforge.com/minecraft/texture-packs/dot-crosshair-cossx-better-crosshair) |\n| ⛏️ Visible ores | [Visible Ores](https://modrinth.com/resourcepack/visible-ores-all-versions-and-netherite) | [CurseForge](https://www.curseforge.com/minecraft/texture-packs/visible-ores-all-versions-and-netherite) |\n| ⚔️ Short sword | [Short Sword](https://modrinth.com/resourcepack/pvp-sword-little-sword-all-versions) | [CurseForge](https://www.curseforge.com/minecraft/texture-packs/pvp-sword-little-sword-all-versions) |\n\n> 💡 If a feature stops working after a Minecraft update, the fix lands in the **original pack first** — always check there.",
   "license": "All Rights Reserved",
   "categories": [
     "combat",
@@ -13,7 +13,7 @@
   "curseforge_id": null,
   "modrinth_id": "cHpwGcrb",
   "links": {
-    "website_url": "",
+    "website_url": "https://www.curseforge.com/members/fliflightmc/projects",
     "source_url": null,
     "issues_url": null,
     "wiki_url": ""
@@ -48,6 +48,14 @@
   "file": "pvp-essentials-1.0.0-resourcepack-1.21.4.zip",
   "icon": "icon.png",
   "gallery": [
-    "gallery_0.png"
+    "01_crosshair.png",
+    "02_crosshair.png",
+    "03_visible_ores.png",
+    "04_visible_ores.png",
+    "05_visible_ores.png",
+    "06_short_sword.png",
+    "07_short_sword.png",
+    "08_clear_pumpkin.png",
+    "09_low_fire.png"
   ]
 }
