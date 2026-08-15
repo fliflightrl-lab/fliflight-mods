@@ -19,9 +19,9 @@
     "wiki_url": ""
   },
   "version": {
-    "number": "1.0.1",
+    "number": "1.0.2",
     "type": "release",
-    "changelog": "Fixed low fire: flames are now reduced (not removed) — visible low flames instead of an invisible overlay.",
+    "changelog": "Fixed low fire (fire_0 kept vanilla, fire_1 reduced — proven LowOnFire approach) + visible 5x5 dot crosshair.",
     "loaders": [
       "minecraft"
     ],
@@ -45,7 +45,7 @@
       "1.21.8"
     ]
   },
-  "file": "pvp-essentials-1.0.1-resourcepack-1.21.4.zip",
+  "file": "pvp-essentials-1.0.2-resourcepack-1.21.4.zip",
   "icon": "icon.png",
   "gallery": [
     "01_crosshair.png",
