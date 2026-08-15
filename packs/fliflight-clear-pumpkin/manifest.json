@@ -1,15 +1,15 @@
 {
   "slug": "fliflight-clear-pumpkin",
-  "name": "Clear Pumpkin \u2014 No Pumpkin Blur",
+  "name": "Clear Pumpkin — No Pumpkin Blur",
   "project_type": "resourcepack",
   "summary": "Removes the orange pumpkin blur overlay so you can see clearly while wearing a pumpkin.",
-  "body": "Wearing a pumpkin for the Enderman trick? The vanilla orange blur makes it hard to see. This pack **removes the blur entirely**.\\n\\n- \ud83c\udf83 **No more orange overlay** \u2014 full clear vision\\n- \u2705 **Works on every launcher** \u2014 just drop in `resourcepacks` and enable\\n\\n---\\n\\n### \ud83d\ude80 Want everything in one pack?\\nThis feature is part of **[PvP Essentials](https://www.curseforge.com/minecraft/texture-packs/fliflight-pvp-essentials)** \u2014 the all-in-one pack with crosshair, visible ores, short sword, low fire and clear pumpkin.\\n> \ud83d\udca1 **CurseForge is the source of truth** for this pack \u2014 the most up-to-date, bug-free versions are always there first: [CurseForge page](https://www.curseforge.com/minecraft/texture-packs/fliflight-clear-pumpkin)",
+  "body": "Wearing a pumpkin for the Enderman trick? The vanilla orange blur makes it hard to see. This pack **removes the blur entirely**.\\n\\n- 🎃 **No more orange overlay** — full clear vision\\n- ✅ **Works on every launcher** — just drop in `resourcepacks` and enable\\n\\n---\\n\\n### 🚀 Want everything in one pack?\\nThis feature is part of **[PvP Essentials](https://www.curseforge.com/minecraft/texture-packs/fliflight-pvp-essentials)** — the all-in-one pack with crosshair, visible ores, short sword, low fire and clear pumpkin.\\n> 💡 **CurseForge is the source of truth** for this pack — the most up-to-date, bug-free versions are always there first: [CurseForge page](https://www.curseforge.com/minecraft/texture-packs/fliflight-clear-pumpkin)",
   "license": "All Rights Reserved",
   "categories": [
     "utility",
     "16x"
   ],
-  "curseforge_id": null,
+  "curseforge_id": 1653159,
   "modrinth_id": "xnQODGjN",
   "links": {
     "website_url": "https://www.curseforge.com/members/fliflightmc/projects",
@@ -48,5 +48,6 @@
   "icon": "icon.png",
   "gallery": [
     "01_pumpkin.png"
-  ]
+  ],
+  "cf_slug": "clear-pumpkin-no-pumpkin-blur"
 }
