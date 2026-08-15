@@ -20,7 +20,7 @@ from PIL import Image, ImageDraw, ImageFont
 BASE      = r"C:\Users\user\fliflight-mods"
 PACKS     = os.path.join(BASE, "packs")
 SLUG      = "pvp-essentials"
-VERSION   = "1.0.3"
+VERSION   = "1.0.4"
 PACK_NAME = "PvP Essentials"
 STAGE     = os.path.join(BASE, "build", SLUG)
 DIST      = os.path.join(BASE, "dist")
@@ -56,8 +56,13 @@ if os.path.isdir(STAGE):
 os.makedirs(STAGE, exist_ok=True)
 os.makedirs(DIST, exist_ok=True)
 
-print("[1/6] Crosshair (proven #1) — the original dot")
+print("[1/6] Crosshair — the 1px dot (new + legacy path fallback)")
 extract_source("dot", ["assets/minecraft/textures/gui/sprites/hud/crosshair.png"], STAGE)
+# also write to the legacy path (pre-1.20.5) as a harmless fallback
+legacy = os.path.join(STAGE, "assets", "minecraft", "textures", "gui", "crosshair.png")
+os.makedirs(os.path.dirname(legacy), exist_ok=True)
+shutil.copy2(os.path.join(STAGE, "assets", "minecraft", "textures", "gui", "sprites", "hud", "crosshair.png"), legacy)
+print("  + gui/crosshair.png (legacy fallback)")
 
 print("[2/6] Visible ores (proven)")
 with zipfile.ZipFile(os.path.join(PACKS, SOURCES["ores"])) as z:

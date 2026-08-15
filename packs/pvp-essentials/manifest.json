@@ -19,9 +19,9 @@
     "wiki_url": ""
   },
   "version": {
-    "number": "1.0.3",
+    "number": "1.0.4",
     "type": "release",
-    "changelog": "Restored original dot crosshair + fixed fire animation (added .mcmeta files — fire now animates; fire_0 vanilla, fire_1 reduced).",
+    "changelog": "Crosshair fix: dot now at both the modern (gui/sprites/hud) and legacy (gui/) paths so it applies on any version.",
     "loaders": [
       "minecraft"
     ],
@@ -45,7 +45,7 @@
       "1.21.8"
     ]
   },
-  "file": "pvp-essentials-1.0.3-resourcepack-1.21.4.zip",
+  "file": "pvp-essentials-1.0.4-resourcepack-1.21.4.zip",
   "icon": "icon.png",
   "gallery": [
     "01_crosshair.png",
