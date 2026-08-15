@@ -1,0 +1,53 @@
+{
+  "slug": "fliflight-pvp-essentials",
+  "name": "PvP Essentials — Crosshair, Visible Ores, Sword & Low Fire",
+  "project_type": "resourcepack",
+  "summary": "All-in-one PvP pack: better crosshair, visible ores, short sword, low fire and clear pumpkin. One download, everything you need.",
+  "body": "**One pack, everything you need for PvP.** Combines our three most-downloaded packs into a single flagship, plus two quality-of-life tweaks.\n\n### What's inside\n- 🎯 **Better crosshair** — clean, high-visibility dot crosshair (our #1 pack, 24k+ downloads)\n- ⛏️ **Visible ores** — every ore and ancient debris stands out, even through shaders (13k+ downloads)\n- ⚔️ **Short sword** — smaller, cleaner swords for better PvP visibility (5k+ downloads)\n- 🔥 **Low fire** — reduced fire overlay so it never blocks your view\n- 🎃 **Clear pumpkin** — no more pumpkin blur when you wear one\n\n### Why one pack?\nStop juggling 7 downloads. This is the consolidated flagship: better discoverability, one update to maintain, and all the social proof in one place.\n\n---\n\n**Also try the originals:** [Dot Crosshair](https://www.curseforge.com/minecraft/texture-packs/dot-crosshair-cossx-better-crosshair) · [Visible Ores](https://www.curseforge.com/minecraft/texture-packs/visible-ores-all-versions-and-netherite) · [Short Sword](https://www.curseforge.com/minecraft/texture-packs/pvp-sword-little-sword-all-versions)",
+  "license": "All Rights Reserved",
+  "categories": [
+    "combat",
+    "utility",
+    "16x"
+  ],
+  "curseforge_id": null,
+  "modrinth_id": "cHpwGcrb",
+  "links": {
+    "website_url": "",
+    "source_url": null,
+    "issues_url": null,
+    "wiki_url": ""
+  },
+  "version": {
+    "number": "1.0.0",
+    "type": "release",
+    "changelog": "Initial release: better crosshair + visible ores + short sword + low fire + clear pumpkin.",
+    "loaders": [
+      "minecraft"
+    ],
+    "game_versions": [
+      "1.19",
+      "1.19.2",
+      "1.19.4",
+      "1.20",
+      "1.20.1",
+      "1.20.2",
+      "1.20.4",
+      "1.20.5",
+      "1.20.6",
+      "1.21",
+      "1.21.1",
+      "1.21.3",
+      "1.21.4",
+      "1.21.5",
+      "1.21.6",
+      "1.21.7",
+      "1.21.8"
+    ]
+  },
+  "file": "pvp-essentials-1.0.0-resourcepack-1.21.4.zip",
+  "icon": "icon.png",
+  "gallery": [
+    "gallery_0.png"
+  ]
+}
