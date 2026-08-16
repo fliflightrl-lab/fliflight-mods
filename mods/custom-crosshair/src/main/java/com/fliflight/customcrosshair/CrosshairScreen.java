@@ -14,6 +14,8 @@ import java.util.function.IntConsumer;
 /**
  * In-game configuration screen for the custom crosshair.
  * Opened with the configured key binding (default: C).
+ *
+ * Layout: controls on the LEFT (scrollable via mouse wheel), live preview on the RIGHT.
  */
 public class CrosshairScreen extends Screen {
     private static final int TEXT_COLOR = 0xFFFFFF;
@@ -25,6 +27,17 @@ public class CrosshairScreen extends Screen {
     private final List<String> presetNames = new ArrayList<>(CrosshairPresets.CROSSHAIRS.keySet());
     private final List<String> colorNames = new ArrayList<>(CrosshairPresets.COLORS.keySet());
 
+    /** Scroll offset in pixels (0 = top). Content is laid out below, offset by this. */
+    private int scroll = 0;
+    /** Total content height, used to clamp the scroll range. */
+    private int contentHeight = 0;
+
+    // Layout constants.
+    private static final int LEFT_MARGIN = 10;
+    private static final int CTRL_WIDTH = 160;
+    private static final int CTRL_HEIGHT = 20;
+    private static final int ROW_GAP = 24;
+
     public CrosshairScreen(CrosshairConfig config, Screen parent) {
         super(Text.literal("Custom Crosshair"));
         this.config = config;
@@ -33,80 +46,89 @@ public class CrosshairScreen extends Screen {
 
     @Override
     protected void init() {
-        int w = this.width;
-        int centerX = w / 2;
-        int btnW = 150;
-        int btnX = centerX - btnW / 2;
-        int y = 20;
+        this.clearChildren();
+        int x = LEFT_MARGIN;
+        // Widgets are laid out starting at a base y, then shifted up by the scroll offset.
+        int y = 10 - scroll;
 
         // Enabled toggle
         this.addDrawableChild(CyclingButtonWidget.onOffBuilder(config.enabled)
-                .build(centerX - 75, y, 150, 20, Text.literal("Enabled"), (btn, on) -> {
+                .build(x, y, CTRL_WIDTH, CTRL_HEIGHT, Text.literal("Enabled"), (btn, on) -> {
                     config.enabled = on;
                     config.save();
                 }));
-        y += 24;
+        y += ROW_GAP;
 
         // Shape selector
         int idx = Math.max(0, shapes.indexOf(config.shape));
         this.addDrawableChild(CyclingButtonWidget.<String>builder(s -> Text.literal(s))
                 .values(shapes)
                 .initially(shapes.get(idx))
-                .build(centerX - 75, y, 150, 20, Text.literal("Shape"), (btn, shape) -> {
+                .build(x, y, CTRL_WIDTH, CTRL_HEIGHT, Text.literal("Shape"), (btn, shape) -> {
                     config.shape = shape;
                     config.save();
                 }));
-        y += 24;
+        y += ROW_GAP;
 
         // Size slider
-        this.addDrawableChild(new IntSlider(btnX, y, btnW, 20, "Size", 1, 30, config.size,
+        this.addDrawableChild(new IntSlider(x, y, CTRL_WIDTH, CTRL_HEIGHT, "Size", 1, 30, config.size,
                 v -> { config.size = v; config.save(); }));
-        y += 24;
+        y += ROW_GAP;
 
         // Thickness slider
-        this.addDrawableChild(new IntSlider(btnX, y, btnW, 20, "Thickness", 1, 8, config.thickness,
+        this.addDrawableChild(new IntSlider(x, y, CTRL_WIDTH, CTRL_HEIGHT, "Thickness", 1, 8, config.thickness,
                 v -> { config.thickness = v; config.save(); }));
-        y += 24;
+        y += ROW_GAP;
 
         // Gap slider
-        this.addDrawableChild(new IntSlider(btnX, y, btnW, 20, "Gap", 0, 12, config.gap,
+        this.addDrawableChild(new IntSlider(x, y, CTRL_WIDTH, CTRL_HEIGHT, "Gap", 0, 12, config.gap,
                 v -> { config.gap = v; config.save(); }));
-        y += 26;
+        y += ROW_GAP;
 
-        // Color presets (row of color names)
-        y = addColorPresets(centerX, y);
-        y += 8;
+        // Center dot toggle
+        this.addDrawableChild(CyclingButtonWidget.onOffBuilder(config.dot)
+                .build(x, y, CTRL_WIDTH, CTRL_HEIGHT, Text.literal("Center Dot"), (btn, on) -> {
+                    config.dot = on;
+                    config.save();
+                }));
+        y += ROW_GAP;
+
+        // Color presets (grid of color buttons)
+        y = addColorPresets(x, y);
+        y += ROW_GAP;
 
         // RGB sliders
-        this.addDrawableChild(new IntSlider(btnX, y, btnW, 20, "Red", 0, 255, config.getRed(),
+        this.addDrawableChild(new IntSlider(x, y, CTRL_WIDTH, CTRL_HEIGHT, "Red", 0, 255, config.getRed(),
                 v -> { config.setRgb(v, config.getGreen(), config.getBlue()); config.save(); }));
-        y += 24;
-        this.addDrawableChild(new IntSlider(btnX, y, btnW, 20, "Green", 0, 255, config.getGreen(),
+        y += ROW_GAP;
+        this.addDrawableChild(new IntSlider(x, y, CTRL_WIDTH, CTRL_HEIGHT, "Green", 0, 255, config.getGreen(),
                 v -> { config.setRgb(config.getRed(), v, config.getBlue()); config.save(); }));
-        y += 24;
-        this.addDrawableChild(new IntSlider(btnX, y, btnW, 20, "Blue", 0, 255, config.getBlue(),
+        y += ROW_GAP;
+        this.addDrawableChild(new IntSlider(x, y, CTRL_WIDTH, CTRL_HEIGHT, "Blue", 0, 255, config.getBlue(),
                 v -> { config.setRgb(config.getRed(), config.getGreen(), v); config.save(); }));
-        y += 28;
+        y += ROW_GAP;
 
-        // Crosshair presets
-        y = addCrosshairPresets(centerX, y);
-        y += 12;
+        // Crosshair presets (grid of preset buttons)
+        y = addCrosshairPresets(x, y);
+        y += ROW_GAP;
 
         // Done button
         this.addDrawableChild(ButtonWidget.builder(Text.literal("Done"), b -> this.close())
-                .dimensions(centerX - 100, y, 200, 20)
+                .dimensions(x, y, CTRL_WIDTH, CTRL_HEIGHT)
                 .build());
+        y += ROW_GAP;
+
+        // Total content height (unscrolled). Adding back scroll gives the full layout height.
+        this.contentHeight = y + scroll;
     }
 
-    private int addColorPresets(int centerX, int y) {
+    private int addColorPresets(int x, int y) {
         int total = colorNames.size();
-        int cols = Math.min(total, 4);
+        int cols = 3;
         int rows = (total + cols - 1) / cols;
-        int bw = 70;
-        int bh = 20;
-        int gap = 6;
-        int gridW = cols * bw + (cols - 1) * gap;
-        int startX = centerX - gridW / 2;
+        int bw = 52;
+        int bh = CTRL_HEIGHT;
+        int gap = 4;
         for (int i = 0; i < total; i++) {
             int r = i / cols;
             int c = i % cols;
@@ -116,21 +138,19 @@ public class CrosshairScreen extends Screen {
                         config.color = argb;
                         config.save();
                     })
-                    .dimensions(startX + c * (bw + gap), y + r * (bh + gap), bw, bh)
+                    .dimensions(x + c * (bw + gap), y + r * (bh + gap), bw, bh)
                     .build());
         }
         return y + rows * bh + (rows - 1) * gap;
     }
 
-    private int addCrosshairPresets(int centerX, int y) {
+    private int addCrosshairPresets(int x, int y) {
         int total = presetNames.size();
         int cols = 3;
         int rows = (total + cols - 1) / cols;
-        int bw = 70;
-        int bh = 20;
-        int gap = 6;
-        int gridW = cols * bw + (cols - 1) * gap;
-        int startX = centerX - gridW / 2;
+        int bw = 52;
+        int bh = CTRL_HEIGHT;
+        int gap = 4;
         for (int i = 0; i < total; i++) {
             int r = i / cols;
             int c = i % cols;
@@ -142,21 +162,36 @@ public class CrosshairScreen extends Screen {
                         config.size = Integer.parseInt(p[2]);
                         config.thickness = Integer.parseInt(p[3]);
                         config.gap = Integer.parseInt(p[4]);
+                        config.dot = Integer.parseInt(p[5]) == 1;
                         config.save();
-                        this.clearChildren();
                         this.init();
                     })
-                    .dimensions(startX + c * (bw + gap), y + r * (bh + gap), bw, bh)
+                    .dimensions(x + c * (bw + gap), y + r * (bh + gap), bw, bh)
                     .build());
         }
         return y + rows * bh + (rows - 1) * gap;
     }
 
     @Override
+    public boolean mouseScrolled(double mouseX, double mouseY, double horizontalAmount, double verticalAmount) {
+        int viewport = this.height - 20;
+        int maxScroll = Math.max(0, contentHeight - viewport);
+        int step = 20;
+        if (verticalAmount > 0) {
+            scroll = Math.max(0, scroll - step);
+        } else if (verticalAmount < 0) {
+            scroll = Math.min(maxScroll, scroll + step);
+        }
+        // Re-layout with the new scroll offset baked into the widget positions.
+        this.init();
+        return true;
+    }
+
+    @Override
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
         super.render(context, mouseX, mouseY, delta);
-        // Live preview of the crosshair, centered.
-        int cx = this.width / 2;
+        // Live preview on the RIGHT side, vertically centered.
+        int cx = this.width - 80;
         int cy = this.height / 2;
         context.drawCenteredTextWithShadow(this.textRenderer, "Preview", cx, cy - 40, TEXT_COLOR);
         CrosshairRenderer.render(context, cx, cy, config);

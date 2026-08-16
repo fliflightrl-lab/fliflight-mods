@@ -16,6 +16,9 @@ public class CrosshairConfig {
     /** Shape: "cross", "dot", "x", "circle", "t". */
     public String shape = "cross";
 
+    /** Draw a center dot in addition to the crosshair shape. */
+    public boolean dot = false;
+
     /** Color as 0xAARRGGBB int (alpha ignored, drawn opaque). */
     public int color = 0xFF00FF00;
 
