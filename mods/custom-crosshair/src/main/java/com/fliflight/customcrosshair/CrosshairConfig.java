@@ -59,4 +59,20 @@ public class CrosshairConfig {
     public int getRgbColor() {
         return color | 0xFF000000;
     }
+
+    public int getRed() {
+        return (color >> 16) & 0xFF;
+    }
+
+    public int getGreen() {
+        return (color >> 8) & 0xFF;
+    }
+
+    public int getBlue() {
+        return color & 0xFF;
+    }
+
+    public void setRgb(int r, int g, int b) {
+        color = 0xFF000000 | ((r & 0xFF) << 16) | ((g & 0xFF) << 8) | (b & 0xFF);
+    }
 }
