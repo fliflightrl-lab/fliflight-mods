@@ -27,12 +27,11 @@ public class CrosshairScreen extends Screen {
     private final List<String> presetNames = new ArrayList<>(CrosshairPresets.CROSSHAIRS.keySet());
     private final List<String> colorNames = new ArrayList<>(CrosshairPresets.COLORS.keySet());
 
-    /** Scroll offset in pixels (0 = top). Content is laid out below, offset by this. */
+    /** Scroll offset in pixels (0 = top). */
     private int scroll = 0;
     /** Total content height, used to clamp the scroll range. */
     private int contentHeight = 0;
 
-    // Layout constants.
     private static final int LEFT_MARGIN = 10;
     private static final int CTRL_WIDTH = 160;
     private static final int CTRL_HEIGHT = 20;
@@ -48,7 +47,6 @@ public class CrosshairScreen extends Screen {
     protected void init() {
         this.clearChildren();
         int x = LEFT_MARGIN;
-        // Widgets are laid out starting at a base y, then shifted up by the scroll offset.
         int y = 10 - scroll;
 
         // Enabled toggle
@@ -85,15 +83,42 @@ public class CrosshairScreen extends Screen {
                 v -> { config.gap = v; config.save(); }));
         y += ROW_GAP;
 
-        // Center dot toggle
+        // Per-arm position offsets
+        this.addDrawableChild(new IntSlider(x, y, CTRL_WIDTH, CTRL_HEIGHT, "Top Offset", -10, 10, config.topOffset,
+                v -> { config.topOffset = v; config.save(); }));
+        y += ROW_GAP;
+        this.addDrawableChild(new IntSlider(x, y, CTRL_WIDTH, CTRL_HEIGHT, "Bottom Offset", -10, 10, config.bottomOffset,
+                v -> { config.bottomOffset = v; config.save(); }));
+        y += ROW_GAP;
+        this.addDrawableChild(new IntSlider(x, y, CTRL_WIDTH, CTRL_HEIGHT, "Left Offset", -10, 10, config.leftOffset,
+                v -> { config.leftOffset = v; config.save(); }));
+        y += ROW_GAP;
+        this.addDrawableChild(new IntSlider(x, y, CTRL_WIDTH, CTRL_HEIGHT, "Right Offset", -10, 10, config.rightOffset,
+                v -> { config.rightOffset = v; config.save(); }));
+        y += ROW_GAP;
+
+        // Center dot controls
         this.addDrawableChild(CyclingButtonWidget.onOffBuilder(config.dot)
                 .build(x, y, CTRL_WIDTH, CTRL_HEIGHT, Text.literal("Center Dot"), (btn, on) -> {
                     config.dot = on;
                     config.save();
                 }));
         y += ROW_GAP;
+        this.addDrawableChild(new IntSlider(x, y, CTRL_WIDTH, CTRL_HEIGHT, "Dot Size", 1, 8, config.dotSize,
+                v -> { config.dotSize = v; config.save(); }));
+        y += ROW_GAP;
+        this.addDrawableChild(new IntSlider(x, y, CTRL_WIDTH, CTRL_HEIGHT, "Dot X", -15, 15, config.dotOffsetX,
+                v -> { config.dotOffsetX = v; config.save(); }));
+        y += ROW_GAP;
+        this.addDrawableChild(new IntSlider(x, y, CTRL_WIDTH, CTRL_HEIGHT, "Dot Y", -15, 15, config.dotOffsetY,
+                v -> { config.dotOffsetY = v; config.save(); }));
+        y += ROW_GAP;
 
-        // Color presets (grid of color buttons)
+        // Dot color presets (cycling)
+        y = addDotColorPresets(x, y);
+        y += ROW_GAP;
+
+        // Main color presets (grid of color buttons)
         y = addColorPresets(x, y);
         y += ROW_GAP;
 
@@ -118,8 +143,26 @@ public class CrosshairScreen extends Screen {
                 .build());
         y += ROW_GAP;
 
-        // Total content height (unscrolled). Adding back scroll gives the full layout height.
         this.contentHeight = y + scroll;
+    }
+
+    /** Dot color as a single cycling button over the preset colors. */
+    private int addDotColorPresets(int x, int y) {
+        int idx = 0;
+        for (int i = 0; i < colorNames.size(); i++) {
+            if (CrosshairPresets.COLORS.get(colorNames.get(i)) == (config.dotColor | 0xFF000000)) {
+                idx = i;
+                break;
+            }
+        }
+        this.addDrawableChild(CyclingButtonWidget.<String>builder(s -> Text.literal(s))
+                .values(colorNames)
+                .initially(colorNames.get(idx))
+                .build(x, y, CTRL_WIDTH, CTRL_HEIGHT, Text.literal("Dot Color"), (btn, name) -> {
+                    config.dotColor = CrosshairPresets.COLORS.get(name);
+                    config.save();
+                }));
+        return y;
     }
 
     private int addColorPresets(int x, int y) {
@@ -163,6 +206,7 @@ public class CrosshairScreen extends Screen {
                         config.thickness = Integer.parseInt(p[3]);
                         config.gap = Integer.parseInt(p[4]);
                         config.dot = Integer.parseInt(p[5]) == 1;
+                        config.dotSize = p.length > 6 ? Integer.parseInt(p[6]) : 2;
                         config.save();
                         this.init();
                     })
@@ -182,7 +226,6 @@ public class CrosshairScreen extends Screen {
         } else if (verticalAmount < 0) {
             scroll = Math.min(maxScroll, scroll + step);
         }
-        // Re-layout with the new scroll offset baked into the widget positions.
         this.init();
         return true;
     }

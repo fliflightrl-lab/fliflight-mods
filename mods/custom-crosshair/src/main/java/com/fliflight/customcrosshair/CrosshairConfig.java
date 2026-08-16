@@ -19,6 +19,18 @@ public class CrosshairConfig {
     /** Draw a center dot in addition to the crosshair shape. */
     public boolean dot = false;
 
+    /** Center dot radius in pixels (1..8). */
+    public int dotSize = 2;
+
+    /** Center dot color as 0xAARRGGBB int. */
+    public int dotColor = 0xFFFFFFFF;
+
+    /** Center dot horizontal offset from the screen center. */
+    public int dotOffsetX = 0;
+
+    /** Center dot vertical offset from the screen center. */
+    public int dotOffsetY = 0;
+
     /** Color as 0xAARRGGBB int (alpha ignored, drawn opaque). */
     public int color = 0xFF00FF00;
 
@@ -30,6 +42,12 @@ public class CrosshairConfig {
 
     /** Gap at the center (for cross/t/x) in pixels. */
     public int gap = 2;
+
+    /** Per-arm position offsets (shift each arm along its length axis). */
+    public int topOffset = 0;
+    public int bottomOffset = 0;
+    public int leftOffset = 0;
+    public int rightOffset = 0;
 
     public transient Path configPath;
 
@@ -77,5 +95,9 @@ public class CrosshairConfig {
 
     public void setRgb(int r, int g, int b) {
         color = 0xFF000000 | ((r & 0xFF) << 16) | ((g & 0xFF) << 8) | (b & 0xFF);
+    }
+
+    public int getDotRgbColor() {
+        return dotColor | 0xFF000000;
     }
 }
