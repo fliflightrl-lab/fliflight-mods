@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "id": "pvpqol",
+  "version": "${version}",
+  "name": "PvP Essentials QoL",
+  "description": "Client-side PvP quality-of-life mod: HUD (FPS / ping / coords), lowered fire overlay, and toggleable pumpkin blur. All features configurable.",
+  "authors": ["Fliflightmc"],
+  "contact": {
+    "homepage": "https://github.com/fliflightrl-lab/fliflight-mods",
+    "sources": "https://github.com/fliflightrl-lab/fliflight-mods"
+  },
+  "license": "All-Rights-Reserved",
+  "environment": "client",
+  "entrypoints": {
+    "client": ["com.fliflight.pvpqol.PvPQolClient"]
+  },
+  "mixins": [
+    "pvpqol.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.16.0",
+    "minecraft": "~1.21.4",
+    "java": ">=21",
+    "fabric-api": "*"
+  }
+}
