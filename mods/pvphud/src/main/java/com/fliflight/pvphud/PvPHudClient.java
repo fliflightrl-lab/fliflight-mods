@@ -1,4 +1,4 @@
-package com.fliflight.pvpqol;
+package com.fliflight.pvphud;
 
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
@@ -9,13 +9,13 @@ import net.minecraft.client.render.RenderTickCounter;
 
 import java.util.Locale;
 
-public class PvPQolClient implements ClientModInitializer {
-    public static PvPQolConfig CONFIG;
+public class PvPHudClient implements ClientModInitializer {
+    public static PvPHudConfig CONFIG;
 
     @Override
     public void onInitializeClient() {
-        CONFIG = PvPQolConfig.load();
-        HudRenderCallback.EVENT.register(PvPQolClient::onRenderHud);
+        CONFIG = PvPHudConfig.load();
+        HudRenderCallback.EVENT.register(PvPHudClient::onRenderHud);
     }
 
     private static void onRenderHud(DrawContext context, RenderTickCounter tickCounter) {
@@ -45,6 +45,10 @@ public class PvPQolClient implements ClientModInitializer {
             String coords = String.format(Locale.ROOT, "XYZ: %.0f / %.0f / %.0f",
                     client.player.getX(), client.player.getY(), client.player.getZ());
             draw(context, coords, x, y, color);
+            y += lineHeight;
+        }
+        if (CONFIG.hudShowCps) {
+            draw(context, "CPS: " + CpsTracker.getLeftCps() + " / " + CpsTracker.getRightCps(), x, y, color);
         }
     }
 

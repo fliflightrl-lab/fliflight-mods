@@ -1,10 +1,9 @@
 {
   "required": true,
-  "package": "com.fliflight.pvpqol.mixin",
+  "package": "com.fliflight.pvphud.mixin",
   "compatibilityLevel": "JAVA_21",
   "client": [
-    "InGameOverlayRendererMixin",
-    "InGameHudMixin"
+    "MinecraftClientMixin"
   ],
   "injectors": {
     "defaultRequire": 1

@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
-  "id": "pvpqol",
+  "id": "pvphud",
   "version": "${version}",
-  "name": "PvP Essentials QoL",
-  "description": "Client-side PvP quality-of-life mod: HUD (FPS / ping / coords), lowered fire overlay, and toggleable pumpkin blur. All features configurable.",
+  "name": "PvP HUD",
+  "description": "Client-side PvP HUD for Minecraft: FPS, ping, coordinates and clicks-per-second (CPS) in the top-left corner. All lines toggleable via config.",
   "authors": ["Fliflightmc"],
   "contact": {
     "homepage": "https://github.com/fliflightrl-lab/fliflight-mods",
@@ -12,10 +12,10 @@
   "license": "All-Rights-Reserved",
   "environment": "client",
   "entrypoints": {
-    "client": ["com.fliflight.pvpqol.PvPQolClient"]
+    "client": ["com.fliflight.pvphud.PvPHudClient"]
   },
   "mixins": [
-    "pvpqol.mixins.json"
+    "pvphud.mixins.json"
   ],
   "depends": {
     "fabricloader": ">=0.16.0",
