@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "id": "custom-crosshair",
+  "version": "${version}",
+  "name": "Custom Crosshair",
+  "description": "Client-side customizable crosshair for Minecraft PvP. Change shape (cross, dot, x, circle, t), color, size, thickness and center gap — all via config.",
+  "authors": ["Fliflightmc"],
+  "contact": {
+    "homepage": "https://github.com/fliflightrl-lab/fliflight-mods",
+    "sources": "https://github.com/fliflightrl-lab/fliflight-mods"
+  },
+  "license": "All-Rights-Reserved",
+  "environment": "client",
+  "entrypoints": {
+    "client": ["com.fliflight.customcrosshair.CrosshairModClient"]
+  },
+  "mixins": [
+    "custom-crosshair.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.16.0",
+    "minecraft": "~1.21.4",
+    "java": ">=21",
+    "fabric-api": "*"
+  }
+}
