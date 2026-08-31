@@ -1,0 +1,145 @@
+[
+  {
+    "name": "Diamond Dimension",
+    "cf_id": 1479652,
+    "mr_id": "NR54mkOD",
+    "type": "mod",
+    "cf_downloads": 719,
+    "cf_name": "Everything is In Diamonds Dimension !",
+    "mr_downloads": 1,
+    "mr_followers": 0,
+    "mr_title": "Diamond Dimension — A New World Made of Diamonds (NeoForge)"
+  },
+  {
+    "name": "Bigger Dot Crosshair",
+    "cf_id": 1499072,
+    "mr_id": "d8t14H03",
+    "type": "resourcepack",
+    "cf_downloads": 7124,
+    "cf_name": "Bigger Dot Crosshair - CrossX Better Crosshair",
+    "mr_downloads": 17,
+    "mr_followers": 0,
+    "mr_title": "Bigger Dot Crosshair — High-Visibility PvP Crosshair"
+  },
+  {
+    "name": "CrosshairX",
+    "cf_id": 1497428,
+    "mr_id": "Y8zhQ9z5",
+    "type": "resourcepack",
+    "cf_downloads": 5674,
+    "cf_name": "CrosshairX-Better Crosshair",
+    "mr_downloads": 16,
+    "mr_followers": 0,
+    "mr_title": "CrosshairX — Enhanced Crosshair for PvP"
+  },
+  {
+    "name": "Sniper Crosshair",
+    "cf_id": 1588694,
+    "mr_id": "4JKFVXUw",
+    "type": "resourcepack",
+    "cf_downloads": 5193,
+    "cf_name": "CrossX-Better Crosshair Sniper Crosshair",
+    "mr_downloads": 209,
+    "mr_followers": 0,
+    "mr_title": "Sniper Crosshair — Precision for Bow & Long-Range PvP"
+  },
+  {
+    "name": "Better Crosshair",
+    "cf_id": 1494020,
+    "mr_id": "oBGsX8oY",
+    "type": "resourcepack",
+    "cf_downloads": 9027,
+    "cf_name": "CrossX - Better Crosshair !",
+    "mr_downloads": 29,
+    "mr_followers": 0,
+    "mr_title": "Better Crosshair — Modern Clean Crosshair for PvP"
+  },
+  {
+    "name": "CrossX Crosshair",
+    "cf_id": 1499029,
+    "mr_id": "1ylCihJa",
+    "type": "resourcepack",
+    "cf_downloads": 16152,
+    "cf_name": "CrossX - CROSSX Better Crosshair !",
+    "mr_downloads": 43,
+    "mr_followers": 0,
+    "mr_title": "CrossX Crosshair — Custom PvP Crosshair Pack"
+  },
+  {
+    "name": "Crossy Crosshair",
+    "cf_id": 1558798,
+    "mr_id": "sQkn3uEf",
+    "type": "resourcepack",
+    "cf_downloads": 2463,
+    "cf_name": "Crossy - CrossX - Better Crosshair",
+    "mr_downloads": 9,
+    "mr_followers": 0,
+    "mr_title": "Crossy Crosshair — Stylish PvP Crosshair"
+  },
+  {
+    "name": "Dot Crosshair",
+    "cf_id": 1499007,
+    "mr_id": "4r8Ufv9p",
+    "type": "resourcepack",
+    "cf_downloads": 27398,
+    "cf_name": "Dot Crosshair - CrossX Better Crosshair",
+    "mr_downloads": 30,
+    "mr_followers": 0,
+    "mr_title": "Dot Crosshair — Clean PvP & Survival Crosshair (All Versions)"
+  },
+  {
+    "name": "Clear Pumpkin",
+    "cf_id": 1653159,
+    "mr_id": "xnQODGjN",
+    "type": "resourcepack",
+    "cf_downloads": 1860,
+    "cf_name": "Clear Pumpkin — No Pumpkin Blur",
+    "mr_downloads": 0,
+    "mr_followers": 0,
+    "mr_title": "Clear Pumpkin — No Pumpkin Blur"
+  },
+  {
+    "name": "Low Fire",
+    "cf_id": 1653138,
+    "mr_id": "RIH3vxZQ",
+    "type": "resourcepack",
+    "cf_downloads": 4667,
+    "cf_name": "Low Fire - Lowered Flame ",
+    "mr_downloads": 1,
+    "mr_followers": 0,
+    "mr_title": "Low Fire — Lowered Flame Overlay (Full Animation)"
+  },
+  {
+    "name": "PvP Essentials",
+    "cf_id": 1653188,
+    "mr_id": "cHpwGcrb",
+    "type": "resourcepack",
+    "cf_downloads": 224,
+    "cf_name": "PvP Essentials - Crosshair, Visible Ores, Sword & Low Fire",
+    "mr_downloads": 5,
+    "mr_followers": 0,
+    "mr_title": "PvP Essentials — Crosshair, Visible Ores, Sword & Low Fire"
+  },
+  {
+    "name": "Short Sword",
+    "cf_id": 1334714,
+    "mr_id": "IcIJjhMO",
+    "type": "resourcepack",
+    "cf_downloads": 5992,
+    "cf_name": "Pvp sword (little sword) all versions",
+    "mr_downloads": 0,
+    "mr_followers": 0,
+    "mr_title": "Short Sword — Smaller Swords for PvP (All Versions)"
+  },
+  {
+    "name": "Visible Ores",
+    "cf_id": 1334611,
+    "mr_id": "SEfn6MDy",
+    "type": "resourcepack",
+    "cf_downloads": 13627,
+    "cf_name": "Visible Ores (all versions+) and netherite",
+    "mr_downloads": 172,
+    "mr_followers": 0,
+    "mr_title": "Visible Ores — See Every Ore & Netherite (Shaders Ready)"
+  }
+]

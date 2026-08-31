@@ -17,6 +17,7 @@ PACKS = [
     (1334611, "Visible Ores"),
     (1334714, "Short Sword"),
     (1479652, "Diamond Dimension"),
+    (1653188, "PvP Essentials"),
 ]
 
 
