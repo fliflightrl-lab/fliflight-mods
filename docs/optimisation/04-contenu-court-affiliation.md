@@ -1,5 +1,9 @@
 # D — Contenu court (TikTok / Shorts / Reels) + affiliation
 
+> ⚠️ La section « Scripts » ci-dessous est **remplacée** par la doc `06-lancement-shorts.md`
+> (scripts upgrade viraux + calendrier 4 semaines + kit de lancement). La section
+> « Affiliation » reste valable et est conservée ici.
+
 Objectif : transformer tes packs en contenu viral de 15-45 s, chaque vue = funnel vers
 CurseForge (où tu es payé) + liens d'affiliation.
 
