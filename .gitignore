@@ -1,4 +1,5 @@
 dist/
+work/
 build/
 gallery_src/
 __pycache__/
