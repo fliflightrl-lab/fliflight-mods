@@ -4,7 +4,13 @@ import os, subprocess, glob
 
 BASE = os.path.expanduser("~/fliflight-mods/work")
 WINS = f"{BASE}/rush/wins"
-MUSIC = f"{BASE}/shorts/music_phonk.wav"
+MUSIC_DIR = f"{BASE}/shorts/music"
+# 3 tracks (rotating): agressif / slowed / trap FR (no R&B)
+MUSIC = [
+    f"{MUSIC_DIR}/phonk_agressif.m4a",
+    f"{MUSIC_DIR}/phonk_slowed.m4a",
+    f"{MUSIC_DIR}/rap_fr_trap.m4a",
+]
 OUT = f"{BASE}/shorts"
 os.makedirs(OUT, exist_ok=True)
 
@@ -58,6 +64,7 @@ def write_ass(path, hook):
 def build(clip, ass_name, out_name, idx):
     ass_path = f"{OUT}/{ass_name}"
     write_ass(ass_path, HOOKS[idx - 1])
+    music = MUSIC[(idx - 1) % len(MUSIC)]
     fc = (
         "[0:v]split=2[bg][fg];"
         "[bg]scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,"
@@ -69,7 +76,7 @@ def build(clip, ass_name, out_name, idx):
         "[1:a]volume=0.82,apad[m];"
         "[g][m]amix=inputs=2:normalize=0:dropout_transition=0,alimiter=limit=0.95[a]"
     )
-    cmd = (["ffmpeg", "-y", "-loglevel", "error", "-i", clip, "-i", MUSIC,
+    cmd = (["ffmpeg", "-y", "-loglevel", "error", "-i", clip, "-i", music,
             "-filter_complex", fc, "-map", "[v]", "-map", "[a]",
             "-t", "24", "-c:v", "libx264", "-preset", "medium", "-crf", "20",
             "-pix_fmt", "yuv420p", "-c:a", "aac", "-b:a", "192k", f"{OUT}/{out_name}"])
