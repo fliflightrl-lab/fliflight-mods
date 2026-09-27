@@ -52,17 +52,27 @@ Lus depuis les variables d'env, sinon `~/.config/fliflightmc/credentials.json` :
 3. `python3 publish.py --verify` puis `python3 publish.py --pack <slug> --dry-run`.
 4. Lance la vraie publication (local ou via GitHub Actions → *Run workflow*).
 
-## ⚠️ CurseForge (upload)
+## CurseForge (upload) — RÉSOLU
 
-- L'upload automatique **vers** CurseForge passe par `minecraft.curseforge.com/api`
-  (endpoint `/projects/{id}/upload-file`, header `X-Api-Token`).
-- La clé actuelle (`$2a$10$…`) est **acceptée par l'API de lecture**
-  (`api.curseforge.com`, `x-api-key`) mais **rejetée comme « malformed » par l'API
-  d'upload**. Il faut probablement générer une nouvelle clé depuis
-  console.curseforge.com pour débloquer l'upload API.
-- En attendant, CurseForge reste une **source** (tu publies sur le site CF comme
-  d'habitude) et le pipeline pousse CF → Modrinth/GitHub/PMC. C'est le sens
-  inverse (`--targets` sans `curseforge`) qui est automatisé et fiable.
+CurseForge expose **deux APIs avec deux tokens différents** — c'est le piège :
+
+| API | Base URL | Header | Type de token |
+|---|---|---|---|
+| Lecture (Eternal) | `api.curseforge.com` | `x-api-key` | clé bcrypt `$2a$10$…` |
+| **Upload** | `minecraft.curseforge.com/api` | `X-Api-Token` | **token auteur UUID** |
+
+Le token d'upload se génère sur **https://www.curseforge.com/account/api-tokens**
+(format UUID, ex. `0556e0a9-…`) — **pas** sur console.curseforge.com. Un token
+bcrypt est rejeté par l'API d'upload avec `API token is malformed`.
+
+Credentials (`~/.config/fliflightmc/credentials.json`) :
+
+```json
+{ "curseforge": { "api_key": "…", "author_id": 123880127, "upload_token": "…" } }
+```
+
+`publish.py` utilise `api_key` pour résoudre les game-versions et `upload_token`
+pour le `POST /projects/{id}/upload-file`.
 
 ## Planet Minecraft
 

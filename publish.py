@@ -36,9 +36,11 @@ def load_credentials():
     creds = {}
     if os.path.exists(CREDS_FILE):
         raw = json.load(open(CREDS_FILE, encoding="utf-8"))
-        creds["CF_API_KEY"] = raw.get("curseforge", {}).get("api_key")
+        cf_raw = raw.get("curseforge", {})
+        creds["CF_API_KEY"] = cf_raw.get("api_key")
+        creds["CF_UPLOAD_TOKEN"] = cf_raw.get("upload_token")
         creds["MR_TOKEN"] = raw.get("modrinth", {}).get("token")
-    for k in ("CF_API_KEY", "MR_TOKEN", "GH_TOKEN", "GH_REPO"):
+    for k in ("CF_API_KEY", "CF_UPLOAD_TOKEN", "MR_TOKEN", "GH_TOKEN", "GH_REPO"):
         if os.environ.get(k):
             creds[k] = os.environ[k]
     return creds
@@ -106,19 +108,24 @@ def modrinth_publish(m, token, dry_run):
 _cf_game_versions = None
 
 
-def cf_resolve_game_versions(token, game_versions):
-    """Resolve Minecraft version names -> CF game-version ids via the READ api
-    (api.curseforge.com), which accepts the bcrypt key. The UPLOAD api
-    (minecraft.curseforge.com/api) rejects it as 'malformed', so we resolve ids
-    on the side that works."""
+def cf_resolve_game_versions(api_key, upload_token, game_versions):
+    """Resolve Minecraft version names -> CF game-version ids.
+    Prefers the READ api (api.curseforge.com / x-api-key, bcrypt key); falls back
+    to the UPLOAD api (minecraft.curseforge.com/api / X-Api-Token, UUID author token)."""
     global _cf_game_versions
+    if _cf_game_versions is None and api_key:
+        r = requests.get("https://api.curseforge.com/v1/minecraft/version",
+                         headers={"x-api-key": api_key}, timeout=60)
+        if r.status_code == 200:
+            _cf_game_versions = {str(v.get("versionString")): v.get("gameVersionId")
+                                 for v in r.json().get("data", []) if v.get("versionString")}
+    if _cf_game_versions is None and upload_token:
+        r = requests.get(f"{CF_UPLOAD_API}/game/versions",
+                         headers={"X-Api-Token": upload_token}, timeout=60)
+        if r.status_code == 200:
+            _cf_game_versions = {v.get("name"): v.get("id") for v in r.json() if v.get("name")}
     if _cf_game_versions is None:
-        h = {"x-api-key": token}
-        r = requests.get("https://api.curseforge.com/v1/minecraft/version", headers=h, timeout=60)
-        if r.status_code != 200:
-            raise SystemExit(f"[curseforge] /v1/minecraft/version -> {r.status_code}: {r.text[:200]}")
-        _cf_game_versions = {str(v.get("versionString")): v.get("gameVersionId")
-                             for v in r.json().get("data", []) if v.get("versionString")}
+        raise SystemExit("[curseforge] unable to fetch the CF game-version table (no usable token)")
     ids, missing = [], []
     for gv in game_versions:
         if gv in _cf_game_versions:
@@ -128,11 +135,11 @@ def cf_resolve_game_versions(token, game_versions):
     return sorted(set(i for i in ids if i)), missing
 
 
-def curseforge_publish(m, token, dry_run):
+def curseforge_publish(m, api_key, upload_token, dry_run):
     v = m["version"]
     print(f"[curseforge] project={m['curseforge_id']} version={v['number']} "
           f"loaders={v['loaders']} game_versions={len(v['game_versions'])}")
-    ids, missing = cf_resolve_game_versions(token, v["game_versions"])
+    ids, missing = cf_resolve_game_versions(api_key, upload_token, v["game_versions"])
     if missing:
         print(f"[curseforge] WARN: {len(missing)} game versions not found in CF map: "
               f"{missing[:10]}{'...' if len(missing) > 10 else ''}")
@@ -156,7 +163,7 @@ def curseforge_publish(m, token, dry_run):
             "metadata": (None, json.dumps(metadata), "application/json"),
         }
         r = requests.post(f"{CF_UPLOAD_API}/projects/{m['curseforge_id']}/upload-file",
-                          headers={"X-Api-Token": token}, files=files, timeout=300)
+                          headers={"X-Api-Token": upload_token}, files=files, timeout=300)
     if r.status_code in (200, 201):
         j = r.json()
         print(f"[curseforge] OK -> file id={j.get('id')}")
@@ -164,10 +171,10 @@ def curseforge_publish(m, token, dry_run):
         txt = r.text[:400]
         print(f"[curseforge] ERROR {r.status_code}: {txt}")
         if "malformed" in txt:
-            print("[curseforge] -> This CF key is accepted by the READ api (api.curseforge.com) but "
-                  "rejected by the UPLOAD api (minecraft.curseforge.com/api). Generate a new/upload-capable "
-                  "token at console.curseforge.com, or keep uploading to CurseForge via the website and "
-                  "use the mirror direction (CF -> Modrinth/GitHub/PMC) instead.")
+            print("[curseforge] -> The UPLOAD api needs the AUTHOR token (UUID format, e.g. "
+                  "0556e0a9-...), NOT the bcrypt read key. Generate it at "
+                  "https://www.curseforge.com/account/api-tokens and store it as "
+                  "curseforge.upload_token in ~/.config/fliflightmc/credentials.json.")
         raise SystemExit(1)
 
 
@@ -290,7 +297,8 @@ def verify(creds):
     if cf:
         r = requests.get("https://api.curseforge.com/v1/games", headers={"x-api-key": cf}, timeout=30)
         print(f"\n[verify] curseforge read-api status: {r.status_code}")
-        ids, missing = cf_resolve_game_versions(cf, ["1.21.4", "1.21.8", "26.2"])
+        ids, missing = cf_resolve_game_versions(cf, creds.get("CF_UPLOAD_TOKEN"),
+                                                ["1.21.4", "1.21.8", "26.2"])
         print(f"[verify] curseforge game-version resolve sample: {len(ids)} resolved, missing={missing}")
 
 
@@ -323,10 +331,11 @@ def main():
             else:
                 modrinth_publish(m, creds["MR_TOKEN"], args.dry_run)
         if "curseforge" in targets:
-            if not creds.get("CF_API_KEY"):
-                print("[curseforge] SKIP — no CF_API_KEY")
+            if not creds.get("CF_UPLOAD_TOKEN"):
+                print("[curseforge] SKIP — no CF_UPLOAD_TOKEN (upload needs the UUID author token "
+                      "from curseforge.com/account/api-tokens)")
             else:
-                curseforge_publish(m, creds["CF_API_KEY"], args.dry_run)
+                curseforge_publish(m, creds.get("CF_API_KEY"), creds["CF_UPLOAD_TOKEN"], args.dry_run)
         if "github" in targets:
             if not (creds.get("GH_TOKEN") and creds.get("GH_REPO")):
                 print("[github] SKIP — no GH_TOKEN/GH_REPO")

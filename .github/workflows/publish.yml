@@ -28,6 +28,7 @@ jobs:
       - name: Publish
         env:
           CF_API_KEY: ${{ secrets.CF_API_KEY }}
+          CF_UPLOAD_TOKEN: ${{ secrets.CF_UPLOAD_TOKEN }}
           MR_TOKEN: ${{ secrets.MODRINTH_TOKEN }}
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GH_REPO: ${{ github.repository }}
