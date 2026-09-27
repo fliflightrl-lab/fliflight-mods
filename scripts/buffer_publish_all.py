@@ -74,6 +74,7 @@ def desc(n):
     return (f"🔥 {HOOKS[n]} — clutch Minecraft PvP !\n\n"
             "⚔️ Crosshair custom, ores visibles, épées courtes… tous mes packs sont GRATUITS "
             "👉 https://linktr.ee/fliflight\n"
+            "☕ Soutiens-moi : https://ko-fi.com/fliflight\n"
             "💬 Discord, réseaux & tout le reste : même lien en bio\n\n"
             "Abonne-toi pour plus de PvP 🔥\n\n"
             "#minecraft #minecraftpvp #pvp #shorts #gaming #crosshair #fyp")
