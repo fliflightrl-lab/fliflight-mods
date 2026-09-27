@@ -4,6 +4,9 @@ Une seule commande (ou un clic dans GitHub Actions) publie un pack vers
 **Modrinth**, **CurseForge**, **GitHub Releases** et prépare le dépôt manuel
 **Planet Minecraft**.
 
+> ☕ **Soutenir le projet → [ko-fi.com/fliflight](https://ko-fi.com/fliflight)**
+> Tous les packs restent **gratuits** — Ko-fi finance les mises à jour et les nouveaux packs.
+
 ```
 packs/<slug>/
     manifest.json        # source de vérité (métadonnées + ids + version)
