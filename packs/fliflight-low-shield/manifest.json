@@ -1,0 +1,52 @@
+{
+  "slug": "fliflight-low-shield",
+  "name": "Low Shield — Shield Out of the Way",
+  "project_type": "resourcepack",
+  "summary": "Makes the first-person shield smaller and lower so it never blocks your view in PvP.",
+  "body": "The vanilla shield covers a huge chunk of your screen when held. This pack **shrinks it and lowers it** so you keep full visibility while staying protected.\\n\\n- 🛡️ **Smaller shield** — 45% smaller in first person\\n- ⬇️ **Sits lower** — out of your line of sight\\n- ✅ **Works on every launcher** — just drop in `resourcepacks` and enable\\n\\n---\\n\\n### 🚀 Want everything in one pack?\\nThis feature is part of **[PvP Essentials](https://www.curseforge.com/minecraft/texture-packs/pvp-essentials-crosshair-visible-ores-sword-low)** — the all-in-one pack with crosshair, visible ores, short sword, low fire and clear pumpkin.\\n> 💡 **CurseForge is the source of truth** — the most up-to-date, bug-free versions land there first: [Fliflight on CurseForge](https://www.curseforge.com/members/fliflightmc/projects)",
+  "license": "All Rights Reserved",
+  "categories": [
+    "utility",
+    "16x"
+  ],
+  "curseforge_id": null,
+  "modrinth_id": "3kHplXd9",
+  "links": {
+    "website_url": "https://www.curseforge.com/members/fliflightmc/projects",
+    "source_url": null,
+    "issues_url": null,
+    "wiki_url": ""
+  },
+  "version": {
+    "number": "1.0.0",
+    "type": "release",
+    "changelog": "Initial release: smaller, lowered first-person shield.",
+    "loaders": [
+      "minecraft"
+    ],
+    "game_versions": [
+      "1.19",
+      "1.19.2",
+      "1.19.4",
+      "1.20",
+      "1.20.1",
+      "1.20.2",
+      "1.20.4",
+      "1.20.5",
+      "1.20.6",
+      "1.21",
+      "1.21.1",
+      "1.21.3",
+      "1.21.4",
+      "1.21.5",
+      "1.21.6",
+      "1.21.7",
+      "1.21.8"
+    ]
+  },
+  "file": "fliflight-low-shield-1.0.0-resourcepack-1.21.4.zip",
+  "icon": "icon.png",
+  "gallery": [
+    "01_shield.png"
+  ]
+}

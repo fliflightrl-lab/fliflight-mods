@@ -1,0 +1,52 @@
+{
+  "slug": "fliflight-no-vignette",
+  "name": "No Vignette — Clear Screen Corners",
+  "project_type": "resourcepack",
+  "summary": "Removes the dark corner shading so the whole screen stays evenly lit.",
+  "body": "Vanilla darkens the corners of your screen with a vignette. This pack **removes it completely** for a cleaner, brighter view.\\n\\n- 🌓 **No more dark corners** — the whole screen is evenly clear\\n- 👀 **Better awareness** in dark caves and at night\\n- ✅ **Works on every launcher** — just drop in `resourcepacks` and enable\\n\\n---\\n\\n### 🚀 Want everything in one pack?\\nThis feature is part of **[PvP Essentials](https://www.curseforge.com/minecraft/texture-packs/pvp-essentials-crosshair-visible-ores-sword-low)** — the all-in-one pack with crosshair, visible ores, short sword, low fire and clear pumpkin.\\n> 💡 **CurseForge is the source of truth** — the most up-to-date, bug-free versions land there first: [Fliflight on CurseForge](https://www.curseforge.com/members/fliflightmc/projects)",
+  "license": "All Rights Reserved",
+  "categories": [
+    "utility",
+    "16x"
+  ],
+  "curseforge_id": null,
+  "modrinth_id": "JYyEzln5",
+  "links": {
+    "website_url": "https://www.curseforge.com/members/fliflightmc/projects",
+    "source_url": null,
+    "issues_url": null,
+    "wiki_url": ""
+  },
+  "version": {
+    "number": "1.0.0",
+    "type": "release",
+    "changelog": "Initial release: removes the vignette overlay.",
+    "loaders": [
+      "minecraft"
+    ],
+    "game_versions": [
+      "1.19",
+      "1.19.2",
+      "1.19.4",
+      "1.20",
+      "1.20.1",
+      "1.20.2",
+      "1.20.4",
+      "1.20.5",
+      "1.20.6",
+      "1.21",
+      "1.21.1",
+      "1.21.3",
+      "1.21.4",
+      "1.21.5",
+      "1.21.6",
+      "1.21.7",
+      "1.21.8"
+    ]
+  },
+  "file": "fliflight-no-vignette-1.0.0-resourcepack-1.21.4.zip",
+  "icon": "icon.png",
+  "gallery": [
+    "01_vignette.png"
+  ]
+}

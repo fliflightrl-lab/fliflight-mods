@@ -1,0 +1,41 @@
+{
+  "slug": "fliflight-clean-hotbar",
+  "name": "Clean Hotbar — Flat Minimal HUD",
+  "project_type": "resourcepack",
+  "summary": "Replaces the busy vanilla hotbar with a flat, clean design and a clearer XP bar.",
+  "body": "The vanilla hotbar is thick and over-detailed. This pack uses a **flat, minimal design** with a clearer XP bar.\\n\\n- 🎨 **Flat clean design** — less visual noise, same 9 slots\\n- 📊 **Clearer XP bar** — bright green, easy to read at a glance\\n- ✅ **Works on every launcher** — just drop in `resourcepacks` and enable\\n\\n---\\n\\n### 🚀 Want everything in one pack?\\nThis feature is part of **[PvP Essentials](https://www.curseforge.com/minecraft/texture-packs/pvp-essentials-crosshair-visible-ores-sword-low)** — the all-in-one pack with crosshair, visible ores, short sword, low fire and clear pumpkin.\\n> 💡 **CurseForge is the source of truth** — the most up-to-date, bug-free versions land there first: [Fliflight on CurseForge](https://www.curseforge.com/members/fliflightmc/projects)",
+  "license": "All Rights Reserved",
+  "categories": [
+    "utility",
+    "16x"
+  ],
+  "curseforge_id": null,
+  "modrinth_id": "PDnvunp5",
+  "links": {
+    "website_url": "https://www.curseforge.com/members/fliflightmc/projects",
+    "source_url": null,
+    "issues_url": null,
+    "wiki_url": ""
+  },
+  "version": {
+    "number": "1.0.0",
+    "type": "release",
+    "changelog": "Initial release: flat clean hotbar + XP bar.",
+    "loaders": [
+      "minecraft"
+    ],
+    "game_versions": [
+      "1.21.3",
+      "1.21.4",
+      "1.21.5",
+      "1.21.6",
+      "1.21.7",
+      "1.21.8"
+    ]
+  },
+  "file": "fliflight-clean-hotbar-1.0.0-resourcepack-1.21.4.zip",
+  "icon": "icon.png",
+  "gallery": [
+    "01_hotbar.png"
+  ]
+}

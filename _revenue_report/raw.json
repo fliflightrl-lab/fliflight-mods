@@ -1,0 +1,276 @@
+{
+  "curseforge": [
+    {
+      "id": 1588694,
+      "name": "CrossX-Better Crosshair Sniper Crosshair",
+      "downloadCount": 5856,
+      "slug": "crossx-better-crosshair-sniper-crosshair",
+      "classId": 12,
+      "authors": [
+        "Fliflightmc"
+      ]
+    },
+    {
+      "id": 1558798,
+      "name": "Crossy - CrossX - Better Crosshair",
+      "downloadCount": 2636,
+      "slug": "crossy-crossx-better-crosshair",
+      "classId": 12,
+      "authors": [
+        "Fliflightmc"
+      ]
+    },
+    {
+      "id": 1655379,
+      "name": "Custom Crosshair PvP",
+      "downloadCount": 68,
+      "slug": "custom-crosshair-pvp",
+      "classId": 6,
+      "authors": [
+        "Fliflightmc"
+      ]
+    },
+    {
+      "id": 1653138,
+      "name": "Low Fire - Lowered Flame ",
+      "downloadCount": 7608,
+      "slug": "low-fire-lowered-flame",
+      "classId": 12,
+      "authors": [
+        "Fliflightmc"
+      ]
+    },
+    {
+      "id": 1653188,
+      "name": "PvP Essentials - Crosshair, Visible Ores, Sword & Low Fire",
+      "downloadCount": 371,
+      "slug": "pvp-essentials-crosshair-visible-ores-sword-low",
+      "classId": 12,
+      "authors": [
+        "Fliflightmc"
+      ]
+    },
+    {
+      "id": 1655357,
+      "name": "PvP HUD",
+      "downloadCount": 82,
+      "slug": "pvp-hud",
+      "classId": 6,
+      "authors": [
+        "Fliflightmc"
+      ]
+    },
+    {
+      "id": 1653159,
+      "name": "Clear Pumpkin — No Pumpkin Blur",
+      "downloadCount": 2977,
+      "slug": "clear-pumpkin-no-pumpkin-blur",
+      "classId": 12,
+      "authors": [
+        "Fliflightmc"
+      ]
+    },
+    {
+      "id": 1479652,
+      "name": "Everything is In Diamonds Dimension !",
+      "downloadCount": 744,
+      "slug": "all-in-diamonds-dimension",
+      "classId": 6,
+      "authors": [
+        "Fliflightmc"
+      ]
+    },
+    {
+      "id": 1334714,
+      "name": "Pvp sword (little sword) all versions",
+      "downloadCount": 6137,
+      "slug": "pvp-sword-little-sword-all-versions",
+      "classId": 12,
+      "authors": [
+        "Fliflightmc"
+      ]
+    },
+    {
+      "id": 1497428,
+      "name": "CrosshairX-Better Crosshair",
+      "downloadCount": 6015,
+      "slug": "crosshairx-better-crosshair",
+      "classId": 12,
+      "authors": [
+        "Fliflightmc"
+      ]
+    },
+    {
+      "id": 1499072,
+      "name": "Bigger Dot Crosshair - CrossX Better Crosshair",
+      "downloadCount": 7482,
+      "slug": "bigger-dot-crosshair-cossx-better-crosshair",
+      "classId": 12,
+      "authors": [
+        "Fliflightmc"
+      ]
+    },
+    {
+      "id": 1334611,
+      "name": "Visible Ores (all versions+) and netherite",
+      "downloadCount": 13961,
+      "slug": "visible-ores-all-versions-and-netherite",
+      "classId": 12,
+      "authors": [
+        "Fliflightmc"
+      ]
+    },
+    {
+      "id": 1494020,
+      "name": "CrossX - Better Crosshair !",
+      "downloadCount": 9529,
+      "slug": "crossx-better-crosshair",
+      "classId": 12,
+      "authors": [
+        "Fliflightmc"
+      ]
+    },
+    {
+      "id": 1499029,
+      "name": "CrossX - CROSSX Better Crosshair !",
+      "downloadCount": 16845,
+      "slug": "crossx-crossx-better-crosshair",
+      "classId": 12,
+      "authors": [
+        "Fliflightmc"
+      ]
+    },
+    {
+      "id": 1499007,
+      "name": "Dot Crosshair - CrossX Better Crosshair",
+      "downloadCount": 29071,
+      "slug": "dot-crosshair-cossx-better-crosshair",
+      "classId": 12,
+      "authors": [
+        "Fliflightmc"
+      ]
+    }
+  ],
+  "modrinth": [
+    {
+      "id": "4JKFVXUw",
+      "title": "Sniper Crosshair — Precision for Bow & Long-Range PvP",
+      "slug": "crossx",
+      "project_type": "resourcepack",
+      "downloads": 246,
+      "followers": 0
+    },
+    {
+      "id": "IcIJjhMO",
+      "title": "Short Sword",
+      "slug": "fliflight-short-sword",
+      "project_type": "resourcepack",
+      "downloads": 15,
+      "followers": 0
+    },
+    {
+      "id": "4r8Ufv9p",
+      "title": "Dot Crosshair — Clean PvP & Survival Crosshair (All Versions)",
+      "slug": "dot-crosshair-cossx-better-crosshair",
+      "project_type": "resourcepack",
+      "downloads": 66,
+      "followers": 0
+    },
+    {
+      "id": "ruCFBIgj",
+      "title": "PvP HUD",
+      "slug": "fliflight-pvphud",
+      "project_type": "mod",
+      "downloads": 0,
+      "followers": 0
+    },
+    {
+      "id": "RIH3vxZQ",
+      "title": "Low Fire — Lowered Flame Overlay (Full Animation)",
+      "slug": "fliflight-low-fire",
+      "project_type": "resourcepack",
+      "downloads": 12,
+      "followers": 0
+    },
+    {
+      "id": "SEfn6MDy",
+      "title": "Visible Ores — See Every Ore & Netherite (Shaders Ready)",
+      "slug": "visible-ores-all-versions-and-netherite",
+      "project_type": "resourcepack",
+      "downloads": 199,
+      "followers": 0
+    },
+    {
+      "id": "d8t14H03",
+      "title": "Bigger Dot Crosshair — High-Visibility PvP Crosshair",
+      "slug": "bigger-dot-crosshair-cossx-better-crosshair",
+      "project_type": "resourcepack",
+      "downloads": 32,
+      "followers": 0
+    },
+    {
+      "id": "1ylCihJa",
+      "title": "CrossX Crosshair — Custom PvP Crosshair Pack",
+      "slug": "crossx-crossx-better-crosshair",
+      "project_type": "resourcepack",
+      "downloads": 100,
+      "followers": 0
+    },
+    {
+      "id": "o01bugzT",
+      "title": "Custom Crosshair",
+      "slug": "fliflight-custom-crosshair",
+      "project_type": "mod",
+      "downloads": 0,
+      "followers": 0
+    },
+    {
+      "id": "xnQODGjN",
+      "title": "Clear Pumpkin — No Pumpkin Blur",
+      "slug": "fliflight-clear-pumpkin",
+      "project_type": "resourcepack",
+      "downloads": 0,
+      "followers": 0
+    },
+    {
+      "id": "Y8zhQ9z5",
+      "title": "CrosshairX — Enhanced Crosshair for PvP",
+      "slug": "crosshairx-better-crosshair",
+      "project_type": "resourcepack",
+      "downloads": 27,
+      "followers": 0
+    },
+    {
+      "id": "sQkn3uEf",
+      "title": "Crossy Crosshair — Stylish PvP Crosshair",
+      "slug": "crossy-crossx-better-crosshair",
+      "project_type": "resourcepack",
+      "downloads": 14,
+      "followers": 0
+    },
+    {
+      "id": "NR54mkOD",
+      "title": "Diamond Dimension",
+      "slug": "diamond-dimension",
+      "project_type": "mod",
+      "downloads": 1,
+      "followers": 0
+    },
+    {
+      "id": "oBGsX8oY",
+      "title": "Better Crosshair — Modern Clean Crosshair for PvP",
+      "slug": "crossx-better-crosshair",
+      "project_type": "resourcepack",
+      "downloads": 63,
+      "followers": 0
+    },
+    {
+      "id": "cHpwGcrb",
+      "title": "PvP Essentials",
+      "slug": "fliflight-pvp-essentials",
+      "project_type": "resourcepack",
+      "downloads": 5,
+      "followers": 0
+    }
+  ]
+}
