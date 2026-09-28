@@ -3,16 +3,16 @@
   "name": "No Vignette — Clear Screen Corners",
   "project_type": "resourcepack",
   "summary": "Removes the dark corner shading so the whole screen stays evenly lit.",
-  "body": "Vanilla darkens the corners of your screen with a vignette. This pack **removes it completely** for a cleaner, brighter view.\\n\\n- 🌓 **No more dark corners** — the whole screen is evenly clear\\n- 👀 **Better awareness** in dark caves and at night\\n- ✅ **Works on every launcher** — just drop in `resourcepacks` and enable\\n\\n---\\n\\n### 🚀 Want everything in one pack?\\nThis feature is part of **[PvP Essentials](https://www.curseforge.com/minecraft/texture-packs/pvp-essentials-crosshair-visible-ores-sword-low)** — the all-in-one pack with crosshair, visible ores, short sword, low fire and clear pumpkin.\\n> 💡 **CurseForge is the source of truth** — the most up-to-date, bug-free versions land there first: [Fliflight on CurseForge](https://www.curseforge.com/members/fliflightmc/projects)",
+  "body": "Vanilla darkens the corners of your screen with a vignette. This pack **removes it completely** for a cleaner, brighter view.\\n\\n- 🌓 **No more dark corners** — the whole screen is evenly clear\\n- 👀 **Better awareness** in dark caves and at night\\n- ✅ **Works on every launcher** — just drop in `resourcepacks` and enable\\n\\n---\\n\\n### 🚀 Want everything in one pack?\\nThis feature is part of **[PvP Essentials](https://www.curseforge.com/minecraft/texture-packs/pvp-essentials-crosshair-visible-ores-sword-low)** — the all-in-one pack with crosshair, visible ores, short sword, low fire and clear pumpkin.\\n> 💡 **CurseForge is the source of truth** — the most up-to-date, bug-free versions land there first: [CurseForge page](https://www.curseforge.com/minecraft/texture-packs/no-vignette-clear-screen-corners)",
   "license": "All Rights Reserved",
   "categories": [
     "utility",
     "16x"
   ],
-  "curseforge_id": null,
+  "curseforge_id": 1716909,
   "modrinth_id": "JYyEzln5",
   "links": {
-    "website_url": "https://www.curseforge.com/members/fliflightmc/projects",
+    "website_url": "https://www.curseforge.com/minecraft/texture-packs/no-vignette-clear-screen-corners",
     "source_url": null,
     "issues_url": null,
     "wiki_url": ""
@@ -48,5 +48,6 @@
   "icon": "icon.png",
   "gallery": [
     "01_vignette.png"
-  ]
+  ],
+  "cf_slug": "no-vignette-clear-screen-corners"
 }

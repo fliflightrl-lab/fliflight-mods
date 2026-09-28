@@ -3,16 +3,16 @@
   "name": "Low Shield — Shield Out of the Way",
   "project_type": "resourcepack",
   "summary": "Makes the first-person shield smaller and lower so it never blocks your view in PvP.",
-  "body": "The vanilla shield covers a huge chunk of your screen when held. This pack **shrinks it and lowers it** so you keep full visibility while staying protected.\\n\\n- 🛡️ **Smaller shield** — 45% smaller in first person\\n- ⬇️ **Sits lower** — out of your line of sight\\n- ✅ **Works on every launcher** — just drop in `resourcepacks` and enable\\n\\n---\\n\\n### 🚀 Want everything in one pack?\\nThis feature is part of **[PvP Essentials](https://www.curseforge.com/minecraft/texture-packs/pvp-essentials-crosshair-visible-ores-sword-low)** — the all-in-one pack with crosshair, visible ores, short sword, low fire and clear pumpkin.\\n> 💡 **CurseForge is the source of truth** — the most up-to-date, bug-free versions land there first: [Fliflight on CurseForge](https://www.curseforge.com/members/fliflightmc/projects)",
+  "body": "The vanilla shield covers a huge chunk of your screen when held. This pack **shrinks it and lowers it** so you keep full visibility while staying protected.\\n\\n- 🛡️ **Smaller shield** — 45% smaller in first person\\n- ⬇️ **Sits lower** — out of your line of sight\\n- ✅ **Works on every launcher** — just drop in `resourcepacks` and enable\\n\\n---\\n\\n### 🚀 Want everything in one pack?\\nThis feature is part of **[PvP Essentials](https://www.curseforge.com/minecraft/texture-packs/pvp-essentials-crosshair-visible-ores-sword-low)** — the all-in-one pack with crosshair, visible ores, short sword, low fire and clear pumpkin.\\n> 💡 **CurseForge is the source of truth** — the most up-to-date, bug-free versions land there first: [CurseForge page](https://www.curseforge.com/minecraft/texture-packs/low-shield-shield-out-of-the-way)",
   "license": "All Rights Reserved",
   "categories": [
     "utility",
     "16x"
   ],
-  "curseforge_id": null,
+  "curseforge_id": 1716894,
   "modrinth_id": "3kHplXd9",
   "links": {
-    "website_url": "https://www.curseforge.com/members/fliflightmc/projects",
+    "website_url": "https://www.curseforge.com/minecraft/texture-packs/low-shield-shield-out-of-the-way",
     "source_url": null,
     "issues_url": null,
     "wiki_url": ""
@@ -48,5 +48,6 @@
   "icon": "icon.png",
   "gallery": [
     "01_shield.png"
-  ]
+  ],
+  "cf_slug": "low-shield-shield-out-of-the-way"
 }

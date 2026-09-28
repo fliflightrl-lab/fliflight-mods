@@ -3,16 +3,16 @@
   "name": "Clean Hotbar — Flat Minimal HUD",
   "project_type": "resourcepack",
   "summary": "Replaces the busy vanilla hotbar with a flat, clean design and a clearer XP bar.",
-  "body": "The vanilla hotbar is thick and over-detailed. This pack uses a **flat, minimal design** with a clearer XP bar.\\n\\n- 🎨 **Flat clean design** — less visual noise, same 9 slots\\n- 📊 **Clearer XP bar** — bright green, easy to read at a glance\\n- ✅ **Works on every launcher** — just drop in `resourcepacks` and enable\\n\\n---\\n\\n### 🚀 Want everything in one pack?\\nThis feature is part of **[PvP Essentials](https://www.curseforge.com/minecraft/texture-packs/pvp-essentials-crosshair-visible-ores-sword-low)** — the all-in-one pack with crosshair, visible ores, short sword, low fire and clear pumpkin.\\n> 💡 **CurseForge is the source of truth** — the most up-to-date, bug-free versions land there first: [Fliflight on CurseForge](https://www.curseforge.com/members/fliflightmc/projects)",
+  "body": "The vanilla hotbar is thick and over-detailed. This pack uses a **flat, minimal design** with a clearer XP bar.\\n\\n- 🎨 **Flat clean design** — less visual noise, same 9 slots\\n- 📊 **Clearer XP bar** — bright green, easy to read at a glance\\n- ✅ **Works on every launcher** — just drop in `resourcepacks` and enable\\n\\n---\\n\\n### 🚀 Want everything in one pack?\\nThis feature is part of **[PvP Essentials](https://www.curseforge.com/minecraft/texture-packs/pvp-essentials-crosshair-visible-ores-sword-low)** — the all-in-one pack with crosshair, visible ores, short sword, low fire and clear pumpkin.\\n> 💡 **CurseForge is the source of truth** — the most up-to-date, bug-free versions land there first: [CurseForge page](https://www.curseforge.com/minecraft/texture-packs/clean-hotbar-flat-minimal-hud)",
   "license": "All Rights Reserved",
   "categories": [
     "utility",
     "16x"
   ],
-  "curseforge_id": null,
+  "curseforge_id": 1716921,
   "modrinth_id": "PDnvunp5",
   "links": {
-    "website_url": "https://www.curseforge.com/members/fliflightmc/projects",
+    "website_url": "https://www.curseforge.com/minecraft/texture-packs/clean-hotbar-flat-minimal-hud",
     "source_url": null,
     "issues_url": null,
     "wiki_url": ""
@@ -37,5 +37,6 @@
   "icon": "icon.png",
   "gallery": [
     "01_hotbar.png"
-  ]
+  ],
+  "cf_slug": "clean-hotbar-flat-minimal-hud"
 }

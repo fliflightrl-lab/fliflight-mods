@@ -3,16 +3,16 @@
   "name": "Clear Spyglass — No Scope Overlay",
   "project_type": "resourcepack",
   "summary": "Removes the black spyglass overlay so you get a full clear view while zoomed in.",
-  "body": "The vanilla spyglass blocks most of your view with a black scope. This pack **removes the overlay** so the whole screen stays usable.\\n\\n- 🔭 **No scope overlay** — zoom with full peripheral vision\\n- 🎯 **Better spotting** — find players and bases from far away\\n- ✅ **Works on every launcher** — just drop in `resourcepacks` and enable\\n\\n---\\n\\n### 🚀 Want everything in one pack?\\nThis feature is part of **[PvP Essentials](https://www.curseforge.com/minecraft/texture-packs/pvp-essentials-crosshair-visible-ores-sword-low)** — the all-in-one pack with crosshair, visible ores, short sword, low fire and clear pumpkin.\\n> 💡 **CurseForge is the source of truth** — the most up-to-date, bug-free versions land there first: [Fliflight on CurseForge](https://www.curseforge.com/members/fliflightmc/projects)",
+  "body": "The vanilla spyglass blocks most of your view with a black scope. This pack **removes the overlay** so the whole screen stays usable.\\n\\n- 🔭 **No scope overlay** — zoom with full peripheral vision\\n- 🎯 **Better spotting** — find players and bases from far away\\n- ✅ **Works on every launcher** — just drop in `resourcepacks` and enable\\n\\n---\\n\\n### 🚀 Want everything in one pack?\\nThis feature is part of **[PvP Essentials](https://www.curseforge.com/minecraft/texture-packs/pvp-essentials-crosshair-visible-ores-sword-low)** — the all-in-one pack with crosshair, visible ores, short sword, low fire and clear pumpkin.\\n> 💡 **CurseForge is the source of truth** — the most up-to-date, bug-free versions land there first: [CurseForge page](https://www.curseforge.com/minecraft/texture-packs/clear-spyglass-no-scope-overlay)",
   "license": "All Rights Reserved",
   "categories": [
     "utility",
     "16x"
   ],
-  "curseforge_id": null,
+  "curseforge_id": 1716918,
   "modrinth_id": "HEAEl6k5",
   "links": {
-    "website_url": "https://www.curseforge.com/members/fliflightmc/projects",
+    "website_url": "https://www.curseforge.com/minecraft/texture-packs/clear-spyglass-no-scope-overlay",
     "source_url": null,
     "issues_url": null,
     "wiki_url": ""
@@ -48,5 +48,6 @@
   "icon": "icon.png",
   "gallery": [
     "01_spyglass.png"
-  ]
+  ],
+  "cf_slug": "clear-spyglass-no-scope-overlay"
 }
