@@ -47,7 +47,8 @@
   "file": "fliflight-clear-pumpkin-1.0.0-resourcepack-1.21.4.zip",
   "icon": "icon.png",
   "gallery": [
-    "01_pumpkin.png"
+    "01_pumpkin.png",
+    "02_night.png"
   ],
   "cf_slug": "clear-pumpkin-no-pumpkin-blur"
 }

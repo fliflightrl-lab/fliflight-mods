@@ -47,7 +47,8 @@
   "file": "fliflight-low-shield-1.0.0-resourcepack-1.21.4.zip",
   "icon": "icon.png",
   "gallery": [
-    "01_shield.png"
+    "01_shield.png",
+    "02_fight.png"
   ],
   "cf_slug": "low-shield-shield-out-of-the-way"
 }

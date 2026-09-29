@@ -36,7 +36,8 @@
   "file": "fliflight-clean-hotbar-1.0.0-resourcepack-1.21.4.zip",
   "icon": "icon.png",
   "gallery": [
-    "01_hotbar.png"
+    "01_hotbar.png",
+    "02_items.png"
   ],
   "cf_slug": "clean-hotbar-flat-minimal-hud"
 }

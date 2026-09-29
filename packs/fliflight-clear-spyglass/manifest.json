@@ -47,7 +47,8 @@
   "file": "fliflight-clear-spyglass-1.0.0-resourcepack-1.21.4.zip",
   "icon": "icon.png",
   "gallery": [
-    "01_spyglass.png"
+    "01_spyglass.png",
+    "02_zoom.png"
   ],
   "cf_slug": "clear-spyglass-no-scope-overlay"
 }

@@ -47,7 +47,8 @@
   "file": "fliflight-clear-water-1.0.0-resourcepack-1.21.4.zip",
   "icon": "icon.png",
   "gallery": [
-    "01_water.png"
+    "01_water.png",
+    "02_underwater.png"
   ],
   "cf_slug": "clear-water-see-through-water"
 }

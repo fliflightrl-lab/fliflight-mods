@@ -6,9 +6,9 @@
 
 ---
 
-## 1. Low Shield — Shield Out of the Way
+## 1. Low Shield - See Past Your Shield
 
-*Makes the first-person shield smaller and lower so it never blocks your view in PvP.*
+*Shrinks and lowers the first-person shield so it stops covering your screen in fights.*
 
 - **Zip à tester :** `fliflight-low-shield-1.0.0-resourcepack-1.21.4.zip`
 - **Dossier local :** `C:\Users\user\fliflight-mods\packs\fliflight-low-shield\files\fliflight-low-shield-1.0.0-resourcepack-1.21.4.zip`
@@ -25,12 +25,12 @@
 
 ---
 
-## 2. No Vignette — Clear Screen Corners
+## 2. No Dark Corners
 
-*Removes the dark corner shading so the whole screen stays evenly lit.*
+*Removes the dark shading in the corners of the screen, so the whole view stays evenly lit.*
 
-- **Zip à tester :** `fliflight-no-vignette-1.0.0-resourcepack-1.21.4.zip`
-- **Dossier local :** `C:\Users\user\fliflight-mods\packs\fliflight-no-vignette\files\fliflight-no-vignette-1.0.0-resourcepack-1.21.4.zip`
+- **Zip à tester :** `fliflight-no-dark-corners-1.0.0-resourcepack-1.21.4.zip`
+- **Dossier local :** `C:\Users\user\fliflight-mods\packs\fliflight-no-vignette\files\fliflight-no-dark-corners-1.0.0-resourcepack-1.21.4.zip`
 - **CurseForge :** https://www.curseforge.com/minecraft/texture-packs/no-vignette-clear-screen-corners
 - **Modrinth :** https://modrinth.com/resourcepack/fliflight-no-vignette
 
@@ -43,9 +43,9 @@
 
 ---
 
-## 3. Clear Water — See Through Water
+## 3. Clear Water - See Through Water
 
-*Makes water translucent so you can see the seabed, mobs and structures while swimming.*
+*Makes water translucent so you can see the seabed, ores and mobs while swimming.*
 
 - **Zip à tester :** `fliflight-clear-water-1.0.0-resourcepack-1.21.4.zip`
 - **Dossier local :** `C:\Users\user\fliflight-mods\packs\fliflight-clear-water\files\fliflight-clear-water-1.0.0-resourcepack-1.21.4.zip`
@@ -62,9 +62,9 @@
 
 ---
 
-## 4. Clear Lava — See Through Lava
+## 4. Clear Lava - See Through Lava
 
-*Makes lava semi-transparent so you can see what is underneath before you take the plunge.*
+*Makes lava semi-transparent so you can see the terrain underneath before you jump in.*
 
 - **Zip à tester :** `fliflight-clear-lava-1.0.0-resourcepack-1.21.4.zip`
 - **Dossier local :** `C:\Users\user\fliflight-mods\packs\fliflight-clear-lava\files\fliflight-clear-lava-1.0.0-resourcepack-1.21.4.zip`
@@ -80,9 +80,9 @@
 
 ---
 
-## 5. Clear Spyglass — No Scope Overlay
+## 5. Clear Spyglass - Full Screen Zoom
 
-*Removes the black spyglass overlay so you get a full clear view while zoomed in.*
+*Removes the spyglass scope overlay so the full screen stays usable while you zoom.*
 
 - **Zip à tester :** `fliflight-clear-spyglass-1.0.0-resourcepack-1.21.4.zip`
 - **Dossier local :** `C:\Users\user\fliflight-mods\packs\fliflight-clear-spyglass\files\fliflight-clear-spyglass-1.0.0-resourcepack-1.21.4.zip`
@@ -98,9 +98,9 @@
 
 ---
 
-## 6. Clean Hotbar — Flat Minimal HUD
+## 6. Clean Hotbar - Flat Minimal HUD
 
-*Replaces the busy vanilla hotbar with a flat, clean design and a clearer XP bar.*
+*Replaces the vanilla hotbar and XP bar with a flat design that is easier to read at a glance.*
 
 - **Zip à tester :** `fliflight-clean-hotbar-1.0.0-resourcepack-1.21.4.zip`
 - **Dossier local :** `C:\Users\user\fliflight-mods\packs\fliflight-clean-hotbar\files\fliflight-clean-hotbar-1.0.0-resourcepack-1.21.4.zip`
@@ -117,9 +117,9 @@
 
 ---
 
-## 7. Thin Totem — Slimmer Totem Pop
+## 7. Thin Totem - Smaller Totem Pop
 
-*Slims down the totem of undying so its pop animation no longer blocks your view mid-fight.*
+*Slims the totem of undying so its pop animation stops blocking your view mid-fight.*
 
 - **Zip à tester :** `fliflight-thin-totem-1.0.0-resourcepack-1.21.4.zip`
 - **Dossier local :** `C:\Users\user\fliflight-mods\packs\fliflight-thin-totem\files\fliflight-thin-totem-1.0.0-resourcepack-1.21.4.zip`
@@ -135,9 +135,9 @@
 
 ---
 
-## 8. Clear Powder Snow — No Frost Overlay
+## 8. Clear Powder Snow - No Freeze Overlay
 
-*Removes the frost screen overlay so you can see clearly while freezing in powder snow.*
+*Removes the frost overlay so you can still see where you are going while freezing.*
 
 - **Zip à tester :** `fliflight-clear-powder-snow-1.0.0-resourcepack-1.21.4.zip`
 - **Dossier local :** `C:\Users\user\fliflight-mods\packs\fliflight-clear-powder-snow\files\fliflight-clear-powder-snow-1.0.0-resourcepack-1.21.4.zip`
@@ -157,11 +157,11 @@
 
 | # | Pack | OK ? | Problème constaté |
 |---|---|---|---|
-| 1 | Low Shield — Shield Out of the Way | ☐ | |
-| 2 | No Vignette — Clear Screen Corners | ☐ | |
-| 3 | Clear Water — See Through Water | ☐ | |
-| 4 | Clear Lava — See Through Lava | ☐ | |
-| 5 | Clear Spyglass — No Scope Overlay | ☐ | |
-| 6 | Clean Hotbar — Flat Minimal HUD | ☐ | |
-| 7 | Thin Totem — Slimmer Totem Pop | ☐ | |
-| 8 | Clear Powder Snow — No Frost Overlay | ☐ | |
+| 1 | Low Shield - See Past Your Shield | ☐ | |
+| 2 | No Dark Corners | ☐ | |
+| 3 | Clear Water - See Through Water | ☐ | |
+| 4 | Clear Lava - See Through Lava | ☐ | |
+| 5 | Clear Spyglass - Full Screen Zoom | ☐ | |
+| 6 | Clean Hotbar - Flat Minimal HUD | ☐ | |
+| 7 | Thin Totem - Smaller Totem Pop | ☐ | |
+| 8 | Clear Powder Snow - No Freeze Overlay | ☐ | |

@@ -47,7 +47,8 @@
   "file": "fliflight-clear-powder-snow-1.0.0-resourcepack-1.21.4.zip",
   "icon": "icon.png",
   "gallery": [
-    "01_powder_snow.png"
+    "01_powder_snow.png",
+    "02_night.png"
   ],
   "cf_slug": "clear-powder-snow-no-frost-overlay"
 }

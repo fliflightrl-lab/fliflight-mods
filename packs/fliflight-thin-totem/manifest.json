@@ -47,7 +47,8 @@
   "file": "fliflight-thin-totem-1.0.0-resourcepack-1.21.4.zip",
   "icon": "icon.png",
   "gallery": [
-    "01_totem.png"
+    "01_totem.png",
+    "02_fight.png"
   ],
   "cf_slug": "thin-totem-slimmer-totem-pop"
 }
