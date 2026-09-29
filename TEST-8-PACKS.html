@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Test des 8 nouveaux packs — Fliflight</title>
+<style>
+  :root{
+    --bg:#0e1016; --card:#161a23; --line:#262c3a; --fg:#e8eaf0; --mut:#98a0b3;
+    --acc:#5cc8ff; --ok:#5cd68a; --bad:#ff6b6b;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--fg);
+       font:15px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif}
+  .wrap{max-width:1080px;margin:0 auto;padding:40px 20px 80px}
+  h1{font-size:30px;margin:0 0 6px}
+  .intro{color:var(--mut);margin:0 0 8px}
+  .how{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--acc);
+       border-radius:10px;padding:14px 18px;margin:24px 0 34px;color:#cfd4e0;font-size:14px}
+  .how code{background:#0b0d12;padding:2px 6px;border-radius:5px;color:var(--acc);font-size:13px}
+  .grid{display:grid;gap:18px;grid-template-columns:repeat(auto-fill,minmax(330px,1fr))}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 18px 16px;
+        display:flex;flex-direction:column;gap:10px}
+  .card header{display:flex;align-items:center;gap:10px}
+  .num{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:8px;
+       background:#0b0d12;border:1px solid var(--line);color:var(--acc);font-size:13px;font-weight:600;flex:none}
+  .card h2{font-size:16px;margin:0;line-height:1.3}
+  .sum{color:var(--mut);font-size:13.5px;margin:0}
+  .tests{margin:2px 0 0;padding-left:18px;font-size:13.5px;color:#d5d9e4}
+  .tests li{margin:4px 0}
+  .tests li::marker{color:var(--acc)}
+  .links{display:flex;gap:14px;font-size:13px;margin-top:2px}
+  .links a{color:var(--acc);text-decoration:none;border-bottom:1px solid rgba(92,200,255,.35)}
+  .links a:hover{border-bottom-color:var(--acc)}
+  .file code{display:block;background:#0b0d12;border:1px solid var(--line);border-radius:7px;
+             padding:6px 9px;font-size:12px;color:#9fb4cd;overflow-wrap:anywhere}
+  .verdict{display:flex;gap:12px;align-items:center;margin-top:auto;padding-top:10px;border-top:1px dashed var(--line)}
+  .verdict label{display:flex;align-items:center;gap:6px;font-size:13px;color:#cfd4e0;white-space:nowrap}
+  .verdict input[type=checkbox]{accent-color:var(--acc);width:15px;height:15px}
+  .verdict .note{flex:1;min-width:0;background:#0b0d12;border:1px solid var(--line);border-radius:7px;
+                 padding:6px 9px;color:var(--fg);font-size:13px;font-family:inherit}
+  footer{margin-top:40px;color:var(--mut);font-size:13px}
+</style></head>
+<body><div class="wrap">
+  <h1>🧪 Test des 8 nouveaux packs</h1>
+  <p class="intro">Coche OK / CASSÉ pour chaque pack et note le problème — je corrige derrière.</p>
+  <div class="how">
+    <strong>Comment tester :</strong> copie les 8 zips depuis <code>~/fliflight-mods/dist/</code> vers
+    <code>%appdata%\.minecraft\resourcepacks\</code>, puis active <strong>un pack à la fois</strong>
+    (sinon impossible de voir quelle modif fait quoi). Les zips sont aussi dans <code>packs/&lt;slug&gt;/files/</code>.
+  </div>
+  <div class="grid">
+  <section class="card">
+    <header>
+      <span class="num">1</span>
+      <h2>Low Shield — Shield Out of the Way</h2>
+    </header>
+    <p class="sum">Makes the first-person shield smaller and lower so it never blocks your view in PvP.</p>
+    <ul class="tests"><li>Prends un bouclier dans la main ou l&#x27;offhand, passe en vue 1re personne.</li><li>Le bouclier doit être NETTEMENT plus petit et plus bas (45 % plus petit).</li><li>Bloque (clic droit) : le centre de l&#x27;écran doit rester dégagé.</li><li>⛔ Si le bouclier est toujours aussi gros ou a disparu → cassé.</li></ul>
+    <div class="links">
+      <a href="https://www.curseforge.com/minecraft/texture-packs/low-shield-shield-out-of-the-way" target="_blank">CurseForge</a>
+      <a href="https://modrinth.com/resourcepack/fliflight-low-shield" target="_blank">Modrinth</a>
+    </div>
+    <div class="file"><code>fliflight-low-shield-1.0.0-resourcepack-1.21.4.zip</code></div>
+    <div class="verdict">
+      <label><input type="checkbox"> OK</label>
+      <label><input type="checkbox"> CASSÉ</label>
+      <input class="note" type="text" placeholder="détail du problème…">
+    </div>
+  </section>
+  <section class="card">
+    <header>
+      <span class="num">2</span>
+      <h2>No Vignette — Clear Screen Corners</h2>
+    </header>
+    <p class="sum">Removes the dark corner shading so the whole screen stays evenly lit.</p>
+    <ul class="tests"><li>Regarde les 4 coins de l&#x27;écran, de jour ET de nuit.</li><li>Aucun assombrissement dans les coins (l&#x27;écran est uniforme).</li><li>⛔ Si les coins restent sombres → cassé. Si l&#x27;écran est tout noir → cassé.</li></ul>
+    <div class="links">
+      <a href="https://www.curseforge.com/minecraft/texture-packs/no-vignette-clear-screen-corners" target="_blank">CurseForge</a>
+      <a href="https://modrinth.com/resourcepack/fliflight-no-vignette" target="_blank">Modrinth</a>
+    </div>
+    <div class="file"><code>fliflight-no-vignette-1.0.0-resourcepack-1.21.4.zip</code></div>
+    <div class="verdict">
+      <label><input type="checkbox"> OK</label>
+      <label><input type="checkbox"> CASSÉ</label>
+      <input class="note" type="text" placeholder="détail du problème…">
+    </div>
+  </section>
+  <section class="card">
+    <header>
+      <span class="num">3</span>
+      <h2>Clear Water — See Through Water</h2>
+    </header>
+    <p class="sum">Makes water translucent so you can see the seabed, mobs and structures while swimming.</p>
+    <ul class="tests"><li>Plonge dans l&#x27;eau et regarde vers le bas.</li><li>Tu dois VOIR le fond (sable/gravats) et les mobs à travers l&#x27;eau.</li><li>Sous l&#x27;eau, le voile bleu plein écran doit avoir disparu.</li><li>⛔ Si l&#x27;eau est toujours opaque → cassé. Si l&#x27;eau a totalement disparu → cassé.</li></ul>
+    <div class="links">
+      <a href="https://www.curseforge.com/minecraft/texture-packs/clear-water-see-through-water" target="_blank">CurseForge</a>
+      <a href="https://modrinth.com/resourcepack/fliflight-clear-water" target="_blank">Modrinth</a>
+    </div>
+    <div class="file"><code>fliflight-clear-water-1.0.0-resourcepack-1.21.4.zip</code></div>
+    <div class="verdict">
+      <label><input type="checkbox"> OK</label>
+      <label><input type="checkbox"> CASSÉ</label>
+      <input class="note" type="text" placeholder="détail du problème…">
+    </div>
+  </section>
+  <section class="card">
+    <header>
+      <span class="num">4</span>
+      <h2>Clear Lava — See Through Lava</h2>
+    </header>
+    <p class="sum">Makes lava semi-transparent so you can see what is underneath before you take the plunge.</p>
+    <ul class="tests"><li>Place-toi au-dessus d&#x27;une flaque de lave et regarde dedans.</li><li>La lave doit être semi-transparente (on voit le netherrack dessous).</li><li>⛔ Si la lave est toujours opaque → cassé. Si la lave est invisible → cassé.</li></ul>
+    <div class="links">
+      <a href="https://www.curseforge.com/minecraft/texture-packs/clear-lava-see-through-lava" target="_blank">CurseForge</a>
+      <a href="https://modrinth.com/resourcepack/fliflight-clear-lava" target="_blank">Modrinth</a>
+    </div>
+    <div class="file"><code>fliflight-clear-lava-1.0.0-resourcepack-1.21.4.zip</code></div>
+    <div class="verdict">
+      <label><input type="checkbox"> OK</label>
+      <label><input type="checkbox"> CASSÉ</label>
+      <input class="note" type="text" placeholder="détail du problème…">
+    </div>
+  </section>
+  <section class="card">
+    <header>
+      <span class="num">5</span>
+      <h2>Clear Spyglass — No Scope Overlay</h2>
+    </header>
+    <p class="sum">Removes the black spyglass overlay so you get a full clear view while zoomed in.</p>
+    <ul class="tests"><li>Prends une longue-vue et utilise-la (clic droit).</li><li>Aucun masque noir de viseur : la vue est dégagée sur tout l&#x27;écran.</li><li>⛔ Si le cercle noir est toujours là → cassé.</li></ul>
+    <div class="links">
+      <a href="https://www.curseforge.com/minecraft/texture-packs/clear-spyglass-no-scope-overlay" target="_blank">CurseForge</a>
+      <a href="https://modrinth.com/resourcepack/fliflight-clear-spyglass" target="_blank">Modrinth</a>
+    </div>
+    <div class="file"><code>fliflight-clear-spyglass-1.0.0-resourcepack-1.21.4.zip</code></div>
+    <div class="verdict">
+      <label><input type="checkbox"> OK</label>
+      <label><input type="checkbox"> CASSÉ</label>
+      <input class="note" type="text" placeholder="détail du problème…">
+    </div>
+  </section>
+  <section class="card">
+    <header>
+      <span class="num">6</span>
+      <h2>Clean Hotbar — Flat Minimal HUD</h2>
+    </header>
+    <p class="sum">Replaces the busy vanilla hotbar with a flat, clean design and a clearer XP bar.</p>
+    <ul class="tests"><li>Regarde ta barre d&#x27;objets en bas (nécessite 1.21.3+).</li><li>Fond plat et sobre, 9 cases visibles, cadre fin et clair.</li><li>La barre d&#x27;XP doit être vert vif et nette.</li><li>⛔ Si la barre reste l&#x27;ancienne → cassé (vérifie ta version de MC).</li></ul>
+    <div class="links">
+      <a href="https://www.curseforge.com/minecraft/texture-packs/clean-hotbar-flat-minimal-hud" target="_blank">CurseForge</a>
+      <a href="https://modrinth.com/resourcepack/fliflight-clean-hotbar" target="_blank">Modrinth</a>
+    </div>
+    <div class="file"><code>fliflight-clean-hotbar-1.0.0-resourcepack-1.21.4.zip</code></div>
+    <div class="verdict">
+      <label><input type="checkbox"> OK</label>
+      <label><input type="checkbox"> CASSÉ</label>
+      <input class="note" type="text" placeholder="détail du problème…">
+    </div>
+  </section>
+  <section class="card">
+    <header>
+      <span class="num">7</span>
+      <h2>Thin Totem — Slimmer Totem Pop</h2>
+    </header>
+    <p class="sum">Slims down the totem of undying so its pop animation no longer blocks your view mid-fight.</p>
+    <ul class="tests"><li>Pop un totem (ou regarde-le dans l&#x27;inventaire).</li><li>Le totem doit être nettement plus fin (7 px de large au lieu de 16).</li><li>⛔ Si le totem est coupé au milieu ou invisible → cassé.</li></ul>
+    <div class="links">
+      <a href="https://www.curseforge.com/minecraft/texture-packs/thin-totem-slimmer-totem-pop" target="_blank">CurseForge</a>
+      <a href="https://modrinth.com/resourcepack/fliflight-thin-totem" target="_blank">Modrinth</a>
+    </div>
+    <div class="file"><code>fliflight-thin-totem-1.0.0-resourcepack-1.21.4.zip</code></div>
+    <div class="verdict">
+      <label><input type="checkbox"> OK</label>
+      <label><input type="checkbox"> CASSÉ</label>
+      <input class="note" type="text" placeholder="détail du problème…">
+    </div>
+  </section>
+  <section class="card">
+    <header>
+      <span class="num">8</span>
+      <h2>Clear Powder Snow — No Frost Overlay</h2>
+    </header>
+    <p class="sum">Removes the frost screen overlay so you can see clearly while freezing in powder snow.</p>
+    <ul class="tests"><li>Entre dans de la poudreuse et reste dedans jusqu&#x27;à geler.</li><li>Aucun voile de givre sur les bords de l&#x27;écran.</li><li>⛔ Si le givre est toujours là → cassé.</li></ul>
+    <div class="links">
+      <a href="https://www.curseforge.com/minecraft/texture-packs/clear-powder-snow-no-frost-overlay" target="_blank">CurseForge</a>
+      <a href="https://modrinth.com/resourcepack/fliflight-clear-powder-snow" target="_blank">Modrinth</a>
+    </div>
+    <div class="file"><code>fliflight-clear-powder-snow-1.0.0-resourcepack-1.21.4.zip</code></div>
+    <div class="verdict">
+      <label><input type="checkbox"> OK</label>
+      <label><input type="checkbox"> CASSÉ</label>
+      <input class="note" type="text" placeholder="détail du problème…">
+    </div>
+  </section>
+  </div>
+  <footer>Généré depuis <code>~/fliflight-mods/scripts/gen_test_sheet.py</code> — 8 packs v1.0.0, build 1.21.4.</footer>
+</div></body></html>

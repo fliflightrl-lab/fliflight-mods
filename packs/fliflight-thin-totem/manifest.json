@@ -1,9 +1,9 @@
 {
   "slug": "fliflight-thin-totem",
-  "name": "Thin Totem — Slimmer Totem Pop",
+  "name": "Thin Totem - Smaller Totem Pop",
   "project_type": "resourcepack",
-  "summary": "Slims down the totem of undying so its pop animation no longer blocks your view mid-fight.",
-  "body": "Pop a totem in a fight and the vanilla animation covers a big part of your screen. This pack makes the totem **thinner**.\\n\\n- 🪶 **Thin totem** — far less screen coverage when it pops\\n- ⚔️ **Stay in the fight** — keep track of your opponent\\n- ✅ **Works on every launcher** — just drop in `resourcepacks` and enable\\n\\n---\\n\\n### 🚀 Want everything in one pack?\\nThis feature is part of **[PvP Essentials](https://www.curseforge.com/minecraft/texture-packs/pvp-essentials-crosshair-visible-ores-sword-low)** — the all-in-one pack with crosshair, visible ores, short sword, low fire and clear pumpkin.\\n> 💡 **CurseForge is the source of truth** — the most up-to-date, bug-free versions land there first: [CurseForge page](https://www.curseforge.com/minecraft/texture-packs/thin-totem-slimmer-totem-pop)",
+  "summary": "Slims the totem of undying so its pop animation stops blocking your view mid-fight.",
+  "body": "**Thin Totem - Smaller Totem Pop** is a client-side resource pack for Minecraft Java Edition. It changes one specific thing about the vanilla look, and nothing else.\\n\\n### What it changes\\n- The totem art is redrawn narrower and centred on the same 16x16 canvas\\n- The item model and animation are untouched, so it behaves exactly like vanilla\\n\\n### Why players use it\\n- When a totem pops in a fight you keep sight of your opponent instead of a wall of gold\\n- Also takes less space in your inventory icon and in your off-hand\\n\\n### Install\\n1. Download the `.zip` file from this page (do not unzip it).\\n2. Drop it into `.minecraft/resourcepacks` - or use the CurseForge app.\\n3. Enable it in **Options → Resource Packs** and move it to the top of the list.\\n\\nWorks on Minecraft **1.21.x** (Java Edition) and on most launchers. Client-side only: it works on any server, and no one else needs it.\\n\\n---\\n\\n### Get the whole set\\nThis is part of the **PvP Essentials** family - the all-in-one pack with crosshair, visible ores, short sword, low fire and clear pumpkin: [PvP Essentials](https://www.curseforge.com/minecraft/texture-packs/pvp-essentials-crosshair-visible-ores-sword-low)\\n\\nLiked it? You can support the work on [Ko-fi](https://ko-fi.com/fliflight).",
   "license": "All Rights Reserved",
   "categories": [
     "utility",

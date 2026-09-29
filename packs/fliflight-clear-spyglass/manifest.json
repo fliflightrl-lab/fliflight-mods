@@ -1,9 +1,9 @@
 {
   "slug": "fliflight-clear-spyglass",
-  "name": "Clear Spyglass — No Scope Overlay",
+  "name": "Clear Spyglass - Full Screen Zoom",
   "project_type": "resourcepack",
-  "summary": "Removes the black spyglass overlay so you get a full clear view while zoomed in.",
-  "body": "The vanilla spyglass blocks most of your view with a black scope. This pack **removes the overlay** so the whole screen stays usable.\\n\\n- 🔭 **No scope overlay** — zoom with full peripheral vision\\n- 🎯 **Better spotting** — find players and bases from far away\\n- ✅ **Works on every launcher** — just drop in `resourcepacks` and enable\\n\\n---\\n\\n### 🚀 Want everything in one pack?\\nThis feature is part of **[PvP Essentials](https://www.curseforge.com/minecraft/texture-packs/pvp-essentials-crosshair-visible-ores-sword-low)** — the all-in-one pack with crosshair, visible ores, short sword, low fire and clear pumpkin.\\n> 💡 **CurseForge is the source of truth** — the most up-to-date, bug-free versions land there first: [CurseForge page](https://www.curseforge.com/minecraft/texture-packs/clear-spyglass-no-scope-overlay)",
+  "summary": "Removes the spyglass scope overlay so the full screen stays usable while you zoom.",
+  "body": "**Clear Spyglass - Full Screen Zoom** is a client-side resource pack for Minecraft Java Edition. It changes one specific thing about the vanilla look, and nothing else.\\n\\n### What it changes\\n- The black scope circle and its border are removed from the spyglass view\\n- Zoom behaviour is untouched - only the overlay texture changes\\n\\n### Why players use it\\n- You keep full peripheral vision while scouting, so you are not blind while zoomed\\n- Great for spotting players, bases and terrain from far away\\n\\n### Install\\n1. Download the `.zip` file from this page (do not unzip it).\\n2. Drop it into `.minecraft/resourcepacks` - or use the CurseForge app.\\n3. Enable it in **Options → Resource Packs** and move it to the top of the list.\\n\\nWorks on Minecraft **1.21.x** (Java Edition) and on most launchers. Client-side only: it works on any server, and no one else needs it.\\n\\n---\\n\\n### Get the whole set\\nThis is part of the **PvP Essentials** family - the all-in-one pack with crosshair, visible ores, short sword, low fire and clear pumpkin: [PvP Essentials](https://www.curseforge.com/minecraft/texture-packs/pvp-essentials-crosshair-visible-ores-sword-low)\\n\\nLiked it? You can support the work on [Ko-fi](https://ko-fi.com/fliflight).",
   "license": "All Rights Reserved",
   "categories": [
     "utility",

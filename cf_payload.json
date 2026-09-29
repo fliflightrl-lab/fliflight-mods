@@ -1,0 +1,318 @@
+{
+  "fliflight-low-shield": {
+    "cf_id": 1716894,
+    "cf_slug": "low-shield-shield-out-of-the-way",
+    "name": "Low Shield - See Past Your Shield",
+    "summary": "Shrinks and lowers the first-person shield so it stops covering your screen in fights.",
+    "description_html": "<p><strong>Low Shield - See Past Your Shield</strong> is a client-side resource pack for Minecraft Java Edition. It changes one specific thing about the vanilla look, and nothing else.</p><h3>What it changes</h3><p>• The held shield renders about 45% smaller in first person</p><p>• It also sits lower, below your crosshair instead of across the middle of the screen</p><p>• Blocking still works exactly like vanilla - only the visuals change</p><h3>Why players use it</h3><p>• You keep your target, the mob in front of you and your surroundings visible while blocking</p><p>• Useful in PvP, in raids and against any mob that makes you hold right-click</p><h3>Install</h3><p>1. Download the .zip file from this page (do not unzip it).</p><p>2. Drop it into .minecraft/resourcepacks - or use the CurseForge app.</p><p>3. Enable it in <strong>Options → Resource Packs</strong> and move it to the top of the list.</p><p>Works on Minecraft <strong>1.21.x</strong> (Java Edition) and on most launchers. Client-side only: it works on any server, and no one else needs it.</p><hr><h3>Get the whole set</h3><p>This is part of the <strong>PvP Essentials</strong> family - the all-in-one pack with crosshair, visible ores, short sword, low fire and clear pumpkin: <a href=\"https://www.curseforge.com/minecraft/texture-packs/pvp-essentials-crosshair-visible-ores-sword-low\">PvP Essentials</a></p><p>Liked it? You can support the work on <a href=\"https://ko-fi.com/fliflight\">Ko-fi</a>.</p>",
+    "changelog": "Initial release: smaller, lowered first-person shield.",
+    "game_versions": [
+      "1.19",
+      "1.19.2",
+      "1.19.4",
+      "1.20",
+      "1.20.1",
+      "1.20.2",
+      "1.20.4",
+      "1.20.5",
+      "1.20.6",
+      "1.21",
+      "1.21.1",
+      "1.21.3",
+      "1.21.4",
+      "1.21.5",
+      "1.21.6",
+      "1.21.7",
+      "1.21.8"
+    ],
+    "logo": "dist/cf_logos/fliflight-low-shield-512.png",
+    "gallery": [
+      "packs/fliflight-low-shield/gallery/01_shield.png",
+      "packs/fliflight-low-shield/gallery/02_fight.png"
+    ]
+  },
+  "fliflight-no-vignette": {
+    "cf_id": 1716909,
+    "cf_slug": "no-vignette-clear-screen-corners",
+    "name": "No Vignette - Brighter Screen, No Dark Corners",
+    "summary": "Removes the dark corner shading so the whole screen stays evenly lit, day and night.",
+    "description_html": "<p><strong>No Vignette - Brighter Screen, No Dark Corners</strong> is a client-side resource pack for Minecraft Java Edition. It changes one specific thing about the vanilla look, and nothing else.</p><h3>What it changes</h3><p>• The vignette overlay is replaced with a flat one, so no corner is darkened</p><p>• Nothing else is touched - the rest of the HUD stays vanilla</p><h3>Why players use it</h3><p>• Easier to spot movement at the edges of your screen in a cave or at night</p><p>• The screen looks brighter without changing your brightness or gamma</p><h3>Install</h3><p>1. Download the .zip file from this page (do not unzip it).</p><p>2. Drop it into .minecraft/resourcepacks - or use the CurseForge app.</p><p>3. Enable it in <strong>Options → Resource Packs</strong> and move it to the top of the list.</p><p>Works on Minecraft <strong>1.21.x</strong> (Java Edition) and on most launchers. Client-side only: it works on any server, and no one else needs it.</p><hr><h3>Get the whole set</h3><p>This is part of the <strong>PvP Essentials</strong> family - the all-in-one pack with crosshair, visible ores, short sword, low fire and clear pumpkin: <a href=\"https://www.curseforge.com/minecraft/texture-packs/pvp-essentials-crosshair-visible-ores-sword-low\">PvP Essentials</a></p><p>Liked it? You can support the work on <a href=\"https://ko-fi.com/fliflight\">Ko-fi</a>.</p>",
+    "changelog": "Initial release: removes the vignette overlay.",
+    "game_versions": [
+      "1.19",
+      "1.19.2",
+      "1.19.4",
+      "1.20",
+      "1.20.1",
+      "1.20.2",
+      "1.20.4",
+      "1.20.5",
+      "1.20.6",
+      "1.21",
+      "1.21.1",
+      "1.21.3",
+      "1.21.4",
+      "1.21.5",
+      "1.21.6",
+      "1.21.7",
+      "1.21.8"
+    ],
+    "logo": "dist/cf_logos/fliflight-no-vignette-512.png",
+    "gallery": [
+      "packs/fliflight-no-vignette/gallery/01_vignette.png",
+      "packs/fliflight-no-vignette/gallery/02_night.png"
+    ]
+  },
+  "fliflight-clear-water": {
+    "cf_id": 1716911,
+    "cf_slug": "clear-water-see-through-water",
+    "name": "Clear Water - See Through Water",
+    "summary": "Makes water translucent so you can see the seabed, ores and mobs while swimming.",
+    "description_html": "<p><strong>Clear Water - See Through Water</strong> is a client-side resource pack for Minecraft Java Edition. It changes one specific thing about the vanilla look, and nothing else.</p><h3>What it changes</h3><p>• Water is rendered translucent instead of opaque</p><p>• The full-screen blue overlay you get with your head underwater is removed</p><p>• The water surface overlay is cleared as well, so the view stays clean from above too</p><h3>Why players use it</h3><p>• You can spot mineshafts, shipwrecks, mobs and ore while swimming</p><p>• Handy for ocean monuments, drowned farming and underwater building</p><h3>Install</h3><p>1. Download the .zip file from this page (do not unzip it).</p><p>2. Drop it into .minecraft/resourcepacks - or use the CurseForge app.</p><p>3. Enable it in <strong>Options → Resource Packs</strong> and move it to the top of the list.</p><p>Works on Minecraft <strong>1.21.x</strong> (Java Edition) and on most launchers. Client-side only: it works on any server, and no one else needs it.</p><hr><h3>Get the whole set</h3><p>This is part of the <strong>PvP Essentials</strong> family - the all-in-one pack with crosshair, visible ores, short sword, low fire and clear pumpkin: <a href=\"https://www.curseforge.com/minecraft/texture-packs/pvp-essentials-crosshair-visible-ores-sword-low\">PvP Essentials</a></p><p>Liked it? You can support the work on <a href=\"https://ko-fi.com/fliflight\">Ko-fi</a>.</p>",
+    "changelog": "Initial release: translucent water + clear underwater overlay.",
+    "game_versions": [
+      "1.19",
+      "1.19.2",
+      "1.19.4",
+      "1.20",
+      "1.20.1",
+      "1.20.2",
+      "1.20.4",
+      "1.20.5",
+      "1.20.6",
+      "1.21",
+      "1.21.1",
+      "1.21.3",
+      "1.21.4",
+      "1.21.5",
+      "1.21.6",
+      "1.21.7",
+      "1.21.8"
+    ],
+    "logo": "dist/cf_logos/fliflight-clear-water-512.png",
+    "gallery": [
+      "packs/fliflight-clear-water/gallery/01_water.png",
+      "packs/fliflight-clear-water/gallery/02_underwater.png"
+    ]
+  },
+  "fliflight-clear-lava": {
+    "cf_id": 1716914,
+    "cf_slug": "clear-lava-see-through-lava",
+    "name": "Clear Lava - See Through Lava",
+    "summary": "Makes lava semi-transparent so you can see the terrain underneath before you jump in.",
+    "description_html": "<p><strong>Clear Lava - See Through Lava</strong> is a client-side resource pack for Minecraft Java Edition. It changes one specific thing about the vanilla look, and nothing else.</p><h3>What it changes</h3><p>• Lava is rendered semi-transparent instead of solid orange</p><p>• Both the still and the flowing texture are changed, so the effect is consistent</p><p>• The lava still looks like lava - it just no longer hides what is below</p><h3>Why players use it</h3><p>• You can see where the ground is before crossing a lava lake in the Nether</p><p>• Useful for mining around lava and for spotting mobs or items under the surface</p><h3>Install</h3><p>1. Download the .zip file from this page (do not unzip it).</p><p>2. Drop it into .minecraft/resourcepacks - or use the CurseForge app.</p><p>3. Enable it in <strong>Options → Resource Packs</strong> and move it to the top of the list.</p><p>Works on Minecraft <strong>1.21.x</strong> (Java Edition) and on most launchers. Client-side only: it works on any server, and no one else needs it.</p><hr><h3>Get the whole set</h3><p>This is part of the <strong>PvP Essentials</strong> family - the all-in-one pack with crosshair, visible ores, short sword, low fire and clear pumpkin: <a href=\"https://www.curseforge.com/minecraft/texture-packs/pvp-essentials-crosshair-visible-ores-sword-low\">PvP Essentials</a></p><p>Liked it? You can support the work on <a href=\"https://ko-fi.com/fliflight\">Ko-fi</a>.</p>",
+    "changelog": "Initial release: semi-transparent lava.",
+    "game_versions": [
+      "1.19",
+      "1.19.2",
+      "1.19.4",
+      "1.20",
+      "1.20.1",
+      "1.20.2",
+      "1.20.4",
+      "1.20.5",
+      "1.20.6",
+      "1.21",
+      "1.21.1",
+      "1.21.3",
+      "1.21.4",
+      "1.21.5",
+      "1.21.6",
+      "1.21.7",
+      "1.21.8"
+    ],
+    "logo": "dist/cf_logos/fliflight-clear-lava-512.png",
+    "gallery": [
+      "packs/fliflight-clear-lava/gallery/01_lava.png",
+      "packs/fliflight-clear-lava/gallery/02_nether.png"
+    ]
+  },
+  "fliflight-clear-spyglass": {
+    "cf_id": 1716918,
+    "cf_slug": "clear-spyglass-no-scope-overlay",
+    "name": "Clear Spyglass - Full Screen Zoom",
+    "summary": "Removes the spyglass scope overlay so the full screen stays usable while you zoom.",
+    "description_html": "<p><strong>Clear Spyglass - Full Screen Zoom</strong> is a client-side resource pack for Minecraft Java Edition. It changes one specific thing about the vanilla look, and nothing else.</p><h3>What it changes</h3><p>• The black scope circle and its border are removed from the spyglass view</p><p>• Zoom behaviour is untouched - only the overlay texture changes</p><h3>Why players use it</h3><p>• You keep full peripheral vision while scouting, so you are not blind while zoomed</p><p>• Great for spotting players, bases and terrain from far away</p><h3>Install</h3><p>1. Download the .zip file from this page (do not unzip it).</p><p>2. Drop it into .minecraft/resourcepacks - or use the CurseForge app.</p><p>3. Enable it in <strong>Options → Resource Packs</strong> and move it to the top of the list.</p><p>Works on Minecraft <strong>1.21.x</strong> (Java Edition) and on most launchers. Client-side only: it works on any server, and no one else needs it.</p><hr><h3>Get the whole set</h3><p>This is part of the <strong>PvP Essentials</strong> family - the all-in-one pack with crosshair, visible ores, short sword, low fire and clear pumpkin: <a href=\"https://www.curseforge.com/minecraft/texture-packs/pvp-essentials-crosshair-visible-ores-sword-low\">PvP Essentials</a></p><p>Liked it? You can support the work on <a href=\"https://ko-fi.com/fliflight\">Ko-fi</a>.</p>",
+    "changelog": "Initial release: spyglass scope overlay removed.",
+    "game_versions": [
+      "1.19",
+      "1.19.2",
+      "1.19.4",
+      "1.20",
+      "1.20.1",
+      "1.20.2",
+      "1.20.4",
+      "1.20.5",
+      "1.20.6",
+      "1.21",
+      "1.21.1",
+      "1.21.3",
+      "1.21.4",
+      "1.21.5",
+      "1.21.6",
+      "1.21.7",
+      "1.21.8"
+    ],
+    "logo": "dist/cf_logos/fliflight-clear-spyglass-512.png",
+    "gallery": [
+      "packs/fliflight-clear-spyglass/gallery/01_spyglass.png",
+      "packs/fliflight-clear-spyglass/gallery/02_zoom.png"
+    ]
+  },
+  "fliflight-clean-hotbar": {
+    "cf_id": 1716921,
+    "cf_slug": "clean-hotbar-flat-minimal-hud",
+    "name": "Clean Hotbar - Flat Minimal HUD",
+    "summary": "Replaces the vanilla hotbar and XP bar with a flat design that is easier to read at a glance.",
+    "description_html": "<p><strong>Clean Hotbar - Flat Minimal HUD</strong> is a client-side resource pack for Minecraft Java Edition. It changes one specific thing about the vanilla look, and nothing else.</p><h3>What it changes</h3><p>• The hotbar is redrawn as flat dark slots with a thin outline - all 9 slots kept</p><p>• The slot selector is a clean white frame instead of the vanilla arrow marker</p><p>• The XP bar gets a dark track and a bright green fill</p><h3>Why players use it</h3><p>• Less visual noise on the bottom of your screen while keeping every vanilla function</p><p>• Easier to read your XP level and your items quickly during a fight</p><h3>Install</h3><p>1. Download the .zip file from this page (do not unzip it).</p><p>2. Drop it into .minecraft/resourcepacks - or use the CurseForge app.</p><p>3. Enable it in <strong>Options → Resource Packs</strong> and move it to the top of the list.</p><p>Works on Minecraft <strong>1.21.x</strong> (Java Edition) and on most launchers. Client-side only: it works on any server, and no one else needs it.</p><hr><h3>Get the whole set</h3><p>This is part of the <strong>PvP Essentials</strong> family - the all-in-one pack with crosshair, visible ores, short sword, low fire and clear pumpkin: <a href=\"https://www.curseforge.com/minecraft/texture-packs/pvp-essentials-crosshair-visible-ores-sword-low\">PvP Essentials</a></p><p>Liked it? You can support the work on <a href=\"https://ko-fi.com/fliflight\">Ko-fi</a>.</p>",
+    "changelog": "Initial release: flat clean hotbar + XP bar.",
+    "game_versions": [
+      "1.21.3",
+      "1.21.4",
+      "1.21.5",
+      "1.21.6",
+      "1.21.7",
+      "1.21.8"
+    ],
+    "logo": "dist/cf_logos/fliflight-clean-hotbar-512.png",
+    "gallery": [
+      "packs/fliflight-clean-hotbar/gallery/01_hotbar.png",
+      "packs/fliflight-clean-hotbar/gallery/02_items.png"
+    ]
+  },
+  "fliflight-thin-totem": {
+    "cf_id": 1716922,
+    "cf_slug": "thin-totem-slimmer-totem-pop",
+    "name": "Thin Totem - Smaller Totem Pop",
+    "summary": "Slims the totem of undying so its pop animation stops blocking your view mid-fight.",
+    "description_html": "<p><strong>Thin Totem - Smaller Totem Pop</strong> is a client-side resource pack for Minecraft Java Edition. It changes one specific thing about the vanilla look, and nothing else.</p><h3>What it changes</h3><p>• The totem art is redrawn narrower and centred on the same 16x16 canvas</p><p>• The item model and animation are untouched, so it behaves exactly like vanilla</p><h3>Why players use it</h3><p>• When a totem pops in a fight you keep sight of your opponent instead of a wall of gold</p><p>• Also takes less space in your inventory icon and in your off-hand</p><h3>Install</h3><p>1. Download the .zip file from this page (do not unzip it).</p><p>2. Drop it into .minecraft/resourcepacks - or use the CurseForge app.</p><p>3. Enable it in <strong>Options → Resource Packs</strong> and move it to the top of the list.</p><p>Works on Minecraft <strong>1.21.x</strong> (Java Edition) and on most launchers. Client-side only: it works on any server, and no one else needs it.</p><hr><h3>Get the whole set</h3><p>This is part of the <strong>PvP Essentials</strong> family - the all-in-one pack with crosshair, visible ores, short sword, low fire and clear pumpkin: <a href=\"https://www.curseforge.com/minecraft/texture-packs/pvp-essentials-crosshair-visible-ores-sword-low\">PvP Essentials</a></p><p>Liked it? You can support the work on <a href=\"https://ko-fi.com/fliflight\">Ko-fi</a>.</p>",
+    "changelog": "Initial release: thinner totem texture.",
+    "game_versions": [
+      "1.19",
+      "1.19.2",
+      "1.19.4",
+      "1.20",
+      "1.20.1",
+      "1.20.2",
+      "1.20.4",
+      "1.20.5",
+      "1.20.6",
+      "1.21",
+      "1.21.1",
+      "1.21.3",
+      "1.21.4",
+      "1.21.5",
+      "1.21.6",
+      "1.21.7",
+      "1.21.8"
+    ],
+    "logo": "dist/cf_logos/fliflight-thin-totem-512.png",
+    "gallery": [
+      "packs/fliflight-thin-totem/gallery/01_totem.png",
+      "packs/fliflight-thin-totem/gallery/02_fight.png"
+    ]
+  },
+  "fliflight-clear-powder-snow": {
+    "cf_id": 1716925,
+    "cf_slug": "clear-powder-snow-no-frost-overlay",
+    "name": "Clear Powder Snow - No Freeze Overlay",
+    "summary": "Removes the frost overlay so you can still see where you are going while freezing.",
+    "description_html": "<p><strong>Clear Powder Snow - No Freeze Overlay</strong> is a client-side resource pack for Minecraft Java Edition. It changes one specific thing about the vanilla look, and nothing else.</p><h3>What it changes</h3><p>• The frost / ice overlay drawn around the edges of the screen is removed</p><p>• Nothing else changes - freezing, damage and the slow effect all work as in vanilla</p><h3>Why players use it</h3><p>• You can find the way out of powder snow instead of being blinded by frost</p><p>• Handy in snowy biomes and for exploring mountains</p><h3>Install</h3><p>1. Download the .zip file from this page (do not unzip it).</p><p>2. Drop it into .minecraft/resourcepacks - or use the CurseForge app.</p><p>3. Enable it in <strong>Options → Resource Packs</strong> and move it to the top of the list.</p><p>Works on Minecraft <strong>1.21.x</strong> (Java Edition) and on most launchers. Client-side only: it works on any server, and no one else needs it.</p><hr><h3>Get the whole set</h3><p>This is part of the <strong>PvP Essentials</strong> family - the all-in-one pack with crosshair, visible ores, short sword, low fire and clear pumpkin: <a href=\"https://www.curseforge.com/minecraft/texture-packs/pvp-essentials-crosshair-visible-ores-sword-low\">PvP Essentials</a></p><p>Liked it? You can support the work on <a href=\"https://ko-fi.com/fliflight\">Ko-fi</a>.</p>",
+    "changelog": "Initial release: frost overlay removed.",
+    "game_versions": [
+      "1.19",
+      "1.19.2",
+      "1.19.4",
+      "1.20",
+      "1.20.1",
+      "1.20.2",
+      "1.20.4",
+      "1.20.5",
+      "1.20.6",
+      "1.21",
+      "1.21.1",
+      "1.21.3",
+      "1.21.4",
+      "1.21.5",
+      "1.21.6",
+      "1.21.7",
+      "1.21.8"
+    ],
+    "logo": "dist/cf_logos/fliflight-clear-powder-snow-512.png",
+    "gallery": [
+      "packs/fliflight-clear-powder-snow/gallery/01_powder_snow.png",
+      "packs/fliflight-clear-powder-snow/gallery/02_night.png"
+    ]
+  },
+  "fliflight-clear-pumpkin": {
+    "cf_id": 1653159,
+    "cf_slug": "clear-pumpkin-no-pumpkin-blur",
+    "name": "Clear Pumpkin - No Pumpkin Blur",
+    "summary": "Removes the orange pumpkin blur overlay so you can see clearly while wearing a pumpkin.",
+    "description_html": "<p><strong>Clear Pumpkin - No Pumpkin Blur</strong> is a client-side resource pack for Minecraft Java Edition. It changes one specific thing about the vanilla look, and nothing else.</p><h3>What it changes</h3><p>• The pumpkin blur overlay (pumpkinblur) is replaced with a fully transparent texture</p><p>• Wearing a pumpkin still works normally - you only lose the orange veil</p><h3>Why players use it</h3><p>• The classic Enderman trick becomes actually playable, you can see where you walk</p><p>• Useful for survival, mob farms and for the End</p><h3>Install</h3><p>1. Download the .zip file from this page (do not unzip it).</p><p>2. Drop it into .minecraft/resourcepacks - or use the CurseForge app.</p><p>3. Enable it in <strong>Options → Resource Packs</strong> and move it to the top of the list.</p><p>Works on Minecraft <strong>1.21.x</strong> (Java Edition) and on most launchers. Client-side only: it works on any server, and no one else needs it.</p><hr><h3>Get the whole set</h3><p>This is part of the <strong>PvP Essentials</strong> family - the all-in-one pack with crosshair, visible ores, short sword, low fire and clear pumpkin: <a href=\"https://www.curseforge.com/minecraft/texture-packs/pvp-essentials-crosshair-visible-ores-sword-low\">PvP Essentials</a></p><p>Liked it? You can support the work on <a href=\"https://ko-fi.com/fliflight\">Ko-fi</a>.</p>",
+    "changelog": "Initial release: removes the pumpkin blur overlay entirely.",
+    "game_versions": [
+      "1.19",
+      "1.19.2",
+      "1.19.4",
+      "1.20",
+      "1.20.1",
+      "1.20.2",
+      "1.20.4",
+      "1.20.5",
+      "1.20.6",
+      "1.21",
+      "1.21.1",
+      "1.21.3",
+      "1.21.4",
+      "1.21.5",
+      "1.21.6",
+      "1.21.7",
+      "1.21.8"
+    ],
+    "logo": "dist/cf_logos/fliflight-clear-pumpkin-512.png",
+    "gallery": [
+      "packs/fliflight-clear-pumpkin/gallery/01_pumpkin.png",
+      "packs/fliflight-clear-pumpkin/gallery/02_night.png"
+    ]
+  },
+  "fliflight-pvp-essentials": {
+    "cf_id": 1653188,
+    "cf_slug": "pvp-essentials-crosshair-visible-ores-sword-low",
+    "name": "PvP Essentials",
+    "summary": "One pack for PvP: a clean dot crosshair, visible ores, smaller swords, low fire and a clear pumpkin.",
+    "description_html": "<p><strong>PvP Essentials</strong> is a client-side resource pack for Minecraft Java Edition. It changes one specific thing about the vanilla look, and nothing else.</p><h3>What it changes</h3><p>• A clean 1px dot crosshair (replaces the vanilla crosshair)</p><p>• Visible ores - every ore and ancient debris stands out</p><p>• Smaller swords, so your weapon stops covering the middle of the screen</p><p>• Low fire - the flame sits lower with the full animation, in the world and in the GUI</p><p>• Clear pumpkin - no orange blur when wearing one</p><h3>Why players use it</h3><p>• Everything above comes from five separate packs and is bundled here so you install it once</p><p>• Each feature keeps working like its original pack, this is just the all-in-one convenience build</p><h3>Install</h3><p>1. Download the .zip file from this page (do not unzip it).</p><p>2. Drop it into .minecraft/resourcepacks - or use the CurseForge app.</p><p>3. Enable it in <strong>Options → Resource Packs</strong> and move it to the top of the list.</p><p>Works on Minecraft <strong>1.21.x</strong> (Java Edition) and on most launchers. Client-side only: it works on any server, and no one else needs it.</p><hr><h3>Get the whole set</h3><p>This is part of the <strong>PvP Essentials</strong> family - the all-in-one pack with crosshair, visible ores, short sword, low fire and clear pumpkin: <a href=\"https://www.curseforge.com/minecraft/texture-packs/pvp-essentials-crosshair-visible-ores-sword-low\">PvP Essentials</a></p><p>Liked it? You can support the work on <a href=\"https://ko-fi.com/fliflight\">Ko-fi</a>.</p>",
+    "changelog": "Low fire fixed: the flame is now fully lowered (compressed, tip preserved) instead of cut off at the top. Both fire layers lowered; GUI overlay included.",
+    "game_versions": [
+      "1.19",
+      "1.19.2",
+      "1.19.4",
+      "1.20",
+      "1.20.1",
+      "1.20.2",
+      "1.20.4",
+      "1.20.5",
+      "1.20.6",
+      "1.21",
+      "1.21.1",
+      "1.21.3",
+      "1.21.4",
+      "1.21.5",
+      "1.21.6",
+      "1.21.7",
+      "1.21.8"
+    ],
+    "logo": "dist/cf_logos/fliflight-pvp-essentials-512.png",
+    "gallery": [
+      "packs/pvp-essentials/gallery/01_crosshair.png",
+      "packs/pvp-essentials/gallery/02_crosshair.png",
+      "packs/pvp-essentials/gallery/03_visible_ores.png",
+      "packs/pvp-essentials/gallery/04_visible_ores.png",
+      "packs/pvp-essentials/gallery/05_visible_ores.png",
+      "packs/pvp-essentials/gallery/06_short_sword.png",
+      "packs/pvp-essentials/gallery/07_short_sword.png",
+      "packs/pvp-essentials/gallery/08_clear_pumpkin.png",
+      "packs/pvp-essentials/gallery/09_low_fire.png"
+    ]
+  }
+}
