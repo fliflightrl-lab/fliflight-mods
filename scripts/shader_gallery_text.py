@@ -96,8 +96,12 @@ def plate(img, box, alpha=140):
     return Image.alpha_composite(img.convert("RGBA"), layer)
 
 
-def caption(src, text, font, scale, out_path):
+def caption(src, text, font, scale, out_path, max_w=1920):
     img = Image.open(src).convert("RGBA")
+    # redimensionner AVANT de dessiner : sinon le texte serait agrandi avec l'image
+    # et deviendrait flou. 1920 de large est la taille recommandee pour une galerie.
+    if img.width > max_w:
+        img = img.resize((max_w, int(img.height * max_w / img.width)), Image.LANCZOS)
     pad = 18 * scale // 4
     w = font.width(text, scale)
     h = GLYPH * scale

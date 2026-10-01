@@ -40,7 +40,10 @@ def load():
 
     zips = sorted(glob.glob(os.path.join(DIST, "shaderpacks", "*.zip")))
     icons = sorted(glob.glob(os.path.join(DIST, "shader_icon", "*-512.png")))
-    gallery = sorted(glob.glob(os.path.join(DIST, "shader_gallery", "*.png")))
+    # La galerie = UNIQUEMENT les images qui ont une legende. Cela exclut de fait les
+    # fichiers de test ou intermediaires qui trainent dans le dossier.
+    gallery = [p for p in sorted(glob.glob(os.path.join(DIST, "shader_gallery", "*.png")))
+               if os.path.basename(p) in caps]
     return meta, body, caps, zips, icons, gallery
 
 
@@ -96,13 +99,17 @@ def main():
     # 1. creer le projet (brouillon), comme les autres scripts du depot
     proj = {
         "slug": meta["slug"], "title": meta["title"], "description": meta["description"],
-        "categories": meta["categories"], "game_versions": meta["game_versions"],
+        # categories est OBLIGATOIRE a la creation, et plafonne a 3 :
+        # 3 -> 200, 4 -> "Field categories failed validation with error: length"
+        # (verifie a la creation comme en PATCH).
+        "categories": meta["categories"],
         "license_id": LICENSE, "license_url": None, "project_type": meta["project_type"],
         "client_side": meta["client_side"], "server_side": meta["server_side"],
-        "body": body, "issues_url": None, "source_url": None, "wiki_url": None,
-        "discord_url": None, "donation_urls": meta.get("donation_urls", []),
+        "body": body,
         "initial_versions": [], "is_draft": True,
     }
+    # En revanche game_versions et surtout donation_urls NE PASSENT PAS en multipart
+    # (objets imbriques aplatis) : on les configure apres, par PATCH en JSON.
     r = requests.post(f"{API}/project", headers=hdr,
                       files={"data": (None, json.dumps(proj), "application/json")}, timeout=60)
     print(f"  creer le projet : {r.status_code} {r.text[:150]}")
@@ -110,6 +117,16 @@ def main():
         return 1
     pid = r.json()["id"]
     print(f"    id projet : {pid}")
+
+    # 1b. versions de jeu et liens de don, par PATCH en JSON
+    patch = {}
+    if meta.get("game_versions"):
+        patch["game_versions"] = meta["game_versions"]
+    if meta.get("donation_urls"):
+        patch["donation_urls"] = meta["donation_urls"]
+    if patch:
+        r = requests.patch(f"{API}/project/{pid}", headers=hdr, json=patch, timeout=30)
+        print(f"  configurer ({', '.join(patch)}) : {r.status_code} {r.text[:200]}")
 
     # 2. icone
     icon = icons[0]
