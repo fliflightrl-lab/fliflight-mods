@@ -15,8 +15,12 @@
 #define TIME_GRADE
 
 //#define SHARPEN
-//#define HORIZON_HAZE
-//#define SHADOWS
+
+// Brume d'horizon : seuils en BLOCS, calcul deterministe (pas de dependance a `far`).
+#define HORIZON_HAZE
+
+// Ombres : reactivees apres correction de la position monde dans la passe d'ombre.
+#define SHADOWS
 
 // ============ BLOOM ============
 #define BLOOM_STRENGTH   0.45
@@ -44,12 +48,11 @@
 #define DUSK_STRENGTH      0.45
 
 // ============ OMBRES ============
-#ifdef HIGH_QUALITY
-  #define SHADOW_DISTANCE 128.0
-#else
-  #define SHADOW_DISTANCE 56.0
-#endif
-#define SHADOW_MAP_RES   768.0
+// Une SEULE definition : OptiFine signale "Ambiguous shader option" si une macro
+// est definie plusieurs fois dans la chaine d'include (meme sous #ifdef).
+// Pour la qualite : mettre 128.0 ici.
+#define SHADOW_DISTANCE 64.0
+#define SHADOW_MAP_RES   1024.0   // DOIT correspondre a shaders.properties
 #define SHADOW_STRENGTH  0.85
 #define SHADOW_FADE_START (SHADOW_DISTANCE * 0.70)
 #define SHADOW_BIAS_SLOPE  0.25

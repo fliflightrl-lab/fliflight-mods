@@ -5,32 +5,38 @@ CONFIG = os.path.join(SRC, "shaders", "lib", "config.glsl")
 DIST = r"C:\Users\user\fliflight-mods\dist\shaderpacks"
 SP = r"C:\Users\user\AppData\Roaming\.minecraft\shaderpacks"
 
-flags = {
-    "HORIZON_HAZE": "--haze" in sys.argv,
-    "SHARPEN": "--sharpen" in sys.argv,
-    "SHADOWS": "--shadows" in sys.argv,
+# Ne touche un flag QUE s'il est demande explicitement sur la ligne de commande.
+# Sinon la config est laissee telle quelle : un script de build ne doit pas annuler
+# silencieusement les reglages du pack.
+OVERRIDE = {
+    "HORIZON_HAZE": ("--haze", "--no-haze"),
+    "SHARPEN": ("--sharpen", "--no-sharpen"),
+    "SHADOWS": ("--shadows", "--no-shadows"),
 }
 test_build = "--test" in sys.argv
 
 txt = open(CONFIG, encoding="utf-8").read()
-for flag, on in flags.items():
-    off_markers = [f"\n//#define {flag}", f"\n//#define {flag}   // DESACTIVE : artefact non resolu, a reactiver pour tester"]
+changed = []
+for flag, (on_arg, off_arg) in OVERRIDE.items():
     on_line = f"\n#define {flag}"
-    if on:
-        for off in off_markers:
+    off_lines = [f"\n//#define {flag}"]
+    if on_arg in sys.argv:
+        for off in off_lines:
             txt = txt.replace(off, on_line)
-    else:
-        # remet la forme commentee en gardant le commentaire explicatif s'il existe
-        if f"\n//#define {flag}   // DESACTIVE" in txt:
-            pass
-        else:
-            txt = txt.replace(on_line, f"\n//#define {flag}")
+        changed.append(f"{flag}=ON")
+    elif off_arg in sys.argv:
+        txt = txt.replace(on_line, f"\n//#define {flag}")
+        changed.append(f"{flag}=off")
 open(CONFIG, "w", encoding="utf-8", newline="\n").write(txt)
 
 shadows_on = "\n#define SHADOWS" in txt
-state = {f: ("ON " if f"\n#define {f}" in txt else "off") for f in flags}
+state = {f: ("ON " if f"\n#define {f}" in txt else "off") for f in OVERRIDE}
+if changed:
+    print("  flags modifies :", " ".join(changed))
+else:
+    print("  flags : config laissee telle quelle")
 
-name = "ZZ-TEST.zip" if test_build else "FliflightVanillaPlus-v0.7-Potato.zip"
+name = "ZZ-TEST.zip" if test_build else "FliflightVanillaPlus-v0.8-Potato.zip"
 out = os.path.join(DIST, name)
 if os.path.exists(out):
     os.remove(out)
