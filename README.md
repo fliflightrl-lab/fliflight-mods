@@ -80,3 +80,58 @@ PMC n'a **pas d'API d'upload publique** (domaine derrière Cloudflare). La cible
 `pmc` génère un **kit prêt à déposer** dans `dist/pmc/<slug>/` (fichier + icône +
 galerie + `UPLOAD.md` avec titre/description/tags pré-remplis). Dépôt manuel ~2 min
 sur planetminecraft.com.
+
+## Registre des projets
+
+**[`PROJECTS.md`](PROJECTS.md)** — liste tous les projets avec leurs ids CurseForge /
+Modrinth et leur version. Fichier **généré** :
+
+```bash
+python3 scripts/gen_project_registry.py
+```
+
+Il lit `packs/*/manifest.json` (donc toujours synchronisé) et y ajoute l'état des
+projets hors pipeline (shader pack, mods Fabric). Ne pas l'éditer à la main.
+
+## Shader pack — `shaderpacks/fliflight-vanilla-plus/`
+
+Pack de shader client **Vanilla+** profil **Potato** pour Minecraft Java 1.21.x
+(OptiFine / Iris). **Hors pipeline `packs/`** : pas encore publié sur CurseForge /
+Modrinth, les binaires sont attachés aux GitHub Releases.
+
+**Version de référence : `v0.8.1` — la seule entièrement fonctionnelle.**
+Les versions antérieures sont conservées uniquement comme historique dans `PROJECTS.md` ;
+ne pas les livrer.
+
+Effets : aucun brouillard, bloom (2 passes, buffer demi-résolution), feuillage qui ondule,
+eau animée, lumière teintée (torches chaudes / ciel froid), lumière directionnelle, ciel
+avec halo solaire et lunaire + étoiles + bande d'aube, brume d'horizon, étalonnage par heure.
+
+**Les ombres ne sont pas livrées** (trois tentatives, trois artefacts ; cause racine de la
+v0.8 corrigée et prouvée, mais le symptôme suivant non expliqué). Le programme d'ombre n'est
+même pas embarqué dans le zip, donc OptiFine ne fait aucune passe d'ombre. Détail complet et
+pistes restantes dans `shaderpacks/fliflight-vanilla-plus/README.md`.
+
+### Outillage du shader pack
+
+```bash
+python3 scripts/validate_shader.py shaderpacks/fliflight-vanilla-plus  # erreurs a ecran noir silencieux
+python3 scripts/rebuild_shaderzip.py --test                            # build de test
+bash scripts/of_compile_test.sh <etiquette>                            # compilation reelle (OptiFine hors ligne)
+python3 scripts/rebuild_shaderzip.py                                   # livraison
+```
+
+`validate_shader.py` attrape les erreurs qui donnent un écran noir sans message :
+`#include` sans extension, `DRAWBUFFERS` manquant, littéraux flottants malformés,
+varyings absents du vertex, uniformes déclarés en double, variable locale redéclarée,
+sampler d'ombre mal nommé.
+
+`of_compile_test.sh` lance OptiFine en `launchwrapper` avec `--quickPlaySingleplayer`
+(ce qui force la compilation des `gbuffers_*`) et lit `logs/latest.log`.
+
+> **Piège du test de compilation** : OptiFine charge le pack **déjà sélectionné**, pas le
+> dernier fichier déposé. Un build écrit sous un nouveau nom valide donc l'ancien code.
+> Le mode `--test` écrase tous les `FliflightVanillaPlus-*.zip` présents pour rendre cela
+> impossible, et il faut **vérifier le NOMBRE de programmes chargés** attendu, pas seulement
+> l'absence d'erreur.
+
