@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FliflightMC — Portfolio & Stats</title>
+<style>
+  :root{
+    --bg:#0e1014; --card:#161921; --card2:#1d222d; --border:#272c38;
+    --fg:#e8eaf0; --muted:#9aa3b2; --accent:#4ade80; --accent2:#38bdf8; --warn:#fbbf24;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--fg);font-family:-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.55;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1080px;margin:0 auto;padding:40px 24px 60px}
+
+  /* Header */
+  header{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:28px}
+  .brand{display:flex;align-items:center;gap:14px}
+  .logo{width:52px;height:52px;border-radius:14px;background:linear-gradient(135deg,var(--accent),var(--accent2));display:flex;align-items:center;justify-content:center;font-weight:800;font-size:22px;color:#0b0d10}
+  .brand h1{font-size:24px;font-weight:800;letter-spacing:-.5px}
+  .brand p{color:var(--muted);font-size:13px}
+  .updated{font-size:12px;color:var(--muted);background:var(--card);border:1px solid var(--border);padding:6px 12px;border-radius:999px}
+
+  /* Hero stat cards */
+  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-bottom:40px}
+  .stat{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:18px 20px}
+  .stat .k{font-size:12px;text-transform:uppercase;letter-spacing:.8px;color:var(--muted)}
+  .stat .v{font-size:30px;font-weight:800;letter-spacing:-.5px;margin-top:4px}
+  .stat .v .u{font-size:15px;color:var(--muted);font-weight:600}
+  .stat .sub{font-size:12px;color:var(--muted);margin-top:4px}
+  .stat.accent .v{color:var(--accent)}
+  .stat.accent2 .v{color:var(--accent2)}
+
+  /* Sections */
+  h2{font-size:18px;font-weight:700;margin:0 0 16px;display:flex;align-items:center;gap:10px}
+  h2 .bar{width:4px;height:18px;border-radius:2px;background:linear-gradient(var(--accent),var(--accent2))}
+
+  /* Projects grid */
+  .projects{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px;margin-bottom:40px}
+  .proj{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:16px;display:flex;gap:14px;transition:transform .12s,border-color .12s}
+  .proj:hover{transform:translateY(-2px);border-color:var(--accent)}
+  .proj img{width:56px;height:56px;border-radius:12px;object-fit:cover;background:var(--card2);flex-shrink:0}
+  .proj .body{min-width:0;flex:1}
+  .proj h3{font-size:15px;font-weight:700;line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  .proj .meta{display:flex;align-items:center;gap:8px;margin-top:6px;flex-wrap:wrap}
+  .badge{font-size:11px;font-weight:600;padding:3px 8px;border-radius:999px;background:var(--card2);border:1px solid var(--border)}
+  .badge.type{color:var(--accent2);border-color:var(--accent2)}
+  .badge.rank{color:var(--warn)}
+  .proj .dl{font-size:13px;color:var(--muted);margin-top:8px}
+  .proj .dl b{color:var(--fg);font-size:15px}
+  .proj .links{margin-top:10px;display:flex;gap:8px}
+  .proj .links a{font-size:12px;font-weight:600;padding:5px 10px;border-radius:8px;background:var(--card2);border:1px solid var(--border);transition:background .12s}
+  .proj .links a:hover{background:var(--border)}
+  .proj .links a.cf{color:var(--accent)}
+  .proj .links a.mr{color:var(--accent2)}
+
+  /* Revenue */
+  .revenue{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:22px;margin-bottom:40px}
+  .revenue .big{font-size:34px;font-weight:800;color:var(--accent);letter-spacing:-.5px}
+  .revenue .note{color:var(--muted);font-size:13px;margin-top:8px;max-width:640px}
+  .revenue .row{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:16px}
+  .revenue .cell{flex:1;min-width:160px;background:var(--card2);border:1px solid var(--border);border-radius:12px;padding:14px}
+  .revenue .cell .k{font-size:11px;text-transform:uppercase;letter-spacing:.7px;color:var(--muted)}
+  .revenue .cell .v{font-size:20px;font-weight:700;margin-top:4px}
+
+  footer{margin-top:20px;padding-top:20px;border-top:1px solid var(--border);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;color:var(--muted);font-size:13px}
+  footer .links{display:flex;gap:14px}
+  footer a:hover{color:var(--accent)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="brand">
+      <div class="logo">F</div>
+      <div>
+        <h1>FliflightMC</h1>
+        <p>Resource packs & mods Minecraft — PvP utilities</p>
+      </div>
+    </div>
+    <div class="updated" id="updated"></div>
+  </header>
+
+  <section class="stats" id="stats"></section>
+
+  <h2><span class="bar"></span>Projets</h2>
+  <section class="projects" id="projects"></section>
+
+  <h2><span class="bar"></span>Revenus</h2>
+  <section class="revenue" id="revenue"></section>
+
+  <footer>
+    <div id="footer-gen"></div>
+    <div class="links" id="footer-links"></div>
+  </footer>
+</div>
+
+<script>
+const DATA = __CF_DATA__;
+const fmt = n => n.toLocaleString('fr-FR');
+
+function el(tag, cls, html){ const e=document.createElement(tag); if(cls)e.className=cls; if(html!=null)e.innerHTML=html; return e; }
+
+// Header
+document.getElementById('updated').textContent = 'Généré le ' + new Date(DATA.generated_at).toLocaleString('fr-FR');
+
+// Stats
+const stats = [
+  {k:'Téléchargements', v:fmt(DATA.total_downloads), sub:'tous projets cumulés', cls:'accent'},
+  {k:'Projets', v:fmt(DATA.project_count), sub:DATA.resourcepack_count+' packs + '+DATA.mod_count+' mod', cls:''},
+  {k:'Top pack', v:DATA.top_pack.downloads?fmt(DATA.top_pack.downloads):'—', sub:DATA.top_pack.name||'', cls:'accent2'},
+  {k:'Revenus estimés', v:DATA.estimated_revenue_usd?('$'+Math.round(DATA.estimated_revenue_usd)):'—', sub:'taux '+DATA.revenue_rate_per_1k+' $/1k dl', cls:''},
+];
+const st = document.getElementById('stats');
+stats.forEach(s=>{
+  const d=el('div','stat '+(s.cls||''));
+  d.appendChild(el('div','k',s.k));
+  const v=el('div','v',s.v);
+  d.appendChild(v);
+  d.appendChild(el('div','sub',s.sub));
+  st.appendChild(d);
+});
+
+// Projects
+const pg = document.getElementById('projects');
+DATA.projects.forEach(p=>{
+  const c=el('div','proj');
+  const img=el('img'); img.src=p.icon||''; img.alt=p.name; img.loading='lazy'; img.onerror=()=>img.style.visibility='hidden'; if(!p.icon) img.style.visibility='hidden';
+  c.appendChild(img);
+  const body=el('div','body');
+  body.appendChild(el('h3',null,p.name));
+  const meta=el('div','meta');
+  meta.appendChild(el('span','badge type',p.type));
+  if(p.rank && p.rank<999999) meta.appendChild(el('span','badge rank','rang #'+fmt(p.rank)));
+  if(p.released) meta.appendChild(el('span','badge','sorti '+p.released));
+  body.appendChild(meta);
+  body.appendChild(el('div','dl','<b>'+fmt(p.downloads)+'</b> téléchargements'));
+  const links=el('div','links');
+  if(p.cf_url){const a=el('a','cf','CurseForge');a.href=p.cf_url;a.target='_blank';links.appendChild(a);}
+  if(p.mr_url){const a=el('a','mr','Modrinth');a.href=p.mr_url;a.target='_blank';links.appendChild(a);}
+  body.appendChild(links);
+  c.appendChild(body);
+  pg.appendChild(c);
+});
+
+// Revenue
+const rv=document.getElementById('revenue');
+const big=el('div','big','$'+Math.round(DATA.estimated_revenue_usd));
+rv.appendChild(big);
+rv.appendChild(el('div','note','Estimation indicative — les revenus CurseForge Rewards ne sont PAS exposés par l\'API publique (uniquement ton dashboard). Calcul : '+fmt(DATA.total_downloads)+' téléchargements × '+DATA.revenue_rate_per_1k+' $/1000 dl. Le taux réel varie ; ajuste-le dans <code>scripts/fetch_cf_stats.py</code>. Revenu réel à reporter manuellement : <code>revenue.json</code>.'));
+const row=el('div','row');
+[
+  ['Téléchargements',''+fmt(DATA.total_downloads)],
+  ['Taux retenu',''+DATA.revenue_rate_per_1k+' $/1k dl'],
+  ['Revenu réel (manuel)', DATA.actual_revenue_usd!=null ? '$'+DATA.actual_revenue_usd : '— non renseigné —'],
+].forEach(([k,v])=>{
+  const cell=el('div','cell'); cell.appendChild(el('div','k',k)); cell.appendChild(el('div','v',v)); row.appendChild(cell);
+});
+rv.appendChild(row);
+
+// Footer
+document.getElementById('footer-gen').textContent='© FliflightMC — données CurseForge via API';
+const fl=document.getElementById('footer-links');
+['https://www.curseforge.com/members/fliflightmc/projects|CurseForge',
+ 'https://modrinth.com/user/Fliflightmc|Modrinth',
+ 'https://github.com/fliflightrl-lab/fliflight-mods|GitHub',
+ 'https://ko-fi.com/fliflight|Ko-fi',
+ 'https://www.youtube.com/@Fliflight-MC|YouTube'].forEach(s=>{
+  const [u,t]=s.split('|'); const a=el('a',null,t); a.href=u; a.target='_blank'; fl.appendChild(a);
+});
+</script>
+</body>
+</html>

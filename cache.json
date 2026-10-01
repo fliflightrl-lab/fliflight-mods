@@ -1,0 +1,226 @@
+{
+ "generated_at": "2026-10-02T01:51:58.916296",
+ "total_downloads": 85283,
+ "project_count": 21,
+ "mod_count": 1,
+ "resourcepack_count": 20,
+ "top_pack": {
+  "name": "Dot Crosshair — Clean PvP & Survival Crosshair (All Versions)",
+  "downloads": 24825
+ },
+ "estimated_revenue_usd": 170.57,
+ "revenue_rate_per_1k": 2.0,
+ "actual_revenue_usd": null,
+ "projects": [
+  {
+   "name": "Dot Crosshair — Clean PvP & Survival Crosshair (All Versions)",
+   "downloads": 24825,
+   "rank": 16146,
+   "type": "resourcepack",
+   "icon": "assets/dot-crosshair-cossx-better-crosshair.png",
+   "cf_url": "https://www.curseforge.com/minecraft/texture-packs/dot-crosshair-cossx-better-crosshair",
+   "mr_url": "https://modrinth.com/project/dot-crosshair-cossx-better-crosshair",
+   "released": "2026-03-29"
+  },
+  {
+   "name": "CrossX Crosshair — Custom PvP Crosshair Pack",
+   "downloads": 14656,
+   "rank": 18290,
+   "type": "resourcepack",
+   "icon": "assets/crossx-crossx-better-crosshair.png",
+   "cf_url": "https://www.curseforge.com/minecraft/texture-packs/crossx-crossx-better-crosshair",
+   "mr_url": "https://modrinth.com/project/crossx-crossx-better-crosshair",
+   "released": "2026-03-29"
+  },
+  {
+   "name": "Visible Ores — See Every Ore & Netherite (Shaders Ready)",
+   "downloads": 13120,
+   "rank": 25107,
+   "type": "resourcepack",
+   "icon": "assets/visible-ores-all-versions-and-netherite.png",
+   "cf_url": "https://www.curseforge.com/minecraft/texture-packs/visible-ores-all-versions-and-netherite",
+   "mr_url": "https://modrinth.com/project/visible-ores-all-versions-and-netherite",
+   "released": "2025-08-25"
+  },
+  {
+   "name": "Better Crosshair — Modern Clean Crosshair for PvP",
+   "downloads": 8122,
+   "rank": 22815,
+   "type": "resourcepack",
+   "icon": "assets/crossx-better-crosshair.png",
+   "cf_url": "https://www.curseforge.com/minecraft/texture-packs/crossx-better-crosshair",
+   "mr_url": "https://modrinth.com/project/crossx-better-crosshair",
+   "released": "2026-03-23"
+  },
+  {
+   "name": "Bigger Dot Crosshair — High-Visibility PvP Crosshair",
+   "downloads": 6476,
+   "rank": 25148,
+   "type": "resourcepack",
+   "icon": "assets/bigger-dot-crosshair-cossx-better-crosshair.png",
+   "cf_url": "https://www.curseforge.com/minecraft/texture-packs/bigger-dot-crosshair-cossx-better-crosshair",
+   "mr_url": "https://modrinth.com/project/bigger-dot-crosshair-cossx-better-crosshair",
+   "released": "2026-03-29"
+  },
+  {
+   "name": "Short Sword",
+   "downloads": 5744,
+   "rank": 31924,
+   "type": "resourcepack",
+   "icon": "assets/pvp-sword-little-sword-all-versions.png",
+   "cf_url": "https://www.curseforge.com/minecraft/texture-packs/pvp-sword-little-sword-all-versions",
+   "mr_url": "https://modrinth.com/project/pvp-sword-little-sword-all-versions",
+   "released": "2025-08-25"
+  },
+  {
+   "name": "CrosshairX — Enhanced Crosshair for PvP",
+   "downloads": 5135,
+   "rank": 28585,
+   "type": "resourcepack",
+   "icon": "assets/crosshairx-better-crosshair.png",
+   "cf_url": "https://www.curseforge.com/minecraft/texture-packs/crosshairx-better-crosshair",
+   "mr_url": "https://modrinth.com/project/crosshairx-better-crosshair",
+   "released": "2026-03-28"
+  },
+  {
+   "name": "Sniper Crosshair — Precision for Bow & Long-Range PvP",
+   "downloads": 3942,
+   "rank": 999999,
+   "type": "resourcepack",
+   "icon": "assets/crossx.png",
+   "cf_url": "https://www.curseforge.com/minecraft/texture-packs/crossx-better-crosshair-sniper-crosshair",
+   "mr_url": "https://modrinth.com/project/crossx",
+   "released": "2026-06-26"
+  },
+  {
+   "name": "Crossy Crosshair — Stylish PvP Crosshair",
+   "downloads": 2204,
+   "rank": 999999,
+   "type": "resourcepack",
+   "icon": "assets/crossy-crossx-better-crosshair.png",
+   "cf_url": "https://www.curseforge.com/minecraft/texture-packs/crossy-crossx-better-crosshair",
+   "mr_url": "https://modrinth.com/project/crossy-crossx-better-crosshair",
+   "released": "2026-05-30"
+  },
+  {
+   "name": "Diamond Dimension — A New World Made of Diamonds (NeoForge)",
+   "downloads": 674,
+   "rank": 55235,
+   "type": "mod",
+   "icon": "assets/all-in-diamonds-dimension.jpg",
+   "cf_url": "https://www.curseforge.com/minecraft/mc-mods/all-in-diamonds-dimension",
+   "mr_url": "https://modrinth.com/project/all-in-diamonds-dimension",
+   "released": "2026-03-07"
+  },
+  {
+   "name": "Clear Pumpkin - No Pumpkin Blur",
+   "downloads": 186,
+   "rank": null,
+   "type": "resourcepack",
+   "icon": "assets/fliflight-clear-pumpkin.png",
+   "cf_url": "https://www.curseforge.com/members/fliflightmc/projects",
+   "mr_url": "https://modrinth.com/project/fliflight-clear-pumpkin",
+   "released": ""
+  },
+  {
+   "name": "Low Fire — Lowered Flame Overlay (Full Animation)",
+   "downloads": 185,
+   "rank": null,
+   "type": "resourcepack",
+   "icon": "assets/fliflight-low-fire.png",
+   "cf_url": "https://www.curseforge.com/members/fliflightmc/projects",
+   "mr_url": "https://modrinth.com/project/fliflight-low-fire",
+   "released": ""
+  },
+  {
+   "name": "PvP Essentials",
+   "downloads": 14,
+   "rank": null,
+   "type": "resourcepack",
+   "icon": "assets/pvp-essentials.png",
+   "cf_url": "https://www.curseforge.com/members/fliflightmc/projects",
+   "mr_url": "https://modrinth.com/project/pvp-essentials",
+   "released": ""
+  },
+  {
+   "name": "Clean Hotbar - Flat Minimal HUD",
+   "downloads": 0,
+   "rank": null,
+   "type": "resourcepack",
+   "icon": "assets/fliflight-clean-hotbar.png",
+   "cf_url": "https://www.curseforge.com/minecraft/texture-packs/clean-hotbar-flat-minimal-hud",
+   "mr_url": "https://modrinth.com/project/fliflight-clean-hotbar",
+   "released": ""
+  },
+  {
+   "name": "Clear Lava - See Through Lava",
+   "downloads": 0,
+   "rank": null,
+   "type": "resourcepack",
+   "icon": "assets/fliflight-clear-lava.png",
+   "cf_url": "https://www.curseforge.com/minecraft/texture-packs/clear-lava-see-through-lava",
+   "mr_url": "https://modrinth.com/project/fliflight-clear-lava",
+   "released": ""
+  },
+  {
+   "name": "Clear Powder Snow - No Freeze Overlay",
+   "downloads": 0,
+   "rank": null,
+   "type": "resourcepack",
+   "icon": "assets/fliflight-clear-powder-snow.png",
+   "cf_url": "https://www.curseforge.com/minecraft/texture-packs/clear-powder-snow-no-frost-overlay",
+   "mr_url": "https://modrinth.com/project/fliflight-clear-powder-snow",
+   "released": ""
+  },
+  {
+   "name": "Clear Spyglass - Full Screen Zoom",
+   "downloads": 0,
+   "rank": null,
+   "type": "resourcepack",
+   "icon": "assets/fliflight-clear-spyglass.png",
+   "cf_url": "https://www.curseforge.com/minecraft/texture-packs/clear-spyglass-no-scope-overlay",
+   "mr_url": "https://modrinth.com/project/fliflight-clear-spyglass",
+   "released": ""
+  },
+  {
+   "name": "Clear Water - See Underwater",
+   "downloads": 0,
+   "rank": null,
+   "type": "resourcepack",
+   "icon": "assets/fliflight-clear-water.png",
+   "cf_url": "https://www.curseforge.com/minecraft/texture-packs/clear-water-see-through-water",
+   "mr_url": "https://modrinth.com/project/fliflight-clear-water",
+   "released": ""
+  },
+  {
+   "name": "Low Shield - See Past Your Shield",
+   "downloads": 0,
+   "rank": null,
+   "type": "resourcepack",
+   "icon": "assets/fliflight-low-shield.png",
+   "cf_url": "https://www.curseforge.com/minecraft/texture-packs/low-shield-shield-out-of-the-way",
+   "mr_url": "https://modrinth.com/project/fliflight-low-shield",
+   "released": ""
+  },
+  {
+   "name": "No Dark Corners",
+   "downloads": 0,
+   "rank": null,
+   "type": "resourcepack",
+   "icon": "assets/fliflight-no-vignette.png",
+   "cf_url": "https://www.curseforge.com/minecraft/texture-packs/no-vignette-clear-screen-corners",
+   "mr_url": "https://modrinth.com/project/fliflight-no-vignette",
+   "released": ""
+  },
+  {
+   "name": "Thin Totem - Smaller Totem Pop",
+   "downloads": 0,
+   "rank": null,
+   "type": "resourcepack",
+   "icon": "assets/fliflight-thin-totem.png",
+   "cf_url": "https://www.curseforge.com/minecraft/texture-packs/thin-totem-slimmer-totem-pop",
+   "mr_url": "https://modrinth.com/project/fliflight-thin-totem",
+   "released": ""
+  }
+ ]
+}
