@@ -1,2 +1,2 @@
 #version 120
-#include "/lib/vs.glsl"
+#include "/lib/vs_water.glsl"
