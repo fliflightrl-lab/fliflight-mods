@@ -18,9 +18,9 @@
     "wiki_url": ""
   },
   "version": {
-    "number": "1.0.0",
+    "number": "1.0.1",
     "type": "release",
-    "changelog": "Initial release: frost overlay removed.",
+    "changelog": "Fix: frost overlay texture is now fully transparent (correct 256x256 PNG), removing the freezing overlay.",
     "loaders": [
       "minecraft"
     ],
@@ -44,7 +44,7 @@
       "1.21.8"
     ]
   },
-  "file": "fliflight-clear-powder-snow-1.0.0-resourcepack-1.21.4.zip",
+  "file": "fliflight-clear-powder-snow-1.0.1-resourcepack-1.21.4.zip",
   "icon": "icon.png",
   "gallery": [
     "01_powder_snow.png",
