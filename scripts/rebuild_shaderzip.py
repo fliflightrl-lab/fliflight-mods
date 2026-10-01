@@ -4,18 +4,26 @@ SRC = r"C:\Users\user\fliflight-mods\shaderpacks\fliflight-vanilla-plus"
 CONFIG = os.path.join(SRC, "shaders", "lib", "config.glsl")
 sp = r"C:\Users\user\AppData\Roaming\.minecraft\shaderpacks"
 
-haze_on = "--haze" in sys.argv
-name = "FliflightVanillaPlus-v0.3.1-Potato.zip" if not haze_on else "ZZ-TEST-haze-on.zip"
+flags = {
+    "HORIZON_HAZE": "--haze" in sys.argv,
+    "SHARPEN": "--sharpen" in sys.argv,
+}
+test_build = "--test" in sys.argv
+
+name = "ZZ-TEST.zip" if test_build else "FliflightVanillaPlus-v0.4-Potato.zip"
 out = os.path.join(r"C:\Users\user\fliflight-mods\dist\shaderpacks", name)
 
-# bascule le #define de la brume selon l'argument
 txt = open(CONFIG, encoding="utf-8").read()
-if haze_on:
-    txt = txt.replace("\n//#define HORIZON_HAZE", "\n#define HORIZON_HAZE")
-else:
-    txt = txt.replace("\n#define HORIZON_HAZE", "\n//#define HORIZON_HAZE")
+for flag, on in flags.items():
+    off_line = f"\n//#define {flag}"
+    on_line = f"\n#define {flag}"
+    if on:
+        txt = txt.replace(off_line, on_line)
+    else:
+        txt = txt.replace(on_line, off_line)
 open(CONFIG, "w", encoding="utf-8", newline="\n").write(txt)
-active = "\n#define HORIZON_HAZE" in txt
+
+state = {f: ("ON " if f"\n#define {f}" in txt else "off") for f in flags}
 
 if os.path.exists(out):
     os.remove(out)
@@ -29,6 +37,8 @@ with zipfile.ZipFile(out, "w", zipfile.ZIP_DEFLATED) as z:
 
 n = len(zipfile.ZipFile(out).namelist())
 shutil.copy2(out, os.path.join(sp, name))
-# OptiFine s'entete sur le nom deja selectionne : on ecrase aussi l'ancien
-shutil.copy2(out, os.path.join(sp, "FliflightVanillaPlus-v0.3-Potato.zip"))
-print(f"{name} : {os.path.getsize(out)} B, {n} entrees | HORIZON_HAZE {'ACTIF' if active else 'desactive'}")
+if not test_build:
+    # OptiFine s'entete sur le nom deja selectionne : on ecrase aussi l'ancien
+    shutil.copy2(out, os.path.join(sp, "FliflightVanillaPlus-v0.3.1-Potato.zip"))
+    shutil.copy2(out, os.path.join(sp, "FliflightVanillaPlus-v0.3-Potato.zip"))
+print(f"{name} : {os.path.getsize(out)} B, {n} entrees | " + " ".join(f"{k}={v}" for k, v in state.items()))

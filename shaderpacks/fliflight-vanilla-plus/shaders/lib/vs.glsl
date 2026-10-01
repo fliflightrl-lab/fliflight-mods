@@ -15,7 +15,11 @@ void main() {
     texCoord = (gl_TextureMatrix[0] * gl_MultiTexCoord0).xy;
     lmCoord  = (gl_TextureMatrix[1] * gl_MultiTexCoord1).xy;
     vColor   = gl_Color;
-    vNormal  = normalize(gl_NormalMatrix * gl_Normal);
+
+    // gl_NormalMatrix donne la normale en espace VUE. Sans cette conversion,
+    // tout calcul monde (decalage d'ombre, produit scalaire avec le soleil)
+    // part dans une direction qui depend de l'orientation de la camera.
+    vNormal = normalize(mat3(gbufferModelViewInverse) * (gl_NormalMatrix * gl_Normal));
 
     vec4 viewPos = gl_ModelViewMatrix * gl_Vertex;
     vec3 wPos = (gbufferModelViewInverse * viewPos).xyz;

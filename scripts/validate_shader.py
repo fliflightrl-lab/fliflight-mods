@@ -71,6 +71,13 @@ def declared_uniforms(rel, files):
     return found
 
 
+def strip_comments(t):
+    """Retire commentaires // et /* */ : le preprocesseur GLSL les ignore, donc compter
+    des parentheses dans du texte de commentaire produit des faux positifs."""
+    t = re.sub(r"/\*.*?\*/", "", t, flags=re.S)
+    return re.sub(r"//[^\n]*", "", t)
+
+
 def validate(root):
     files = collect(root)
     problems = []
@@ -79,14 +86,15 @@ def validate(root):
         if rel.endswith((".vsh", ".fsh")):
             if not txt.lstrip().startswith("#version 120"):
                 problems.append(f"{rel}: ne commence pas par #version 120")
-        if txt.count("{") != txt.count("}"):
-            problems.append(f"{rel}: accolades desequilibrees ({txt.count('{')} / {txt.count('}')})")
-        if txt.count("(") != txt.count(")"):
-            problems.append(f"{rel}: parentheses desequilibrees")
+        code = strip_comments(txt)
+        if code.count("{") != code.count("}"):
+            problems.append(f"{rel}: accolades desequilibrees ({code.count('{')} / {code.count('}')})")
+        if code.count("(") != code.count(")"):
+            problems.append(f"{rel}: parentheses desequilibrees ({code.count('(')} / {code.count(')')})")
         for inc in re.findall(r'#include\s+"([^"]+)"', txt):
             if not os.path.exists(os.path.join(root, "shaders", inc.lstrip("/"))):
                 problems.append(f"{rel}: #include introuvable -> {inc} (l'extension est obligatoire)")
-        for bad in re.findall(r"\b\d+\.\d+\.\d+\b", txt):
+        for bad in re.findall(r"\b\d+\.\d+\.\d+\b", code):
             problems.append(f"{rel}: litteral flottant malforme '{bad}' (concatenation a corriger)")
 
     for rel in files:
