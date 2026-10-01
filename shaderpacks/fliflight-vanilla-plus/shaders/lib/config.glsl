@@ -6,7 +6,7 @@
 
 // ============ EFFETS (commenter une ligne pour le desactiver) ============
 #define BLOOM
-#define SHADOWS
+//#define SHADOWS   // DESACTIVE : artefact non resolu, a reactiver pour tester
 #define WAVES
 #define CUSTOM_SKY
 

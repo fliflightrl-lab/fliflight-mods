@@ -71,6 +71,49 @@ def declared_uniforms(rel, files):
     return found
 
 
+def find_functions(code):
+    """Retourne [(nom, corps)] pour chaque definition de fonction."""
+    out = []
+    for m in re.finditer(r"\b(\w+)\s*\([^;{)]*\)\s*\{", code):
+        start = m.end() - 1
+        depth, i = 0, start
+        while i < len(code):
+            if code[i] == "{":
+                depth += 1
+            elif code[i] == "}":
+                depth -= 1
+                if depth == 0:
+                    break
+            i += 1
+        out.append((m.group(1), code[start:i + 1]))
+    return out
+
+
+DECL = re.compile(r"\b(vec[234]|ivec[234]|float|int|bool|mat[234])\s+(\w+)\s*[=;]")
+
+
+def duplicate_locals(body):
+    """Noms declares deux fois a la MEME profondeur d'accolade dans un meme corps.
+
+    GLSL 1.20 interdit de redeclarer un nom dans la meme portee : c'est une erreur
+    de compilation. Un generateur qui emet N fois `vec3 s = ...` au lieu d'appeler
+    une fonction tombe exactement la-dedans."""
+    seen = {}
+    dup = []
+    depth = 0
+    for line in body.splitlines():
+        stripped = line.strip()
+        if stripped.startswith("//"):
+            continue
+        for m in DECL.finditer(stripped):
+            key = (depth, m.group(2))
+            if key in seen:
+                dup.append(f"{m.group(2)} (profondeur {depth}, deja declare)")
+            seen[key] = True
+        depth += stripped.count("{") - stripped.count("}")
+    return dup
+
+
 def strip_comments(t):
     """Retire commentaires // et /* */ : le preprocesseur GLSL les ignore, donc compter
     des parentheses dans du texte de commentaire produit des faux positifs."""
@@ -96,6 +139,9 @@ def validate(root):
                 problems.append(f"{rel}: #include introuvable -> {inc} (l'extension est obligatoire)")
         for bad in re.findall(r"\b\d+\.\d+\.\d+\b", code):
             problems.append(f"{rel}: litteral flottant malforme '{bad}' (concatenation a corriger)")
+        for fname, body in find_functions(code):
+            for d in duplicate_locals(body):
+                problems.append(f"{rel}: dans {fname}() variable locale redeclaree -> {d}")
 
     for rel in files:
         if re.match(r"shaders/composite\d*\.fsh$", rel) and "DRAWBUFFERS" not in files[rel]:
