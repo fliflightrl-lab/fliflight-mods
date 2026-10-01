@@ -10,11 +10,6 @@ uniform float viewWidth;
 uniform float viewHeight;
 uniform float sunAngle;
 
-#define SATURATION 1.12
-#define CONTRAST   1.05
-#define BRIGHTNESS 1.02
-#define SHARPNESS  0.30
-
 void main() {
     vec2 texel = vec2(1.0 / viewWidth, 1.0 / viewHeight);
     vec3 color = texture2D(colortex0, texcoord).rgb;
@@ -47,13 +42,18 @@ void main() {
     color *= BRIGHTNESS;
 
     #ifdef TIME_GRADE
-    // Etalonnage selon l'heure : nuits plus froides et legerement desaturees,
-    // aube et crepuscule plus chauds.
     float elev = sin(sunAngle * 6.28318530717959);
     float nightAmt = clamp(-elev * 2.5, 0.0, 1.0);
     float duskAmt  = clamp(1.0 - abs(elev) * 4.0, 0.0, 1.0);
     color *= mix(vec3(1.0), vec3(0.86, 0.92, 1.10), nightAmt * 0.55);
     color *= mix(vec3(1.0), vec3(1.08, 0.97, 0.88), duskAmt * 0.45);
+    #endif
+
+    #ifdef TONE_ROLLOFF
+    // Au-dessus du genou on comprime vers 1.0 au lieu de clamper : le bloom et les
+    // hautes lumieres gardent leur detail au lieu de devenir des aplats blancs.
+    vec3 over = max(color - TONE_KNEE, 0.0);
+    color = min(color, vec3(TONE_KNEE)) + over / (1.0 + over / (1.0 - TONE_KNEE));
     #endif
 
     gl_FragColor = vec4(clamp(color, 0.0, 1.0), 1.0);

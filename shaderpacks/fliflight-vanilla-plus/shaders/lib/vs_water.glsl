@@ -7,6 +7,8 @@ varying vec4 vColor;
 varying vec3 vNormal;
 varying vec3 vWorldPos;
 varying float viewDist;
+varying vec3 viewDir;
+varying float isWater;
 
 uniform mat4 gbufferModelView;
 uniform mat4 gbufferModelViewInverse;
@@ -26,9 +28,8 @@ void main() {
     #endif
 
     #ifdef WATER_WAVES
-    // Face du dessus uniquement (sinon les parois de l'eau se deformeraient).
-    // La houle est fonction de la POSITION MONDE, donc continue d'un chunk a
-    // l'autre : aucune couture visible aux frontieres.
+    // Face du dessus uniquement. La houle est fonction de la POSITION MONDE :
+    // continue d'un chunk a l'autre, aucune couture visible.
     if (vNormal.y > 0.5) {
         float w = sin(wPos.x * 0.65 + frameTimeCounter * WATER_WAVE_SPEED)
                 + cos(wPos.z * 0.55 + frameTimeCounter * WATER_WAVE_SPEED * 0.74);
@@ -40,4 +41,6 @@ void main() {
     gl_Position = gl_ProjectionMatrix * viewPos;
     vWorldPos = wPos;
     viewDist = length(viewPos.xyz);
+    viewDir = normalize(wPos - gbufferModelViewInverse[3].xyz);
+    isWater = 1.0;
 }

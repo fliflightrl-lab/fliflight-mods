@@ -46,11 +46,18 @@ Cible Minecraft Java 1.21.x, OptiFine / Iris. Profil **Potato**.
 | v0.6 | alphaTest + une passe plein ecran en moins | fonctionnelle |
 | v0.7 | lumiere teintee, eau animee, ciel etoile | fonctionnelle |
 | v0.8 | ombres reactivees, bloom demi-res, brume | ombres buggees |
-| **v0.8.1** | ombres retirees, bloom demi-res, brume | **SEULE VERSION ENTIEREMENT FONCTIONNELLE** |
+| v0.8.1 | ombres retirees, bloom demi-res, brume | fonctionnelle |
+| **v0.9** | eclairage par face, tone mapping, reflet sur l'eau, sombrage des nuages, teinte sous l'eau, ecran d'options dans le jeu + profils | **SEULE VERSION ENTIEREMENT FONCTIONNELLE** |
 
-### Effets actifs dans la version livree (v0.8.1)
+### Effets actifs dans la version livree (v0.9)
 
-Aucun brouillard, bloom (2 passes, buffer demi-resolution), feuillage qui ondule, eau animee, lumiere teintee (torches chaudes / ciel froid), lumiere directionnelle, ciel avec halo solaire et lunaire + etoiles + bande d'aube, brume d'horizon, etalonnage par heure.
+Aucun brouillard, bloom (2 passes, buffer demi-resolution), feuillage qui ondule, eau animee et refl
+et du soleil sur l'eau, lumiere teintee (torches chaudes / ciel froid), lumiere directionnelle, ecla
+irage par orientation de face, ciel avec halos solaire et lunaire + etoiles + bande d'aube, brume d'
+horizon, tone mapping, etalonnage par heure. Reglable dans le jeu via Video Settings -> Shader Optio
+ns, avec les profils POTATO / BALANCED / QUALITY.
+
+Reglable dans le jeu : **Video Settings -> Shader Options** (profils POTATO / BALANCED / QUALITY, sous-ecrans LIGHT / WATER / SKY). `SHADOWS` est volontairement absent de l'ecran : le programme d'ombre n'est pas embarque.
 
 ### Non livre : les ombres
 

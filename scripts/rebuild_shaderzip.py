@@ -36,7 +36,7 @@ if changed:
 else:
     print("  flags : config laissee telle quelle")
 
-name = "ZZ-TEST.zip" if test_build else "FliflightVanillaPlus-v0.8.1-Potato.zip"
+name = "ZZ-TEST.zip" if test_build else "FliflightVanillaPlus-v0.9-Potato.zip"
 out = os.path.join(DIST, name)
 if os.path.exists(out):
     os.remove(out)

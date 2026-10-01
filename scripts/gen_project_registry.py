@@ -25,8 +25,19 @@ SHADER_HISTORY = [
     ("v0.6", "alphaTest + une passe plein ecran en moins", "fonctionnelle"),
     ("v0.7", "lumiere teintee, eau animee, ciel etoile", "fonctionnelle"),
     ("v0.8", "ombres reactivees, bloom demi-res, brume", "ombres buggees"),
-    ("v0.8.1", "ombres retirees, bloom demi-res, brume", "SEULE VERSION ENTIEREMENT FONCTIONNELLE"),
+    ("v0.8.1", "ombres retirees, bloom demi-res, brume", "fonctionnelle"),
+    ("v0.9", "eclairage par face, tone mapping, reflet sur l'eau, sombrage des nuages, "
+             "teinte sous l'eau, ecran d'options dans le jeu + profils",
+     "SEULE VERSION ENTIEREMENT FONCTIONNELLE"),
 ]
+
+PACK_DESC = (
+    "Aucun brouillard, bloom (2 passes, buffer demi-resolution), feuillage qui ondule, "
+    "eau animee et reflet du soleil sur l'eau, lumiere teintee (torches chaudes / ciel froid), "
+    "lumiere directionnelle, eclairage par orientation de face, ciel avec halos solaire et lunaire "
+    "+ etoiles + bande d'aube, brume d'horizon, tone mapping, etalonnage par heure. "
+    "Reglable dans le jeu via Video Settings -> Shader Options, avec les profils POTATO / BALANCED / QUALITY."
+)
 
 
 def load_manifests():
@@ -82,12 +93,14 @@ def main():
         mark = "**" if "SEULE" in status else ""
         lines.append(f"| {mark}{ver}{mark} | {content} | {mark}{status}{mark} |")
     lines.append("")
-    lines.append("### Effets actifs dans la version livree (v0.8.1)")
+    lines.append("### Effets actifs dans la version livree (v0.9)")
     lines.append("")
-    lines.append("Aucun brouillard, bloom (2 passes, buffer demi-resolution), feuillage qui ondule, "
-                 "eau animee, lumiere teintee (torches chaudes / ciel froid), lumiere directionnelle, "
-                 "ciel avec halo solaire et lunaire + etoiles + bande d'aube, brume d'horizon, "
-                 "etalonnage par heure.")
+    for chunk in [PACK_DESC[i:i + 100] for i in range(0, len(PACK_DESC), 100)]:
+        lines.append(chunk)
+    lines.append("")
+    lines.append("Reglable dans le jeu : **Video Settings -> Shader Options** (profils POTATO / "
+                 "BALANCED / QUALITY, sous-ecrans LIGHT / WATER / SKY). `SHADOWS` est volontairement "
+                 "absent de l'ecran : le programme d'ombre n'est pas embarque.")
     lines.append("")
     lines.append("### Non livre : les ombres")
     lines.append("")
