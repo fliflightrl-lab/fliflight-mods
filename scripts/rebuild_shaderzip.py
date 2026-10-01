@@ -1,7 +1,7 @@
 import os, zipfile, shutil
 
 SRC = r"C:\Users\user\fliflight-mods\shaderpacks\fliflight-vanilla-plus"
-out = r"C:\Users\user\fliflight-mods\dist\shaderpacks\FliflightVanillaPlus-v0.2.zip"
+out = r"C:\Users\user\fliflight-mods\dist\shaderpacks\FliflightVanillaPlus-v0.3-Potato.zip"
 sp = r"C:\Users\user\AppData\Roaming\.minecraft\shaderpacks"
 
 if os.path.exists(out):
@@ -15,7 +15,12 @@ with zipfile.ZipFile(out, "w", zipfile.ZIP_DEFLATED) as z:
                 z.write(full, rel)
 
 n = len(zipfile.ZipFile(out).namelist())
+shutil.copy2(out, os.path.join(sp, "FliflightVanillaPlus-v0.3-Potato.zip"))
+for old in ["FliflightVanillaPlus-v0.2.zip"]:
+    p = os.path.join(sp, old)
+    if os.path.exists(p):
+        os.remove(p)
+        print("retire:", old)
+# pour le test offline : OptiFine s'entete sur le nom deja selectionne
 shutil.copy2(out, os.path.join(sp, "FliflightVanillaPlus-v0.2.zip"))
-shutil.copy2(out, os.path.join(sp, "FliflightVanillaPlus-v0.1.zip"))
-print(f"zip reconstruit: {os.path.getsize(out)} B, {n} entrees")
-print("installe sous les 2 noms (v0.1 pour qu'OptiFine le charge)")
+print(f"v0.3-Potato : {os.path.getsize(out)} B, {n} entrees")
