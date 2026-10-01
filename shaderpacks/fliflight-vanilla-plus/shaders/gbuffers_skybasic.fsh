@@ -1,2 +1,2 @@
 #version 120
-#include "/lib/fs_sky.glsl"
+#include "/lib/fs_skybasic.glsl"
