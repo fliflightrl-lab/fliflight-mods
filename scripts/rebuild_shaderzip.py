@@ -30,7 +30,7 @@ open(CONFIG, "w", encoding="utf-8", newline="\n").write(txt)
 shadows_on = "\n#define SHADOWS" in txt
 state = {f: ("ON " if f"\n#define {f}" in txt else "off") for f in flags}
 
-name = "ZZ-TEST.zip" if test_build else "FliflightVanillaPlus-v0.5-Potato.zip"
+name = "ZZ-TEST.zip" if test_build else "FliflightVanillaPlus-v0.6-Potato.zip"
 out = os.path.join(DIST, name)
 if os.path.exists(out):
     os.remove(out)

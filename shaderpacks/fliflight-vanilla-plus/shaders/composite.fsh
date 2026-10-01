@@ -9,8 +9,8 @@ uniform sampler2D colortex0;
 uniform float viewWidth;
 uniform float viewHeight;
 
-// Seuil de luminance applique a chaque etape du flou horizontal : le bright-pass
-// et le flou H sont fusionnes, ce qui supprime une passe plein ecran.
+// Seuil de luminance + flou HORIZONTAL. Le flou vertical est fait dans final.fsh,
+// ce qui ramene tout le bloom a DEUX passes plein ecran au total.
 // Une FONCTION plutot que des variables locales : en GLSL 1.20 on ne peut pas
 // redeclarer le meme nom dans la meme portee.
 vec3 bright(vec2 uv) {
