@@ -3,7 +3,6 @@
 
 // ============ PROFIL ============
 // POTATO : par defaut, leger (shadowmap 1024, bloom 5 taps, ombres 64 blocs)
-// Decommenter la ligne ci-dessous pour la version lourde.
 //#define HIGH_QUALITY
 
 // ============ EFFETS (commenter une ligne pour le desactiver) ============
@@ -11,12 +10,15 @@
 #define SHADOWS
 #define WAVES
 #define CUSTOM_SKY
-#define HORIZON_HAZE
+
+// Brume d'horizon : DESACTIVEE par defaut. Decommenter pour l'activer.
+// Elle refond le terrain tres lointain vers la couleur du ciel (anti "bande sombre").
+//#define HORIZON_HAZE
 
 // ============ BLOOM ============
 #define BLOOM_STRENGTH   0.45
 #define BLOOM_THRESHOLD  0.68
-#define BLOOM_SPREAD     2.5    // ecart entre les taps de flou (plus grand = flou plus large)
+#define BLOOM_SPREAD     2.5
 
 // ============ OMBRES ============
 #ifdef HIGH_QUALITY
@@ -34,10 +36,9 @@
 // ============ CIEL ============
 #define SUN_HALO_STRENGTH 0.55
 
-// ============ BRUME D'HORIZON ============
-// Remet un fondu vers la couleur du ciel sur le terrain TRES lointain, sans
-// remettre le brouillard (eau / lave / poudreuse restent totalement clairs).
-#define HORIZON_HAZE_START    0.72   // fraction de la distance de rendu ou ca commence
-#define HORIZON_HAZE_STRENGTH 0.85   // 0.0 = desactive, 1.0 = fond complet
+// ============ BRUME D'HORIZON (seuils en BLOCS, pas de dependance a `far`) ============
+#define HAZE_START_BLOCKS 120.0   // distance a laquelle la brume commence
+#define HAZE_END_BLOCKS   300.0   // distance a laquelle elle est a fond
+#define HAZE_STRENGTH     0.85
 
 #endif

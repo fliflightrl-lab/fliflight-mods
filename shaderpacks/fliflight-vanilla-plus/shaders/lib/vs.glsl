@@ -6,6 +6,7 @@ varying vec2 lmCoord;
 varying vec4 vColor;
 varying vec3 vNormal;
 varying vec3 vWorldPos;
+varying float viewDist;
 
 uniform mat4 gbufferModelView;
 uniform mat4 gbufferModelViewInverse;
@@ -27,4 +28,5 @@ void main() {
 
     gl_Position = gl_ProjectionMatrix * viewPos;
     vWorldPos = wPos;
+    viewDist = length(viewPos.xyz);
 }

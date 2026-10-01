@@ -3,7 +3,6 @@
 
 #include "/lib/config.glsl"
 
-uniform vec3 cameraPosition;
 uniform float frameTimeCounter;
 
 attribute vec4 mc_Entity;

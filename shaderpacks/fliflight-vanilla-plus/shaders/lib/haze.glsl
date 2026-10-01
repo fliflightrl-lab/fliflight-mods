@@ -3,19 +3,17 @@
 
 #include "/lib/config.glsl"
 
-uniform vec3 cameraPosition;
+#ifdef HORIZON_HAZE
 uniform vec3 skyColor;
-uniform float far;
+#endif
 
-// Fondu du terrain tres lointain vers la couleur du ciel.
-// Ce n'est PAS le brouillard du jeu : il ne touche que les derniers 28 % de la
-// distance de rendu, donc rien de ce qui est proche, sous l'eau ou dans la lave.
-vec3 applyHaze(vec3 color, vec3 worldPos) {
+// `viewDist` vient du vertex shader : en espace vue la camera est a l'origine,
+// donc length(viewPos) EST la distance a la camera. Aucune dependance a
+// `far` ni `cameraPosition`, qui peuvent valoir 0 selon le contexte.
+vec3 applyHaze(vec3 color, float viewDist) {
     #ifdef HORIZON_HAZE
-    float dist = length(worldPos - cameraPosition);
-    float start = far * HORIZON_HAZE_START;
-    float t = clamp((dist - start) / max(far - start, 1.0), 0.0, 1.0);
-    color = mix(color, skyColor, t * t * HORIZON_HAZE_STRENGTH);
+    float t = clamp((viewDist - HAZE_START_BLOCKS) / (HAZE_END_BLOCKS - HAZE_START_BLOCKS), 0.0, 1.0);
+    color = mix(color, skyColor, t * t * HAZE_STRENGTH);
     #endif
     return color;
 }
