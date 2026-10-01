@@ -20,7 +20,7 @@
 #define HORIZON_HAZE
 
 // Ombres : reactivees apres correction de la position monde dans la passe d'ombre.
-#define SHADOWS
+//#define SHADOWS
 
 // ============ BLOOM ============
 #define BLOOM_STRENGTH   0.45
