@@ -1,28 +1,34 @@
 # Bedrock — `.mcpack` + dépôt MCPEDL
 
-## Fichiers générés (`dist/bedrock/`, 10 packs portables)
+## Fichiers générés (`dist/bedrock/`, 7 packs vérifiés)
 
-| Pack | Fichier |
-|---|---|
-| Clear Water | `fliflight-clear-water.mcpack` |
-| Clear Lava | `fliflight-clear-lava.mcpack` |
-| Clear Pumpkin | `fliflight-clear-pumpkin.mcpack` |
-| Clear Spyglass | `fliflight-clear-spyglass.mcpack` |
-| Clear Powder Snow | `fliflight-clear-powder-snow.mcpack` |
-| Low Fire | `fliflight-low-fire.mcpack` |
-| No Dark Corners | `fliflight-no-vignette.mcpack` |
-| Thin Totem | `fliflight-thin-totem.mcpack` |
-| Short Sword | `pvp-sword-little-sword-all-versions.mcpack` |
-| Visible Ores | `visible-ores-all-versions-and-netherite.mcpack` |
+| Pack | Fichier | Note |
+|---|---|---|
+| Clear Lava | `fliflight-clear-lava.mcpack` | animé (flipbook) |
+| Clear Pumpkin | `fliflight-clear-pumpkin.mcpack` | — |
+| Clear Spyglass | `fliflight-clear-spyglass.mcpack` | → `textures/entity/spyglass.png` |
+| Low Fire | `fliflight-low-fire.mcpack` | animé (flipbook) |
+| Thin Totem | `fliflight-thin-totem.mcpack` | → `textures/items/totem.png` |
+| Short Sword | `pvp-sword-little-sword-all-versions.mcpack` | — |
+| Visible Ores | `visible-ores-all-versions-and-netherite.mcpack` | deepslate → sous-dossier |
 
-**Exclus (Java-only)** : les 7 crosshairs + `clean-hotbar` (textures HUD crosshair) + `low-shield` (modèle 3D, pas de texture) + `pvp-essentials` (bundle, contient le crosshair) + le mod Diamonds (Java NeoForge).
+Chemins **vérifiés contre `Mojang/bedrock-samples`** (resource pack vanilla officiel).
+
+**Exclus (14)** :
+- **7 crosshairs + `clean-hotbar` + `pvp-essentials`** → textures HUD/gui (pas d'équivalent Bedrock).
+- **`clear-water`, `no-vignette`, `clear-powder-snow`** → textures `underwater`/`vignette`/`powder_snow_outline` **absentes de Bedrock** (gérées par le moteur, non remplaçables).
+- **`low-shield`** → modèle 3D Java (aucune texture).
+- **mod Diamonds** → mod Java NeoForge.
+
 Régénérer : `python3 scripts/build_all_mcpacks.py`
 
-## ⚠️ À vérifier avant publication
-Les `.mcpack` sont générés par mapping automatique des chemins Java → Bedrock.
-**Teste-les dans Bedrock** (Windows/Android) avant de publier : certains noms de textures
-diffèrent parfois entre Java et Bedrock (ex. animés via `flipbook_textures.json` côté Bedrock).
-Je ne peux pas exécuter Bedrock ici — c'est le seul point que je ne peux pas vérifier.
+## ✅ Chemins vérifiés (source officielle)
+Vérifiés contre `Mojang/bedrock-samples` :
+- minerais deepslate → `textures/blocks/deepslate/`
+- totem → `textures/items/totem.png` · spyglass → `textures/entity/spyglass.png`
+- animations lave/feu → `textures/flipbook_textures.json` (converti depuis les `.mcmeta` Java)
+
+Il reste juste à **importer un `.mcpack` dans Bedrock** pour confirmer visuellement.
 
 ## Listing MCPEDL — modèle prêt à coller (EN)
 
@@ -48,16 +54,13 @@ Enjoy! More PvP/utility packs: https://fliflightrl-lab.github.io/fliflight-mods/
 
 | Pack | Title | Tagline |
 |---|---|---|
-| Clear Water | `Clear Water — See Underwater` | See clearly underwater instead of the murky blue tint |
 | Clear Lava | `Clear Lava — See Through Lava` | Reduced lava opacity so you can see what's below |
 | Clear Pumpkin | `Clear Pumpkin — No Pumpkin Blur` | No more pumpkin overlay blocking your view |
 | Clear Spyglass | `Clear Spyglass — Full Screen Scope` | Cleaner spyglass view with no dark border |
-| Clear Powder Snow | `Clear Powder Snow — No Freeze Overlay` | Remove the powder snow freeze vignette |
 | Low Fire | `Low Fire — Lowered Flame` | Lower fire so it never blocks your screen in fights |
-| No Dark Corners | `No Dark Corners — Remove Vignette` | Removes the dark vignette around the screen edges |
 | Thin Totem | `Thin Totem — Smaller Totem Pop` | A smaller, less obtrusive totem pop animation |
 | Short Sword | `Short Sword — Smaller Swords` | Compact swords for better PvP visibility |
-| Visible Ores | `Visible Ores — See Every Ore` | Ores and netherite stand out clearly (Optifine/shader friendly) |
+| Visible Ores | `Visible Ores — See Every Ore` | Ores and netherite stand out clearly (shader friendly) |
 
 **Tags MCPEDL :** PvP, Utility, GUI, Textures, 16x, Client-side
 

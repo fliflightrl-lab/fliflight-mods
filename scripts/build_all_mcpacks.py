@@ -7,7 +7,7 @@ equivalent. Output: dist/bedrock/<slug>.mcpack
 import json, os, sys, zipfile
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from build_mcpack import build
+from build_mcpack import build, map_path, PREFIX
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PACKS = os.path.join(ROOT, "packs")
@@ -25,11 +25,11 @@ def classify(pdir, m):
         names = z.namelist()
     if any("textures/gui/" in n for n in names):
         return False, "HUD/crosshair sprites (no Bedrock equivalent)"
-    tex = [n for n in names if n.startswith("assets/minecraft/textures/")
-           and n.endswith((".png", ".jpg", ".jpeg"))]
-    if not tex:
-        return False, "no texture (model-only)"
-    return True, f"{len(tex)} textures"
+    mapped = [n for n in names if n.startswith(PREFIX)
+              and n.endswith((".png", ".jpg")) and map_path(n[len(PREFIX):])]
+    if not mapped:
+        return False, "textures non remplaçables sur Bedrock (gérées par le moteur)"
+    return True, f"{len(mapped)} textures"
 
 
 def main():

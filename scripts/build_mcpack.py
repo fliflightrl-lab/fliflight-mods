@@ -15,31 +15,79 @@ Usage:
 """
 import argparse, json, os, shutil, tempfile, uuid, zipfile
 
-TEXTURE_MAP = {
-    "assets/minecraft/textures/block/": "textures/blocks/",
-    "assets/minecraft/textures/item/": "textures/items/",
-    "assets/minecraft/textures/entity/": "textures/entity/",
-    "assets/minecraft/textures/gui/": "textures/ui/",
-    "assets/minecraft/textures/misc/": "textures/misc/",
-    "assets/minecraft/textures/particle/": "textures/particle/",
+PREFIX = "assets/minecraft/textures/"
+
+# Not replaceable on Bedrock (handled by the engine, no equivalent texture)
+DROP = {
+    "misc/underwater.png",
+    "misc/vignette.png",
+    "misc/powder_snow_outline.png",
 }
 
+# Java name -> exact Bedrock path (verified against Mojang/bedrock-samples)
+RENAME = {
+    "item/totem_of_undying.png": "textures/items/totem.png",
+    "misc/spyglass_scope.png": "textures/entity/spyglass.png",
+}
 
-def build(java_zip, out_mcpack, name, description="", icon_png=None):
+PREFIXES = [
+    ("item/", "textures/items/"),
+    ("entity/", "textures/entity/"),
+    ("gui/", "textures/ui/"),
+    ("misc/", "textures/misc/"),
+    ("particle/", "textures/particle/"),
+]
+
+
+def map_path(rel):
+    """Java path (after PREFIX) -> Bedrock path, or None if unsupported."""
+    if rel in DROP:
+        return None
+    if rel in RENAME:
+        return RENAME[rel]
+    if rel.startswith("block/"):
+        rest = rel[len("block/"):]
+        if rest.startswith("deepslate_"):
+            return "textures/blocks/deepslate/" + rest
+        return "textures/blocks/" + rest
+    for jp, bp in PREFIXES:
+        if rel.startswith(jp):
+            return bp + rel[len(jp):]
+    return None
+
+
+def build(java_zip, out_mcpack, name, description="", icon_png=None, verbose=False):
     tmp = tempfile.mkdtemp()
-    copied = 0
+    copied, dropped, flipbooks = 0, [], []
     with zipfile.ZipFile(java_zip) as z:
-        for info in z.infolist():
-            if info.is_dir():
+        names = z.namelist()
+        mcmeta = {n for n in names if n.endswith(".png.mcmeta")}
+        for n in names:
+            if n.endswith("/") or not n.startswith(PREFIX) or n.endswith(".mcmeta"):
                 continue
-            for src, dst in TEXTURE_MAP.items():
-                if info.filename.startswith(src):
-                    out = os.path.join(tmp, dst, os.path.relpath(info.filename, src))
-                    os.makedirs(os.path.dirname(out), exist_ok=True)
-                    with open(out, "wb") as f:
-                        f.write(z.read(info))
-                    copied += 1
-                    break
+            bp = map_path(n[len(PREFIX):])
+            if bp is None:
+                dropped.append(n[len(PREFIX):])
+                continue
+            out = os.path.join(tmp, bp)
+            os.makedirs(os.path.dirname(out), exist_ok=True)
+            with open(out, "wb") as f:
+                f.write(z.read(n))
+            copied += 1
+            if n + ".mcmeta" in mcmeta:
+                try:
+                    meta = json.loads(z.read(n + ".mcmeta").decode("utf-8-sig"))
+                    tpf = int(meta.get("animation", {}).get("frametime", 1))
+                except Exception:
+                    tpf = 1
+                flipbooks.append({"flipbook_texture": os.path.splitext(bp)[0],
+                                  "atlas_tile": os.path.splitext(os.path.basename(bp))[0],
+                                  "ticks_per_frame": tpf})
+
+    if flipbooks:
+        os.makedirs(os.path.join(tmp, "textures"), exist_ok=True)
+        with open(os.path.join(tmp, "textures", "flipbook_textures.json"), "w", encoding="utf-8") as f:
+            json.dump(flipbooks, f, indent=2)
 
     manifest = {
         "format_version": 2,
@@ -64,12 +112,13 @@ def build(java_zip, out_mcpack, name, description="", icon_png=None):
                 p = os.path.join(root, fn)
                 z.write(p, os.path.relpath(p, tmp).replace(os.sep, "/"))
 
-    with zipfile.ZipFile(out_mcpack) as z:
-        files = sorted(n for n in z.namelist() if not n.endswith("/"))
-    print(f"[mcpack] {out_mcpack}  ({copied} textures mapped, {len(files)} files)")
-    for n in files:
-        print(f"    {n}")
-    shutil.rmtree(tmp, ignore_errors=True)
+    print(f"[mcpack] {os.path.basename(out_mcpack)}  {copied} textures"
+          + (f", {len(flipbooks)} animées" if flipbooks else "")
+          + (f", {len(dropped)} ignorées" if dropped else ""))
+    if dropped and verbose:
+        for d in dropped:
+            print(f"    drop {d}")
+    return {"copied": copied, "dropped": dropped, "flipbooks": len(flipbooks)}
 
 
 if __name__ == "__main__":
@@ -79,5 +128,6 @@ if __name__ == "__main__":
     ap.add_argument("--name", required=True)
     ap.add_argument("--description", default="")
     ap.add_argument("--icon", default=None)
+    ap.add_argument("-v", "--verbose", action="store_true")
     a = ap.parse_args()
-    build(a.zip, a.out, a.name, a.description, a.icon)
+    build(a.zip, a.out, a.name, a.description, a.icon, a.verbose)
