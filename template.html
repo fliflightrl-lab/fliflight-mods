@@ -55,6 +55,10 @@
   .proj .links a.cf{color:var(--accent)}
   .proj .links a.mr{color:var(--accent2)}
 
+  /* Showreel */
+  .showreel{margin-bottom:40px}
+  .showreel video{width:100%;border-radius:16px;border:1px solid var(--border);display:block;background:#000;box-shadow:0 10px 40px rgba(0,0,0,.5)}
+
   /* Revenue */
   .revenue{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:22px;margin-bottom:40px}
   .revenue .big{font-size:34px;font-weight:800;color:var(--accent);letter-spacing:-.5px}
@@ -83,6 +87,14 @@
   </header>
 
   <section class="stats" id="stats"></section>
+
+  <h2><span class="bar"></span>Showreel</h2>
+  <section class="showreel">
+    <video controls playsinline preload="metadata" poster="showreel-poster.jpg">
+      <source src="showreel.mp4" type="video/mp4">
+      Ton navigateur ne supporte pas la vidéo.
+    </video>
+  </section>
 
   <h2><span class="bar"></span>Projets</h2>
   <section class="projects" id="projects"></section>
