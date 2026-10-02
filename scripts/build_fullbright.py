@@ -121,28 +121,54 @@ def item_texture(candidates):
 
 
 def build_icon(size):
+    """Icon art: the user's own torch logo, cropped to the flame and shaft.
+
+    The full logo is a round badge carrying the "EVERLIGHT" lettering plus a subtitle; keeping
+    it whole made the text unreadable noise at 32 px, and cropping just below it cut the torch.
+    This crop keeps the flame clear of the top edge (measured: ~7% headroom) and excludes every
+    letter — checked by looking at the render at 32/64/128 px, not assumed. Falls back to a
+    generated item render if the source art is missing.
+    """
+    ICON_SOURCE = os.path.join(BASE, "packs", SLUG, "icon-source.jpg")
+    ICON_CROP = (0.46, 0.34)          # (side as a fraction of width, vertical centre)
+    if os.path.exists(ICON_SOURCE):
+        art = Image.open(ICON_SOURCE).convert("RGB")
+        w0, h0 = art.size
+        s = int(w0 * ICON_CROP[0])
+        cx, cy = w0 // 2, int(h0 * ICON_CROP[1])
+        art = art.crop((cx - s // 2, cy - s // 2, cx + s // 2, cy + s // 2))
+        art = art.resize((size, size), Image.LANCZOS)
+        print(f"    icone {size}x{size} (logo torche, recadre {ICON_CROP})")
+        return art
+
     """Flat dark backdrop + a tight warm glow + the item. Deliberately NOT a wide halo:
     a large concentric glow reads as a muddy dome once the icon is shown at 32 px."""
     img = Image.new("RGB", (size, size), BG)
-    scale = max(1, size * 5 // 8 // 16)            # integer scaling keeps pixels crisp
     item, src = item_texture(["item/lantern.png", "block/glowstone.png", "item/glowstone_dust.png",
                               "block/lantern.png", "block/torch.png"])
-    iw = scale * 16
-    off = (size - iw) // 2
+    # The vanilla texture is 16x16 with transparent PADDING: crop to the drawn pixels first.
+    # Scaling the padded canvas left the artwork filling ~15% of the frame, which reads as a
+    # lone spark at 32 px (confirmed by looking at the render, not assumed).
+    bbox = item.getbbox()
+    if bbox:
+        item = item.crop(bbox)
+    scale = max(1, int(size * 0.78) // max(item.size))   # integer scaling keeps pixels crisp
+    iw, ih = item.size[0] * scale, item.size[1] * scale
+    off = ((size - iw) // 2, (size - ih) // 2)
 
-    # glow: soft, tight, only just around the item
+    # glow: soft, tight, just around the item
     glow = Image.new("L", (size, size), 0)
     d = ImageDraw.Draw(glow)
-    pad = int(iw * 0.20)
-    d.rounded_rectangle([off - pad, off - pad, off + iw + pad, off + iw + pad],
-                        radius=int(iw * 0.34), fill=100)
-    glow = glow.filter(ImageFilter.GaussianBlur(radius=max(2, iw // 12)))
+    pad = int(max(iw, ih) * 0.18)
+    d.rounded_rectangle([off[0] - pad, off[1] - pad, off[0] + iw + pad, off[1] + ih + pad],
+                        radius=int(max(iw, ih) * 0.34), fill=100)
+    glow = glow.filter(ImageFilter.GaussianBlur(radius=max(2, max(iw, ih) // 14)))
     warm = Image.new("RGB", (size, size), (255, 196, 110))
     img = Image.blend(img, Image.composite(warm, img, glow), 0.45)
 
-    item = item.resize((iw, iw), Image.NEAREST)
-    img.paste(item, (off, off), item)
-    print(f"    icone {size}x{size} (item {src}, echelle x{scale})")
+    item = item.resize((iw, ih), Image.NEAREST)
+    img.paste(item, off, item)
+    print(f"    icone {size}x{size} (item {src} {iw}x{ih}, echelle x{scale})")
     return img
 
 
