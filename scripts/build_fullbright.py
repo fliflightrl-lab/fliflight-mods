@@ -227,7 +227,10 @@ def ship(st):
             "world readable everywhere, and changes nothing else.\n\n"
             "### What it does\n"
             "- Replaces the light map, so low light levels stay bright instead of fading to black\n"
-            "- Caves, the Nether and the End are as readable as a sunlit plain\n"
+            "- Caves and the night surface become as readable as a sunlit plain - that is where\n"
+            "  vanilla is genuinely black, and where this pack does the most\n"
+            "- The Nether and the End get a lift as well, but vanilla already lights them\n"
+            "  reasonably well, so the difference there is smaller\n"
             "- Torch light is perfectly steady - no flicker at all\n"
             "- Night stays slightly cooler and dimmer than day, so the world keeps a day/night "
             "cycle instead of looking permanently noon\n\n"
@@ -259,7 +262,10 @@ def ship(st):
                                  "flicker-free torch light, day/night kept readable. Ships light "
                                  "maps for both OptiFine and Polytone.",
                     "loaders": ["minecraft"], "game_versions": V_WIDE},
-        "file": zipname, "icon": "icon.png", "gallery": [],
+        "file": zipname, "icon": "icon.png",
+        # the gallery IS whatever is on disk, so the manifest cannot drift from the listing
+        "gallery": sorted(f for f in os.listdir(os.path.join(out, "gallery"))
+                          if f.endswith(".png")),
         "cf_slug": "everlight-see-in-the-dark",
     }
     with open(os.path.join(out, "manifest.json"), "w", encoding="utf-8") as f:

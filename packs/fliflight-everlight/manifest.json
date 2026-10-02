@@ -3,7 +3,7 @@
   "name": "Everlight - See in the Dark",
   "project_type": "resourcepack",
   "summary": "Brightens the light map so you always see clearly - caves, the Nether and the End included. Works with OptiFine or Polytone.",
-  "body": "**Everlight - See in the Dark** is a client-side resource pack for Minecraft Java Edition. It makes the world readable everywhere, and changes nothing else.\n\n### What it does\n- Replaces the light map, so low light levels stay bright instead of fading to black\n- Caves, the Nether and the End are as readable as a sunlit plain\n- Torch light is perfectly steady - no flicker at all\n- Night stays slightly cooler and dimmer than day, so the world keeps a day/night cycle instead of looking permanently noon\n\n### Requirements - pick one\n- **OptiFine** (any recent version) - the classic route.\n- **Polytone** - a small Fabric/NeoForge mod that adds this feature for players running Sodium and Iris instead.\n\nThe light map is not a vanilla asset - Minecraft generates it at runtime - so one of the two is genuinely required. Without either, this pack will do nothing.\n\n### Install\n1. Install **OptiFine**, or **Polytone** on Fabric/NeoForge.\n2. Download the `.zip` from this page (do not unzip it).\n3. Drop it into `.minecraft/resourcepacks` and enable it in **Options -> Resource Packs**.\n\nWorks on Minecraft **1.19 -> 1.21.x** (Java Edition). Client-side only: it works on any server, and no one else needs it.\n\n### Servers\nOn competitive servers this is a visual advantage, so check the rules before using it.\n\n---\n\nLiked it? You can support the work on [Ko-fi](https://ko-fi.com/fliflight).",
+  "body": "**Everlight - See in the Dark** is a client-side resource pack for Minecraft Java Edition. It makes the world readable everywhere, and changes nothing else.\n\n### What it does\n- Replaces the light map, so low light levels stay bright instead of fading to black\n- Caves and the night surface become as readable as a sunlit plain - that is where\n  vanilla is genuinely black, and where this pack does the most\n- The Nether and the End get a lift as well, but vanilla already lights them\n  reasonably well, so the difference there is smaller\n- Torch light is perfectly steady - no flicker at all\n- Night stays slightly cooler and dimmer than day, so the world keeps a day/night cycle instead of looking permanently noon\n\n### Requirements - pick one\n- **OptiFine** (any recent version) - the classic route.\n- **Polytone** - a small Fabric/NeoForge mod that adds this feature for players running Sodium and Iris instead.\n\nThe light map is not a vanilla asset - Minecraft generates it at runtime - so one of the two is genuinely required. Without either, this pack will do nothing.\n\n### Install\n1. Install **OptiFine**, or **Polytone** on Fabric/NeoForge.\n2. Download the `.zip` from this page (do not unzip it).\n3. Drop it into `.minecraft/resourcepacks` and enable it in **Options -> Resource Packs**.\n\nWorks on Minecraft **1.19 -> 1.21.x** (Java Edition). Client-side only: it works on any server, and no one else needs it.\n\n### Servers\nOn competitive servers this is a visual advantage, so check the rules before using it.\n\n---\n\nLiked it? You can support the work on [Ko-fi](https://ko-fi.com/fliflight).",
   "license": "All Rights Reserved",
   "categories": [
     "utility",
@@ -46,6 +46,11 @@
   },
   "file": "fliflight-everlight-1.0.0-resourcepack-1.21.4.zip",
   "icon": "icon.png",
-  "gallery": [],
+  "gallery": [
+    "01-cave-before-after.png",
+    "02-night-surface.png",
+    "03-nether.png",
+    "04-the-end.png"
+  ],
   "cf_slug": "everlight-see-in-the-dark"
 }
