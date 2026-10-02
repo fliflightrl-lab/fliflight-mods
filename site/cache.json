@@ -1,14 +1,14 @@
 {
- "generated_at": "2026-10-02T03:47:23.833265",
- "total_downloads": 130490,
+ "generated_at": "2026-10-02T05:04:14.590278",
+ "total_downloads": 130532,
  "project_count": 19,
  "mod_count": 3,
  "resourcepack_count": 16,
  "top_pack": {
   "name": "Dot Crosshair - CrossX Better Crosshair",
-  "downloads": 33155
+  "downloads": 33161
  },
- "estimated_revenue_usd": 260.98,
+ "estimated_revenue_usd": 261.06,
  "revenue_rate_per_1k": 2.0,
  "actual_revenue_usd": null,
  "dashboard": {
@@ -26,7 +26,7 @@
  "projects": [
   {
    "name": "Dot Crosshair - CrossX Better Crosshair",
-   "downloads": 33155,
+   "downloads": 33161,
    "rank": 15068,
    "type": "resourcepack",
    "icon": "https://media.forgecdn.net/avatars/thumbnails/1734/559/256/256/639104015610819436.png",
@@ -36,7 +36,7 @@
   },
   {
    "name": "CrossX - CROSSX Better Crosshair !",
-   "downloads": 18999,
+   "downloads": 19006,
    "rank": 18290,
    "type": "resourcepack",
    "icon": "https://media.forgecdn.net/avatars/thumbnails/1734/592/256/256/639104037168368676.png",
@@ -56,7 +56,7 @@
   },
   {
    "name": "Low Fire - Lowered Flame ",
-   "downloads": 12993,
+   "downloads": 12997,
    "rank": 999999,
    "type": "resourcepack",
    "icon": "https://media.forgecdn.net/avatars/thumbnails/1984/855/256/256/639223644584337217.png",
@@ -66,7 +66,7 @@
   },
   {
    "name": "CrossX - Better Crosshair !",
-   "downloads": 10754,
+   "downloads": 10758,
    "rank": 22815,
    "type": "resourcepack",
    "icon": "https://media.forgecdn.net/avatars/thumbnails/1727/386/256/256/639099055038810211.png",
@@ -76,7 +76,7 @@
   },
   {
    "name": "Bigger Dot Crosshair - CrossX Better Crosshair",
-   "downloads": 8498,
+   "downloads": 8503,
    "rank": 25148,
    "type": "resourcepack",
    "icon": "https://media.forgecdn.net/avatars/thumbnails/1734/659/256/256/639104065438740279.png",
@@ -86,7 +86,7 @@
   },
   {
    "name": "CrossX-Better Crosshair Sniper Crosshair",
-   "downloads": 7364,
+   "downloads": 7368,
    "rank": 999999,
    "type": "resourcepack",
    "icon": "https://media.forgecdn.net/avatars/thumbnails/1886/772/256/256/639180774031204429.png",
@@ -96,7 +96,7 @@
   },
   {
    "name": "CrosshairX-Better Crosshair",
-   "downloads": 6825,
+   "downloads": 6826,
    "rank": 28585,
    "type": "resourcepack",
    "icon": "https://media.forgecdn.net/avatars/thumbnails/1732/363/256/256/639102610230574440.png",
@@ -116,7 +116,7 @@
   },
   {
    "name": "Clear Pumpkin — No Pumpkin Blur",
-   "downloads": 5494,
+   "downloads": 5497,
    "rank": 100000,
    "type": "resourcepack",
    "icon": "https://media.forgecdn.net/avatars/thumbnails/1984/882/256/256/639223654677828792.png",
@@ -126,7 +126,7 @@
   },
   {
    "name": "Crossy - CrossX - Better Crosshair",
-   "downloads": 3137,
+   "downloads": 3139,
    "rank": 999999,
    "type": "resourcepack",
    "icon": "https://media.forgecdn.net/avatars/thumbnails/1835/594/256/256/639157610468226475.png",
@@ -156,7 +156,7 @@
   },
   {
    "name": "Low Shield - Shield Out of the Way",
-   "downloads": 218,
+   "downloads": 222,
    "rank": 999999,
    "type": "resourcepack",
    "icon": "https://media.forgecdn.net/avatars/thumbnails/2081/397/256/256/639263651791441110.png",
@@ -186,7 +186,7 @@
   },
   {
    "name": "Clear Water - See Through Water",
-   "downloads": 90,
+   "downloads": 92,
    "rank": 999999,
    "type": "resourcepack",
    "icon": "https://media.forgecdn.net/avatars/thumbnails/2080/958/256/256/639263446587212160.jpeg",
