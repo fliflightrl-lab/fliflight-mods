@@ -20,6 +20,17 @@ AUTHOR_ID = 123880127
 GAME_ID = 432
 API = "https://api.curseforge.com/v1"
 
+# Real numbers from the CurseForge dashboard (video showreel) — NOT exposed by the API.
+DASHBOARD = {
+    "total_downloads": 129873,
+    "per_day": 800,
+    "revenue_month_eur": 100,
+    "projects": 19,
+    "packs": 16,
+    "mods": 3,
+    "flagship": {"name": "Dot Crosshair", "downloads": 33068},
+}
+
 
 def mr_map():
     """cf_id -> (modrinth_id, slug) from the local manifests."""
@@ -87,6 +98,7 @@ def fetch():
         "estimated_revenue_usd": round(total / 1000.0 * REVENUE_RATE_PER_1K, 2),
         "revenue_rate_per_1k": REVENUE_RATE_PER_1K,
         "actual_revenue_usd": actual,
+        "dashboard": DASHBOARD,
         "projects": projects,
     }
 

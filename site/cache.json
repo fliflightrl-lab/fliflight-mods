@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-10-02T01:51:58.916296",
+ "generated_at": "2026-10-02T02:11:42.199072",
  "total_downloads": 85283,
  "project_count": 21,
  "mod_count": 1,
@@ -11,6 +11,18 @@
  "estimated_revenue_usd": 170.57,
  "revenue_rate_per_1k": 2.0,
  "actual_revenue_usd": null,
+ "dashboard": {
+  "total_downloads": 129873,
+  "per_day": 800,
+  "revenue_month_eur": 100,
+  "projects": 19,
+  "packs": 16,
+  "mods": 3,
+  "flagship": {
+   "name": "Dot Crosshair",
+   "downloads": 33068
+  }
+ },
  "projects": [
   {
    "name": "Dot Crosshair — Clean PvP & Survival Crosshair (All Versions)",

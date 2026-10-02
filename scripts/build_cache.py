@@ -29,6 +29,17 @@ SNAPSHOT = {
 }
 RATE = 2.0
 
+# Real numbers from the CurseForge dashboard (video showreel) — NOT exposed by the API.
+DASHBOARD = {
+    "total_downloads": 129873,
+    "per_day": 800,
+    "revenue_month_eur": 100,
+    "projects": 19,
+    "packs": 16,
+    "mods": 3,
+    "flagship": {"name": "Dot Crosshair", "downloads": 33068},
+}
+
 
 def main():
     os.makedirs(ASSETS, exist_ok=True)
@@ -72,6 +83,7 @@ def main():
         "estimated_revenue_usd": round(total / 1000.0 * RATE, 2),
         "revenue_rate_per_1k": RATE,
         "actual_revenue_usd": None,
+        "dashboard": DASHBOARD,
         "projects": projects,
     }
     json.dump(payload, open(os.path.join(SITE, "cache.json"), "w", encoding="utf-8"),
