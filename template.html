@@ -59,6 +59,17 @@
   .showreel{margin-bottom:40px}
   .showreel video{width:100%;border-radius:16px;border:1px solid var(--border);display:block;background:#000;box-shadow:0 10px 40px rgba(0,0,0,.5)}
 
+  /* Réseaux & soutien */
+  .social{display:grid;grid-template-columns:repeat(auto-fill,minmax(175px,1fr));gap:12px;margin-bottom:40px}
+  .social a{display:flex;align-items:center;gap:10px;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px 16px;font-weight:600;font-size:14px;transition:transform .12s,border-color .12s}
+  .social a:hover{transform:translateY(-2px);border-color:var(--accent)}
+  .social a .dot{width:8px;height:8px;border-radius:50%;background:var(--accent2);flex-shrink:0}
+  .support{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-bottom:40px}
+  .support a{background:linear-gradient(135deg,rgba(74,222,128,.12),rgba(56,189,248,.12));border:1px solid var(--accent);border-radius:16px;padding:20px;text-align:center;transition:transform .12s}
+  .support a:hover{transform:translateY(-2px)}
+  .support a .t{font-size:17px;font-weight:800;color:var(--accent)}
+  .support a .s{font-size:13px;color:var(--muted);margin-top:4px}
+
   /* Revenue */
   .revenue{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:22px;margin-bottom:40px}
   .revenue .big{font-size:34px;font-weight:800;color:var(--accent);letter-spacing:-.5px}
@@ -83,7 +94,6 @@
         <p>Resource packs & mods Minecraft — PvP utilities</p>
       </div>
     </div>
-    <div class="updated" id="updated"></div>
   </header>
 
   <section class="stats" id="stats"></section>
@@ -102,6 +112,12 @@
   <h2><span class="bar"></span>Revenus</h2>
   <section class="revenue" id="revenue"></section>
 
+  <h2><span class="bar"></span>Réseaux</h2>
+  <section class="social" id="social"></section>
+
+  <h2><span class="bar"></span>Soutenir mon travail</h2>
+  <section class="support" id="support"></section>
+
   <footer>
     <div id="footer-gen"></div>
     <div class="links" id="footer-links"></div>
@@ -115,7 +131,6 @@ const fmt = n => n.toLocaleString('fr-FR');
 function el(tag, cls, html){ const e=document.createElement(tag); if(cls)e.className=cls; if(html!=null)e.innerHTML=html; return e; }
 
 // Header
-document.getElementById('updated').textContent = 'Généré le ' + new Date(DATA.generated_at).toLocaleString('fr-FR');
 
 // Stats
 const D = DATA.dashboard || {};
@@ -173,15 +188,41 @@ const row=el('div','row');
 });
 rv.appendChild(row);
 
+// Réseaux
+const SOCIAL = [
+  ['YouTube','https://www.youtube.com/@Fliflight-MC'],
+  ['TikTok','https://www.tiktok.com/@fliflight'],
+  ['Instagram','https://www.instagram.com/fliflightmc'],
+  ['CurseForge','https://www.curseforge.com/members/fliflightmc/projects'],
+  ['Modrinth','https://modrinth.com/user/Fliflightmc'],
+  ['GitHub','https://github.com/fliflightrl-lab/fliflight-mods'],
+  ['RankForge','https://top-serveurs.site'],
+  ['Linktree','https://linktr.ee/fliflight'],
+];
+const so = document.getElementById('social');
+SOCIAL.forEach(([t,u])=>{
+  const a=el('a',null,'<span class="dot"></span>'+t); a.href=u; a.target='_blank'; a.rel='noopener'; so.appendChild(a);
+});
+
+// Soutien / pourboires
+const TIPS = [
+  ['☕ Ko-fi','https://ko-fi.com/fliflight','Pourboire libre — offre-moi un café'],
+  ['💚 GitHub Sponsors','https://github.com/sponsors/fliflightrl-lab','Soutiens mon travail régulièrement'],
+];
+const su = document.getElementById('support');
+TIPS.forEach(([t,u,s])=>{
+  const a=el('a',null,'<div class="t">'+t+'</div><div class="s">'+s+'</div>'); a.href=u; a.target='_blank'; a.rel='noopener'; su.appendChild(a);
+});
+
 // Footer
-document.getElementById('footer-gen').textContent='© FliflightMC — données CurseForge via API';
+document.getElementById('footer-gen').textContent='© FliflightMC';
 const fl=document.getElementById('footer-links');
-['https://www.curseforge.com/members/fliflightmc/projects|CurseForge',
- 'https://modrinth.com/user/Fliflightmc|Modrinth',
- 'https://github.com/fliflightrl-lab/fliflight-mods|GitHub',
- 'https://ko-fi.com/fliflight|Ko-fi',
- 'https://www.youtube.com/@Fliflight-MC|YouTube'].forEach(s=>{
-  const [u,t]=s.split('|'); const a=el('a',null,t); a.href=u; a.target='_blank'; fl.appendChild(a);
+[['CurseForge','https://www.curseforge.com/members/fliflightmc/projects'],
+ ['Modrinth','https://modrinth.com/user/Fliflightmc'],
+ ['GitHub','https://github.com/fliflightrl-lab/fliflight-mods'],
+ ['Ko-fi','https://ko-fi.com/fliflight'],
+ ['Linktree','https://linktr.ee/fliflight']].forEach(([t,u])=>{
+  const a=el('a',null,t); a.href=u; a.target='_blank'; a.rel='noopener'; fl.appendChild(a);
 });
 </script>
 </body>
