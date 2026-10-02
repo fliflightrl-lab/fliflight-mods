@@ -106,11 +106,12 @@ function el(tag, cls, html){ const e=document.createElement(tag); if(cls)e.class
 document.getElementById('updated').textContent = 'Généré le ' + new Date(DATA.generated_at).toLocaleString('fr-FR');
 
 // Stats
+const D = DATA.dashboard || {};
 const stats = [
-  {k:'Téléchargements', v:fmt(DATA.total_downloads), sub:'tous projets cumulés', cls:'accent'},
-  {k:'Projets', v:fmt(DATA.project_count), sub:DATA.resourcepack_count+' packs + '+DATA.mod_count+' mod', cls:''},
-  {k:'Top pack', v:DATA.top_pack.downloads?fmt(DATA.top_pack.downloads):'—', sub:DATA.top_pack.name||'', cls:'accent2'},
-  {k:'Revenus estimés', v:DATA.estimated_revenue_usd?('$'+Math.round(DATA.estimated_revenue_usd)):'—', sub:'taux '+DATA.revenue_rate_per_1k+' $/1k dl', cls:''},
+  {k:'Téléchargements', v:fmt(D.total_downloads||DATA.total_downloads), sub:'tous projets cumulés', cls:'accent'},
+  {k:'Par jour', v:fmt(D.per_day||0), sub:'moyenne CurseForge', cls:''},
+  {k:'Revenus / mois', v:(D.revenue_month_eur!=null?D.revenue_month_eur+' €':'—'), sub:'CurseForge Rewards', cls:'accent2'},
+  {k:'Projets', v:fmt(D.projects||DATA.project_count), sub:(D.packs||DATA.resourcepack_count)+' packs + '+(D.mods||DATA.mod_count)+' mods', cls:''},
 ];
 const st = document.getElementById('stats');
 stats.forEach(s=>{
@@ -146,14 +147,15 @@ DATA.projects.forEach(p=>{
 
 // Revenue
 const rv=document.getElementById('revenue');
-const big=el('div','big','$'+Math.round(DATA.estimated_revenue_usd));
+const big=el('div','big',(D.revenue_month_eur!=null?D.revenue_month_eur+' € / mois':'—'));
 rv.appendChild(big);
-rv.appendChild(el('div','note','Estimation indicative — les revenus CurseForge Rewards ne sont PAS exposés par l\'API publique (uniquement ton dashboard). Calcul : '+fmt(DATA.total_downloads)+' téléchargements × '+DATA.revenue_rate_per_1k+' $/1000 dl. Le taux réel varie ; ajuste-le dans <code>scripts/fetch_cf_stats.py</code>. Revenu réel à reporter manuellement : <code>revenue.json</code>.'));
+rv.appendChild(el('div','note','Revenu réel <b>CurseForge Rewards</b> relevé sur le dashboard, soit environ <b>'+fmt((D.revenue_month_eur||0)*12)+' € / an</b>. Basé sur '+fmt(D.per_day||0)+' téléchargements/jour.'));
 const row=el('div','row');
 [
-  ['Téléchargements',''+fmt(DATA.total_downloads)],
-  ['Taux retenu',''+DATA.revenue_rate_per_1k+' $/1k dl'],
-  ['Revenu réel (manuel)', DATA.actual_revenue_usd!=null ? '$'+DATA.actual_revenue_usd : '— non renseigné —'],
+  ['Téléchargements', fmt(D.total_downloads||DATA.total_downloads)],
+  ['Par jour', fmt(D.per_day||0)],
+  ['Revenu / an', ((D.revenue_month_eur||0)*12)+' €'],
+  ['Flagship', D.flagship?(D.flagship.name+' — '+fmt(D.flagship.downloads)):'—'],
 ].forEach(([k,v])=>{
   const cell=el('div','cell'); cell.appendChild(el('div','k',k)); cell.appendChild(el('div','v',v)); row.appendChild(cell);
 });
