@@ -1,0 +1,51 @@
+{
+  "slug": "fliflight-everlight",
+  "name": "Everlight - See in the Dark",
+  "project_type": "resourcepack",
+  "summary": "Brightens the light map so you always see clearly - caves, the Nether and the End included. Works with OptiFine or Polytone.",
+  "body": "**Everlight - See in the Dark** is a client-side resource pack for Minecraft Java Edition. It makes the world readable everywhere, and changes nothing else.\n\n### What it does\n- Replaces the light map, so low light levels stay bright instead of fading to black\n- Caves, the Nether and the End are as readable as a sunlit plain\n- Torch light is perfectly steady - no flicker at all\n- Night stays slightly cooler and dimmer than day, so the world keeps a day/night cycle instead of looking permanently noon\n\n### Requirements - pick one\n- **OptiFine** (any recent version) - the classic route.\n- **Polytone** - a small Fabric/NeoForge mod that adds this feature for players running Sodium and Iris instead.\n\nThe light map is not a vanilla asset - Minecraft generates it at runtime - so one of the two is genuinely required. Without either, this pack will do nothing.\n\n### Install\n1. Install **OptiFine**, or **Polytone** on Fabric/NeoForge.\n2. Download the `.zip` from this page (do not unzip it).\n3. Drop it into `.minecraft/resourcepacks` and enable it in **Options -> Resource Packs**.\n\nWorks on Minecraft **1.19 -> 1.21.x** (Java Edition). Client-side only: it works on any server, and no one else needs it.\n\n### Servers\nOn competitive servers this is a visual advantage, so check the rules before using it.\n\n---\n\nLiked it? You can support the work on [Ko-fi](https://ko-fi.com/fliflight).",
+  "license": "All Rights Reserved",
+  "categories": [
+    "utility",
+    "16x"
+  ],
+  "curseforge_id": null,
+  "modrinth_id": null,
+  "links": {
+    "website_url": "https://www.curseforge.com/members/fliflightmc/projects",
+    "source_url": null,
+    "issues_url": null,
+    "wiki_url": ""
+  },
+  "version": {
+    "number": "1.0.0",
+    "type": "release",
+    "changelog": "Initial release: bright light map for all three dimensions, flicker-free torch light, day/night kept readable. Ships light maps for both OptiFine and Polytone.",
+    "loaders": [
+      "minecraft"
+    ],
+    "game_versions": [
+      "1.19",
+      "1.19.2",
+      "1.19.4",
+      "1.20",
+      "1.20.1",
+      "1.20.2",
+      "1.20.4",
+      "1.20.5",
+      "1.20.6",
+      "1.21",
+      "1.21.1",
+      "1.21.3",
+      "1.21.4",
+      "1.21.5",
+      "1.21.6",
+      "1.21.7",
+      "1.21.8"
+    ]
+  },
+  "file": "fliflight-everlight-1.0.0-resourcepack-1.21.4.zip",
+  "icon": "icon.png",
+  "gallery": [],
+  "cf_slug": "everlight-see-in-the-dark"
+}
