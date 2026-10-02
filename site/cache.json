@@ -1,14 +1,14 @@
 {
- "generated_at": "2026-10-02T02:11:42.199072",
- "total_downloads": 85283,
- "project_count": 21,
- "mod_count": 1,
- "resourcepack_count": 20,
+ "generated_at": "2026-10-02T03:47:23.833265",
+ "total_downloads": 130490,
+ "project_count": 19,
+ "mod_count": 3,
+ "resourcepack_count": 16,
  "top_pack": {
-  "name": "Dot Crosshair — Clean PvP & Survival Crosshair (All Versions)",
-  "downloads": 24825
+  "name": "Dot Crosshair - CrossX Better Crosshair",
+  "downloads": 33155
  },
- "estimated_revenue_usd": 170.57,
+ "estimated_revenue_usd": 260.98,
  "revenue_rate_per_1k": 2.0,
  "actual_revenue_usd": null,
  "dashboard": {
@@ -25,214 +25,194 @@
  },
  "projects": [
   {
-   "name": "Dot Crosshair — Clean PvP & Survival Crosshair (All Versions)",
-   "downloads": 24825,
-   "rank": 16146,
+   "name": "Dot Crosshair - CrossX Better Crosshair",
+   "downloads": 33155,
+   "rank": 15068,
    "type": "resourcepack",
-   "icon": "assets/dot-crosshair-cossx-better-crosshair.png",
+   "icon": "https://media.forgecdn.net/avatars/thumbnails/1734/559/256/256/639104015610819436.png",
    "cf_url": "https://www.curseforge.com/minecraft/texture-packs/dot-crosshair-cossx-better-crosshair",
    "mr_url": "https://modrinth.com/project/dot-crosshair-cossx-better-crosshair",
    "released": "2026-03-29"
   },
   {
-   "name": "CrossX Crosshair — Custom PvP Crosshair Pack",
-   "downloads": 14656,
+   "name": "CrossX - CROSSX Better Crosshair !",
+   "downloads": 18999,
    "rank": 18290,
    "type": "resourcepack",
-   "icon": "assets/crossx-crossx-better-crosshair.png",
+   "icon": "https://media.forgecdn.net/avatars/thumbnails/1734/592/256/256/639104037168368676.png",
    "cf_url": "https://www.curseforge.com/minecraft/texture-packs/crossx-crossx-better-crosshair",
    "mr_url": "https://modrinth.com/project/crossx-crossx-better-crosshair",
    "released": "2026-03-29"
   },
   {
-   "name": "Visible Ores — See Every Ore & Netherite (Shaders Ready)",
-   "downloads": 13120,
-   "rank": 25107,
+   "name": "Visible Ores (all versions+) and netherite",
+   "downloads": 14752,
+   "rank": 24909,
    "type": "resourcepack",
-   "icon": "assets/visible-ores-all-versions-and-netherite.png",
+   "icon": "https://media.forgecdn.net/avatars/thumbnails/1416/26/256/256/638917392829894933.png",
    "cf_url": "https://www.curseforge.com/minecraft/texture-packs/visible-ores-all-versions-and-netherite",
    "mr_url": "https://modrinth.com/project/visible-ores-all-versions-and-netherite",
    "released": "2025-08-25"
   },
   {
-   "name": "Better Crosshair — Modern Clean Crosshair for PvP",
-   "downloads": 8122,
+   "name": "Low Fire - Lowered Flame ",
+   "downloads": 12993,
+   "rank": 999999,
+   "type": "resourcepack",
+   "icon": "https://media.forgecdn.net/avatars/thumbnails/1984/855/256/256/639223644584337217.png",
+   "cf_url": "https://www.curseforge.com/minecraft/texture-packs/low-fire-lowered-flame",
+   "mr_url": "https://modrinth.com/project/fliflight-low-fire",
+   "released": "2026-08-15"
+  },
+  {
+   "name": "CrossX - Better Crosshair !",
+   "downloads": 10754,
    "rank": 22815,
    "type": "resourcepack",
-   "icon": "assets/crossx-better-crosshair.png",
+   "icon": "https://media.forgecdn.net/avatars/thumbnails/1727/386/256/256/639099055038810211.png",
    "cf_url": "https://www.curseforge.com/minecraft/texture-packs/crossx-better-crosshair",
    "mr_url": "https://modrinth.com/project/crossx-better-crosshair",
    "released": "2026-03-23"
   },
   {
-   "name": "Bigger Dot Crosshair — High-Visibility PvP Crosshair",
-   "downloads": 6476,
+   "name": "Bigger Dot Crosshair - CrossX Better Crosshair",
+   "downloads": 8498,
    "rank": 25148,
    "type": "resourcepack",
-   "icon": "assets/bigger-dot-crosshair-cossx-better-crosshair.png",
+   "icon": "https://media.forgecdn.net/avatars/thumbnails/1734/659/256/256/639104065438740279.png",
    "cf_url": "https://www.curseforge.com/minecraft/texture-packs/bigger-dot-crosshair-cossx-better-crosshair",
    "mr_url": "https://modrinth.com/project/bigger-dot-crosshair-cossx-better-crosshair",
    "released": "2026-03-29"
   },
   {
-   "name": "Short Sword",
-   "downloads": 5744,
-   "rank": 31924,
-   "type": "resourcepack",
-   "icon": "assets/pvp-sword-little-sword-all-versions.png",
-   "cf_url": "https://www.curseforge.com/minecraft/texture-packs/pvp-sword-little-sword-all-versions",
-   "mr_url": "https://modrinth.com/project/pvp-sword-little-sword-all-versions",
-   "released": "2025-08-25"
-  },
-  {
-   "name": "CrosshairX — Enhanced Crosshair for PvP",
-   "downloads": 5135,
-   "rank": 28585,
-   "type": "resourcepack",
-   "icon": "assets/crosshairx-better-crosshair.png",
-   "cf_url": "https://www.curseforge.com/minecraft/texture-packs/crosshairx-better-crosshair",
-   "mr_url": "https://modrinth.com/project/crosshairx-better-crosshair",
-   "released": "2026-03-28"
-  },
-  {
-   "name": "Sniper Crosshair — Precision for Bow & Long-Range PvP",
-   "downloads": 3942,
+   "name": "CrossX-Better Crosshair Sniper Crosshair",
+   "downloads": 7364,
    "rank": 999999,
    "type": "resourcepack",
-   "icon": "assets/crossx.png",
+   "icon": "https://media.forgecdn.net/avatars/thumbnails/1886/772/256/256/639180774031204429.png",
    "cf_url": "https://www.curseforge.com/minecraft/texture-packs/crossx-better-crosshair-sniper-crosshair",
    "mr_url": "https://modrinth.com/project/crossx",
    "released": "2026-06-26"
   },
   {
-   "name": "Crossy Crosshair — Stylish PvP Crosshair",
-   "downloads": 2204,
+   "name": "CrosshairX-Better Crosshair",
+   "downloads": 6825,
+   "rank": 28585,
+   "type": "resourcepack",
+   "icon": "https://media.forgecdn.net/avatars/thumbnails/1732/363/256/256/639102610230574440.png",
+   "cf_url": "https://www.curseforge.com/minecraft/texture-packs/crosshairx-better-crosshair",
+   "mr_url": "https://modrinth.com/project/crosshairx-better-crosshair",
+   "released": "2026-03-28"
+  },
+  {
+   "name": "Pvp sword (little sword) all versions",
+   "downloads": 6475,
+   "rank": 31924,
+   "type": "resourcepack",
+   "icon": "https://media.forgecdn.net/avatars/thumbnails/1416/216/256/256/638917486704888714.png",
+   "cf_url": "https://www.curseforge.com/minecraft/texture-packs/pvp-sword-little-sword-all-versions",
+   "mr_url": "https://modrinth.com/project/pvp-sword-little-sword-all-versions",
+   "released": "2025-08-25"
+  },
+  {
+   "name": "Clear Pumpkin — No Pumpkin Blur",
+   "downloads": 5494,
+   "rank": 100000,
+   "type": "resourcepack",
+   "icon": "https://media.forgecdn.net/avatars/thumbnails/1984/882/256/256/639223654677828792.png",
+   "cf_url": "https://www.curseforge.com/minecraft/texture-packs/clear-pumpkin-no-pumpkin-blur",
+   "mr_url": "https://modrinth.com/project/fliflight-clear-pumpkin",
+   "released": "2026-08-15"
+  },
+  {
+   "name": "Crossy - CrossX - Better Crosshair",
+   "downloads": 3137,
    "rank": 999999,
    "type": "resourcepack",
-   "icon": "assets/crossy-crossx-better-crosshair.png",
+   "icon": "https://media.forgecdn.net/avatars/thumbnails/1835/594/256/256/639157610468226475.png",
    "cf_url": "https://www.curseforge.com/minecraft/texture-packs/crossy-crossx-better-crosshair",
    "mr_url": "https://modrinth.com/project/crossy-crossx-better-crosshair",
    "released": "2026-05-30"
   },
   {
-   "name": "Diamond Dimension — A New World Made of Diamonds (NeoForge)",
-   "downloads": 674,
+   "name": "Everything is In Diamonds Dimension !",
+   "downloads": 795,
    "rank": 55235,
    "type": "mod",
-   "icon": "assets/all-in-diamonds-dimension.jpg",
+   "icon": "https://media.forgecdn.net/avatars/thumbnails/1706/808/256/256/639084518820753939.jpg",
    "cf_url": "https://www.curseforge.com/minecraft/mc-mods/all-in-diamonds-dimension",
    "mr_url": "https://modrinth.com/project/all-in-diamonds-dimension",
    "released": "2026-03-07"
   },
   {
-   "name": "Clear Pumpkin - No Pumpkin Blur",
-   "downloads": 186,
-   "rank": null,
+   "name": "PvP Essentials - Crosshair, Visible Ores, Sword & Low Fire",
+   "downloads": 660,
+   "rank": 999999,
    "type": "resourcepack",
-   "icon": "assets/fliflight-clear-pumpkin.png",
-   "cf_url": "https://www.curseforge.com/members/fliflightmc/projects",
-   "mr_url": "https://modrinth.com/project/fliflight-clear-pumpkin",
-   "released": ""
-  },
-  {
-   "name": "Low Fire — Lowered Flame Overlay (Full Animation)",
-   "downloads": 185,
-   "rank": null,
-   "type": "resourcepack",
-   "icon": "assets/fliflight-low-fire.png",
-   "cf_url": "https://www.curseforge.com/members/fliflightmc/projects",
-   "mr_url": "https://modrinth.com/project/fliflight-low-fire",
-   "released": ""
-  },
-  {
-   "name": "PvP Essentials",
-   "downloads": 14,
-   "rank": null,
-   "type": "resourcepack",
-   "icon": "assets/pvp-essentials.png",
-   "cf_url": "https://www.curseforge.com/members/fliflightmc/projects",
+   "icon": "https://media.forgecdn.net/avatars/thumbnails/1984/914/256/256/639223673791157626.png",
+   "cf_url": "https://www.curseforge.com/minecraft/texture-packs/pvp-essentials-crosshair-visible-ores-sword-low",
    "mr_url": "https://modrinth.com/project/pvp-essentials",
-   "released": ""
+   "released": "2026-08-15"
   },
   {
-   "name": "Clean Hotbar - Flat Minimal HUD",
-   "downloads": 0,
-   "rank": null,
+   "name": "Low Shield - Shield Out of the Way",
+   "downloads": 218,
+   "rank": 999999,
    "type": "resourcepack",
-   "icon": "assets/fliflight-clean-hotbar.png",
-   "cf_url": "https://www.curseforge.com/minecraft/texture-packs/clean-hotbar-flat-minimal-hud",
-   "mr_url": "https://modrinth.com/project/fliflight-clean-hotbar",
-   "released": ""
-  },
-  {
-   "name": "Clear Lava - See Through Lava",
-   "downloads": 0,
-   "rank": null,
-   "type": "resourcepack",
-   "icon": "assets/fliflight-clear-lava.png",
-   "cf_url": "https://www.curseforge.com/minecraft/texture-packs/clear-lava-see-through-lava",
-   "mr_url": "https://modrinth.com/project/fliflight-clear-lava",
-   "released": ""
-  },
-  {
-   "name": "Clear Powder Snow - No Freeze Overlay",
-   "downloads": 0,
-   "rank": null,
-   "type": "resourcepack",
-   "icon": "assets/fliflight-clear-powder-snow.png",
-   "cf_url": "https://www.curseforge.com/minecraft/texture-packs/clear-powder-snow-no-frost-overlay",
-   "mr_url": "https://modrinth.com/project/fliflight-clear-powder-snow",
-   "released": ""
-  },
-  {
-   "name": "Clear Spyglass - Full Screen Zoom",
-   "downloads": 0,
-   "rank": null,
-   "type": "resourcepack",
-   "icon": "assets/fliflight-clear-spyglass.png",
-   "cf_url": "https://www.curseforge.com/minecraft/texture-packs/clear-spyglass-no-scope-overlay",
-   "mr_url": "https://modrinth.com/project/fliflight-clear-spyglass",
-   "released": ""
-  },
-  {
-   "name": "Clear Water - See Underwater",
-   "downloads": 0,
-   "rank": null,
-   "type": "resourcepack",
-   "icon": "assets/fliflight-clear-water.png",
-   "cf_url": "https://www.curseforge.com/minecraft/texture-packs/clear-water-see-through-water",
-   "mr_url": "https://modrinth.com/project/fliflight-clear-water",
-   "released": ""
-  },
-  {
-   "name": "Low Shield - See Past Your Shield",
-   "downloads": 0,
-   "rank": null,
-   "type": "resourcepack",
-   "icon": "assets/fliflight-low-shield.png",
+   "icon": "https://media.forgecdn.net/avatars/thumbnails/2081/397/256/256/639263651791441110.png",
    "cf_url": "https://www.curseforge.com/minecraft/texture-packs/low-shield-shield-out-of-the-way",
    "mr_url": "https://modrinth.com/project/fliflight-low-shield",
-   "released": ""
+   "released": "2026-09-28"
   },
   {
-   "name": "No Dark Corners",
-   "downloads": 0,
-   "rank": null,
+   "name": "PvP HUD",
+   "downloads": 159,
+   "rank": 999999,
+   "type": "mod",
+   "icon": "https://media.forgecdn.net/avatars/thumbnails/1987/986/256/256/639224913939837924.png",
+   "cf_url": "https://www.curseforge.com/minecraft/mc-mods/pvp-hud",
+   "mr_url": "",
+   "released": "2026-08-16"
+  },
+  {
+   "name": "Custom Crosshair PvP",
+   "downloads": 115,
+   "rank": 999999,
+   "type": "mod",
+   "icon": "https://media.forgecdn.net/avatars/thumbnails/1988/7/256/256/639224922438837250.png",
+   "cf_url": "https://www.curseforge.com/minecraft/mc-mods/custom-crosshair-pvp",
+   "mr_url": "",
+   "released": "2026-08-16"
+  },
+  {
+   "name": "Clear Water - See Through Water",
+   "downloads": 90,
+   "rank": 999999,
    "type": "resourcepack",
-   "icon": "assets/fliflight-no-vignette.png",
+   "icon": "https://media.forgecdn.net/avatars/thumbnails/2080/958/256/256/639263446587212160.jpeg",
+   "cf_url": "https://www.curseforge.com/minecraft/texture-packs/clear-water-see-through-water",
+   "mr_url": "https://modrinth.com/project/fliflight-clear-water",
+   "released": "2026-09-28"
+  },
+  {
+   "name": "No Vignette - Clear Screen Corners",
+   "downloads": 5,
+   "rank": 999999,
+   "type": "resourcepack",
+   "icon": "https://media.forgecdn.net/avatars/thumbnails/2080/956/256/256/639263445216952168.jpeg",
    "cf_url": "https://www.curseforge.com/minecraft/texture-packs/no-vignette-clear-screen-corners",
    "mr_url": "https://modrinth.com/project/fliflight-no-vignette",
-   "released": ""
+   "released": "2026-09-28"
   },
   {
-   "name": "Thin Totem - Smaller Totem Pop",
-   "downloads": 0,
-   "rank": null,
+   "name": "Clear Powder Snow - No Frost Overlay",
+   "downloads": 2,
+   "rank": 999999,
    "type": "resourcepack",
-   "icon": "assets/fliflight-thin-totem.png",
-   "cf_url": "https://www.curseforge.com/minecraft/texture-packs/thin-totem-slimmer-totem-pop",
-   "mr_url": "https://modrinth.com/project/fliflight-thin-totem",
-   "released": ""
+   "icon": "https://media.forgecdn.net/avatars/thumbnails/2080/953/256/256/639263443969051903.jpeg",
+   "cf_url": "https://www.curseforge.com/minecraft/texture-packs/clear-powder-snow-no-frost-overlay",
+   "mr_url": "https://modrinth.com/project/fliflight-clear-powder-snow",
+   "released": "2026-09-28"
   }
  ]
 }

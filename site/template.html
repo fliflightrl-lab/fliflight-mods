@@ -120,10 +120,10 @@ document.getElementById('updated').textContent = 'Généré le ' + new Date(DATA
 // Stats
 const D = DATA.dashboard || {};
 const stats = [
-  {k:'Téléchargements', v:fmt(D.total_downloads||DATA.total_downloads), sub:'tous projets cumulés', cls:'accent'},
+  {k:'Téléchargements', v:fmt(DATA.total_downloads), sub:'tous projets cumulés', cls:'accent'},
   {k:'Par jour', v:fmt(D.per_day||0), sub:'moyenne CurseForge', cls:''},
   {k:'Revenus / mois', v:(D.revenue_month_eur!=null?D.revenue_month_eur+' €':'—'), sub:'CurseForge Rewards', cls:'accent2'},
-  {k:'Projets', v:fmt(D.projects||DATA.project_count), sub:(D.packs||DATA.resourcepack_count)+' packs + '+(D.mods||DATA.mod_count)+' mods', cls:''},
+  {k:'Projets', v:fmt(DATA.project_count), sub:DATA.resourcepack_count+' packs + '+DATA.mod_count+' mod', cls:''},
 ];
 const st = document.getElementById('stats');
 stats.forEach(s=>{
@@ -164,10 +164,10 @@ rv.appendChild(big);
 rv.appendChild(el('div','note','Revenu réel <b>CurseForge Rewards</b> relevé sur le dashboard, soit environ <b>'+fmt((D.revenue_month_eur||0)*12)+' € / an</b>. Basé sur '+fmt(D.per_day||0)+' téléchargements/jour.'));
 const row=el('div','row');
 [
-  ['Téléchargements', fmt(D.total_downloads||DATA.total_downloads)],
+  ['Téléchargements', fmt(DATA.total_downloads)],
   ['Par jour', fmt(D.per_day||0)],
   ['Revenu / an', ((D.revenue_month_eur||0)*12)+' €'],
-  ['Flagship', D.flagship?(D.flagship.name+' — '+fmt(D.flagship.downloads)):'—'],
+  ['Flagship', DATA.top_pack?(DATA.top_pack.name+' — '+fmt(DATA.top_pack.downloads)):'—'],
 ].forEach(([k,v])=>{
   const cell=el('div','cell'); cell.appendChild(el('div','k',k)); cell.appendChild(el('div','v',v)); row.appendChild(cell);
 });
