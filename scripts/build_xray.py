@@ -161,13 +161,16 @@ def icone(size, minerai="block/diamond_ore"):
     art = art.resize((iw, ih), Image.NEAREST)
     u = max(1, size // 32)
     d = ImageDraw.Draw(img)
-    # Ombre portee : decalee de DEUX u, sinon le lisere clair dessine juste apres la recouvrait
-    # entierement — c'est ce qui se passait, l'ombre existait et ne se voyait pas.
-    d.rectangle([off[0] + 2*u, off[1] + 2*u, off[0] + iw - 1 + 2*u, off[1] + ih - 1 + 2*u],
-                fill=(5, 6, 9))
-    # Lisere clair : en (30, 34, 40) il se confondait avec le fond sombre, le bloc paraissait plat.
-    d.rectangle([off[0] - u, off[1] - u, off[0] + iw - 1 + u, off[1] + ih - 1 + u],
-                fill=(112, 122, 138))
+    x0, y0 = off[0] - u, off[1] - u
+    x1, y1 = off[0] + iw - 1 + u, off[1] + ih - 1 + u
+    # Ombre portee : elle demarre a un u du coin et ne depasse que d'un u a droite et en bas,
+    # donc la geometrie reste coherente avec le biseau qui la recouvre partiellement.
+    d.rectangle([x0 + u, y0 + u, x1 + u, y1 + u], fill=(5, 6, 9))
+    # Biseau directionnel plutot qu'un cadre uniforme : un liseré de valeur constante se lit comme
+    # un cadre plat, pas comme du volume. Lumiere en haut et a gauche, ombre en bas et a droite.
+    d.rectangle([x0, y0, x1, y1], fill=(74, 84, 99))
+    d.line([x0, y0, x1, y0], fill=(168, 180, 194), width=u)
+    d.line([x0, y0, x0, y1], fill=(168, 180, 194), width=u)
     img.paste(art, off, art)
     return img
 
