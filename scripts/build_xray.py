@@ -149,25 +149,26 @@ def icone(size, minerai="block/diamond_ore"):
     off = ((size - iw) // 2, (size - ih) // 2)
 
     glow = Image.new("L", (size, size), 0)
-    pad = max(3, int(max(iw, ih) * 0.30))
+    pad = max(3, int(max(iw, ih) * 0.34))
     ImageDraw.Draw(glow).rounded_rectangle(
         [off[0]-pad, off[1]-pad, off[0]+iw+pad, off[1]+ih+pad],
-        radius=int(max(iw, ih)*0.30), fill=125)
-    glow = glow.filter(ImageFilter.GaussianBlur(radius=max(3, max(iw, ih)//8)))
+        radius=int(max(iw, ih)*0.34), fill=95)
+    # flou plus large : a 0.30//8 le halo montrait ses propres marches carrees a l'ecran
+    glow = glow.filter(ImageFilter.GaussianBlur(radius=max(4, max(iw, ih)//6)))
     cyan = Image.new("RGB", (size, size), (90, 220, 235))
     img = Image.blend(img, Image.composite(cyan, img, glow), 0.42)
 
     art = art.resize((iw, ih), Image.NEAREST)
-    # Ombre portee et contour dessines a l'echelle d'UN pixel d'icone (u), pas a l'echelle du
-    # fichier : tout trait plus fin disparait a l'affichage 32 px. L'ancien cadre etait trace en
-    # size//160, soit un cinquieme de pixel d'icone — invisible en jeu, il ne servait a rien.
     u = max(1, size // 32)
     d = ImageDraw.Draw(img)
-    d.rectangle([off[0] + u, off[1] + u, off[0] + iw - 1 + u, off[1] + ih - 1 + u], fill=(6, 7, 10))
+    # Ombre portee : decalee de DEUX u, sinon le lisere clair dessine juste apres la recouvrait
+    # entierement — c'est ce qui se passait, l'ombre existait et ne se voyait pas.
+    d.rectangle([off[0] + 2*u, off[1] + 2*u, off[0] + iw - 1 + 2*u, off[1] + ih - 1 + 2*u],
+                fill=(5, 6, 9))
+    # Lisere clair : en (30, 34, 40) il se confondait avec le fond sombre, le bloc paraissait plat.
+    d.rectangle([off[0] - u, off[1] - u, off[0] + iw - 1 + u, off[1] + ih - 1 + u],
+                fill=(112, 122, 138))
     img.paste(art, off, art)
-    ImageDraw.Draw(img).rectangle(
-        [off[0] - u, off[1] - u, off[0] + iw - 1 + u, off[1] + ih - 1 + u],
-        outline=(30, 34, 40), width=u)
     return img
 
 
