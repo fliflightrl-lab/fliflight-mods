@@ -109,6 +109,77 @@ BEDROCK_MER = {
     "deepslate_redstone_ore": "block/deepslate_redstone_ore",
 }
 
+# Correspondances Java -> Bedrock pour les blocs pleins. Les deux editions ont diverge sur les
+# noms, et deviner ne pardonne pas : un identifiant inconnu dans blocks.json produit une erreur
+# de contenu. Chaque candidat est donc verifie contre la table d'identifiants du jeu avant d'etre
+# ecrit (voir blocs_bedrock), ce qui rend une faute de nom impossible a livrer.
+BEDROCK_RENAMES = {
+    "dirt_path": "grass_path", "snow_block": "snow",
+    "magma_block": "magma", "slime_block": "slime", "melon": "melon_block",
+    "cobweb": "web", "spawner": "mob_spawner", "note_block": "noteblock",
+    "stone_bricks": "stonebrick", "mossy_stone_bricks": "mossy_stonebrick",
+    "bricks": "brick_block", "end_stone_bricks": "end_bricks",
+    "nether_bricks": "nether_brick", "red_nether_bricks": "red_nether_brick",
+    "polished_blackstone_bricks": "polished_blackstone_brick",
+    "deepslate_bricks": "deepslate_brick", "mud_bricks": "mud_brick",
+    "terracotta": "hardened_clay", "jack_o_lantern": "lit_pumpkin",
+}
+
+# Blocs pleins propres a Bedrock, absents de mon cote Java parce que les deux jeux ne partagent
+# pas tout (argile cuite, pierre taillee d'origine, etc.).
+BEDROCK_EN_PLUS = [
+    "hardened_clay", "stained_hardened_clay", "stonebrick", "mossy_stonebrick",
+    "brick_block", "nether_brick", "red_nether_brick", "end_bricks", "mob_spawner",
+    "noteblock", "lit_pumpkin", "web", "grass", "grass_path", "snow", "slime",
+    "magma", "melon_block", "glowingobsidian", "allow", "deny",
+]
+
+
+def blocs_bedrock(noms_java, chemins_extra=()):
+    """Liste des blocs Bedrock a rendre invisibles, chaque nom verifie contre la table du jeu.
+
+    On part des blocs pleins identifies cote Java, on tente pour chacun une poignee de variantes
+    de nom (les deux editions divergent : grass_block -> grass, stone_bricks -> stonebrick,
+    snow_block -> snow...), et on ne garde que les noms reellement presents dans la table.
+    """
+    table = {}
+    for p in (os.path.join(BUILD, "bedrock", "block_properties_table.json"),) + tuple(chemins_extra):
+        if os.path.exists(p):
+            try:
+                table = json.load(open(p, encoding="utf-8"))
+                break
+            except Exception:
+                pass
+    if not table:
+        return None, []
+    connus = {k.split(":", 1)[-1] for k in table}
+
+    def candidats(nom):
+        out = []
+        if nom in BEDROCK_RENAMES:
+            out.append(BEDROCK_RENAMES[nom])
+        out.append(nom)
+        if nom.endswith("_block"):
+            out.append(nom[:-6])
+        if nom.endswith("_bricks"):
+            out.append(nom[:-1])
+            out.append(nom.replace("bricks", "brick"))
+        out.append(nom.replace("stone_bricks", "stonebrick"))
+        out.append(nom.replace("_bricks", "_brick"))
+        out.append(nom.replace("_terracotta", "_terracotta"))
+        return out
+
+    retenus, perdus = [], []
+    for nom in list(noms_java) + list(BEDROCK_EN_PLUS):
+        trouve = next((c for c in candidats(nom) if c in connus), None)
+        if trouve:
+            if trouve not in retenus:
+                retenus.append(trouve)
+        else:
+            perdus.append(nom)
+    return sorted(retenus), perdus
+
+
 # Overlays qui masquent la vue. Ce sont de vraies textures a canal alpha : les vider fonctionne
 # (contrairement aux textures de blocs, voir l'en-tete).
 OVERLAYS = ["misc/pumpkinblur", "misc/underwater", "misc/vignette", "misc/powder_snow_outline"]
@@ -128,21 +199,39 @@ def modeles_vanilla(z):
 
 
 def est_bloc_plein(nom, mods, prof=0):
-    """Vrai si le modele descend d'une famille cube — donc s'il occupe un cube entier."""
+    """Vrai si le modele occupe un cube entier.
+
+    Deux chemins y menent, et n'en tester qu'un rate des blocs entiers :
+      1. heriter d'une famille cube (cube_all, cube_column, orientable...) ;
+      2. definir soi-meme des elements formant un cube 0..16.
+
+    Le second cas est celui des FEUILLAGES et de l'herbe : block/leaves et grass_block heritent
+    directement de block/block et portent leur propre geometrie. Les oublier laissait les
+    feuillages opaques — ce que l'utilisateur avait explicitement demande de couvrir, et que le
+    premier test ne pouvait pas voir puisqu'il ne suivait que la chaine des parents.
+    """
     if nom in _cube_cache:
         return _cube_cache[nom]
     _cube_cache[nom] = None
-    if prof > 8:
-        return None
-    p = (mods.get(nom) or {}).get("parent")
-    if not p:
-        return None
-    court = p.split("/")[-1]
-    if p.startswith("minecraft:"):
-        court = p.split(":")[1].split("/")[-1]
-    r = court if FAMILLES_CUBE.match(court) else est_bloc_plein(court, mods, prof + 1)
-    _cube_cache[nom] = r
-    return r
+    cur, vus, prof = nom, set(), 0
+    while cur and cur not in vus and prof < 12:
+        vus.add(cur)
+        m = mods.get(cur) or {}
+        for e in (m.get("elements") or []):
+            if e.get("from") == [0, 0, 0] and e.get("to") == [16, 16, 16]:
+                _cube_cache[nom] = "elements"
+                return "elements"
+        p = m.get("parent")
+        if not p:
+            break
+        court = p.split(":", 1)[1] if p.startswith("minecraft:") else p
+        court = court.split("/")[-1]
+        if FAMILLES_CUBE.match(court):
+            _cube_cache[nom] = court
+            return court
+        cur = court
+        prof += 1
+    return None
 
 
 def textures_resolues(nom, mods):
@@ -399,7 +488,7 @@ def build_java():
     return zp, ecrits
 
 
-def build_bedrock():
+def build_bedrock(noms_java=()):
     print("\n--- BEDROCK ---")
     st = os.path.join(BUILD, BED_SLUG)
     if os.path.isdir(st):
@@ -416,8 +505,12 @@ def build_bedrock():
             "metadata": {"authors": ["Fliflightmc"], "license": "All Rights Reserved"},
         }, f, indent=2, ensure_ascii=False)
 
+    liste, perdus = blocs_bedrock(noms_java)
+    if liste is None:
+        print("    !! table d'identifiants Bedrock introuvable -> repli sur la liste de reference")
+        liste, perdus = list(BEDROCK_BLOCS), []
     blocks = {"format_version": "1.20.0"}
-    for b in BEDROCK_BLOCS:
+    for b in liste:
         blocks[b] = {"blockshape": "invisible"}
     with open(os.path.join(st, "blocks.json"), "w", encoding="utf-8") as f:
         json.dump(blocks, f, indent=2, ensure_ascii=False)
@@ -425,7 +518,9 @@ def build_bedrock():
     os.makedirs(os.path.join(st, "ui"), exist_ok=True)
     with open(os.path.join(st, "ui", "hud_screen.json"), "w", encoding="utf-8") as f:
         json.dump({"namespace": "hud", "vignette_renderer": {"ignored": True}}, f, indent=2)
-    print(f"    blocks.json : {len(BEDROCK_BLOCS)} blocs invisibles")
+    print(f"    blocks.json : {len(liste)} blocs invisibles (chaque nom verifie contre la table)")
+    if perdus:
+        print(f"    sans equivalent Bedrock, ignores : {len(perdus)} -> {sorted(perdus)[:12]}")
 
     # Eclairage : sans lui, une grotte reste noire et on ne voit rien de ce qu'on vient de
     # devoiler. C'est la contrepartie Bedrock de 443 blocs rendus transparents.
@@ -601,9 +696,27 @@ def verifier(java, bed, ecrits):
         m = json.loads(z.read("manifest.json"))
         b = json.loads(z.read("blocks.json"))
         invis = [k for k, v in b.items() if isinstance(v, dict) and v.get("blockshape") == "invisible"]
+        # Contrat, pas un instantane : chaque identifiant ecrit doit exister dans la table du jeu.
+        # C'est la seule facon de garantir qu'aucune faute de nom Java/Bedrock n'est livree, et
+        # elle ne peut pas passer par accident puisqu'elle interroge une source externe au pack.
+        tp = os.path.join(BUILD, "bedrock", "block_properties_table.json")
+        connus = set()
+        if os.path.exists(tp):
+            connus = {k.split(":", 1)[-1] for k in json.load(open(tp, encoding="utf-8"))}
+        inconnus = [n for n in invis if connus and n not in connus]
         print(f"     blocs invisibles declares : {len(invis)}")
+        print(f"     identifiants absents de la table du jeu : {len(inconnus)} (doit etre 0)")
+        for n in inconnus[:8]:
+            print(f"        INCONNU : {n}")
+        attendus = ("stone", "deepslate", "grass_block", "netherrack", "end_stone", "obsidian",
+                    "bedrock", "sculk", "tuff", "calcite", "gravel", "sand", "oak_leaves",
+                    "spruce_leaves", "acacia_leaves")
+        absents = [c for c in attendus if c not in invis]
+        if absents:
+            print(f"        MANQUANTS : {absents}")
         print(f"     uuid unique : {'oui' if m['header']['uuid'] != m['modules'][0]['uuid'] else 'NON'}")
-        ok &= m["header"]["uuid"] != m["modules"][0]["uuid"] and len(invis) > 40
+        ok &= (m["header"]["uuid"] != m["modules"][0]["uuid"] and len(invis) >= 250
+               and not inconnus and not absents)
         ic = Image.open(io.BytesIO(z.read("pack_icon.png")))
         print(f"     pack_icon : {ic.size[0]}x{ic.size[1]}")
 
@@ -613,5 +726,5 @@ def verifier(java, bed, ecrits):
 
 if __name__ == "__main__":
     j = build_java()
-    b = build_bedrock()
+    b = build_bedrock(j[1])
     verifier(j[0], b, j[1])
