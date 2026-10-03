@@ -88,6 +88,27 @@ BEDROCK_BLOCS = [
     "mushroom_stem", "muddy_mangrove_roots", "reeds", "sculk", "bedrock",
 ]
 
+# Minerais a rendre lumineux cote Bedrock : nom Bedrock -> texture du jeu servant de source.
+# Aucun fichier n'est repris de la reference : la carte emissive est derivee de la texture
+# vanilla, donc de la forme reelle des filons.
+BEDROCK_MER = {
+    "coal_ore": "block/coal_ore", "copper_ore": "block/copper_ore",
+    "diamond_ore": "block/diamond_ore", "emerald_ore": "block/emerald_ore",
+    "gold_ore": "block/gold_ore", "iron_ore": "block/iron_ore",
+    "lapis_ore": "block/lapis_ore", "redstone_ore": "block/redstone_ore",
+    "nether_gold_ore": "block/nether_gold_ore", "quartz_ore": "block/nether_quartz_ore",
+    "ancient_debris_side": "block/ancient_debris_side",
+    "ancient_debris_top": "block/ancient_debris_top",
+    "deepslate_coal_ore": "block/deepslate_coal_ore",
+    "deepslate_copper_ore": "block/deepslate_copper_ore",
+    "deepslate_diamond_ore": "block/deepslate_diamond_ore",
+    "deepslate_emerald_ore": "block/deepslate_emerald_ore",
+    "deepslate_gold_ore": "block/deepslate_gold_ore",
+    "deepslate_iron_ore": "block/deepslate_iron_ore",
+    "deepslate_lapis_ore": "block/deepslate_lapis_ore",
+    "deepslate_redstone_ore": "block/deepslate_redstone_ore",
+}
+
 # Overlays qui masquent la vue. Ce sont de vraies textures a canal alpha : les vider fonctionne
 # (contrairement aux textures de blocs, voir l'en-tete).
 OVERLAYS = ["misc/pumpkinblur", "misc/underwater", "misc/vignette", "misc/powder_snow_outline"]
@@ -213,6 +234,32 @@ def coque():
     }
 
 
+def minerai():
+    """Un cube entier, SANS 'cullface' : ses faces sont dessinees en toutes circonstances.
+
+    C'est la piece qui manquait, et sans elle le pack ne sert a rien. Un minerai enterre est
+    entoure de blocs opaques : les faces de son modele vanilla portent 'cullface', donc elles
+    sont TOUTES eliminees et le minerai n'est jamais dessine. Seul un minerai affleurant a l'air
+    apparaissait — exactement ce que l'utilisateur a photographie : un bloc d'or visible sous le
+    reticule, aucun autre.
+
+    En retirant 'cullface' des faces, MC les dessine toujours, et le minerai devient visible a
+    travers les coques transparentes du terrain. 'light_emission': 15 le fait ressortir meme
+    dans une grotte non eclairee.
+    """
+    return {
+        "parent": "minecraft:block/block",
+        "ambientocclusion": False,
+        "textures": {"particle": "#all", "all": "#all"},
+        "elements": [{
+            "from": [0, 0, 0], "to": [16, 16, 16],
+            "light_emission": 15,
+            "faces": {c: {"uv": [0, 0, 16, 16], "texture": "#all"} for c in
+                      ("down", "up", "north", "south", "east", "west")},
+        }],
+    }
+
+
 def vanilla(rel):
     with zipfile.ZipFile(JAR) as z:
         return z.read(TEX + rel + ".png")
@@ -269,11 +316,13 @@ def build_java():
 
     with open(os.path.join(racine, "models", "block", ESPACE, "shell.json"), "w", encoding="utf-8") as f:
         json.dump(coque(), f, indent=1)
+    with open(os.path.join(racine, "models", "block", ESPACE, "ore.json"), "w", encoding="utf-8") as f:
+        json.dump(minerai(), f, indent=1)
     print(f"    {len(mods)} modeles lus dans le jar")
 
-    ecrits, sans_tex, ecartes = [], [], []
+    ecrits, minerais_ecrits, sans_tex, ecartes = [], [], [], []
     for nom in sorted(mods):
-        if GABARITS.match(nom) or MINERAIS.search(nom) or nom in DENYLIST:
+        if GABARITS.match(nom) or nom in DENYLIST:
             ecartes.append(nom)
             continue
         if not est_bloc_plein(nom, mods):
@@ -282,6 +331,23 @@ def build_java():
         if nom in SECOURS:
             tex.update({k: ("minecraft:" + v if ":" not in v else v)
                         for k, v in SECOURS[nom].items()})
+
+        if MINERAIS.search(nom):
+            # Les minerais ne sont pas masques : ils recoivent le cube SANS 'cullface', sans quoi
+            # un minerai enterre n'est jamais dessine et le pack ne montre rien. C'est l'inverse
+            # de l'intention, mais le meme fichier : on change le parent, pas la texture.
+            tout = next((tex[k] for k in ("all", "side", "end", "top", "down", "up", "north")
+                         if k in tex), None)
+            if not tout or tout.split(":", 1)[1] not in tex_dispo:
+                sans_tex.append(nom)
+                continue
+            with open(os.path.join(racine, "models", "block", nom + ".json"), "w",
+                      encoding="utf-8") as f:
+                json.dump({"parent": f"minecraft:block/{ESPACE}/ore",
+                           "textures": {"all": tout, "particle": tout}}, f, indent=1)
+            minerais_ecrits.append(nom)
+            continue
+
         faces = faces_pour(tex)
         if not faces:
             sans_tex.append(nom)
@@ -295,7 +361,8 @@ def build_java():
         ecrits.append(nom)
 
     print(f"    {len(ecrits)} blocs pleins rendus transparents (dont feuillages)")
-    print(f"    ecartes : {len(ecartes)} (minerais, gabarits, blocs techniques)")
+    print(f"    {len(minerais_ecrits)} minerais rendus visibles a travers (cube sans cullface)")
+    print(f"    ecartes : {len(ecartes)} (gabarits, blocs techniques)")
     if sans_tex:
         print(f"    ignores faute de texture resolue : {len(sans_tex)} -> {sorted(sans_tex)[:10]}")
 
@@ -312,7 +379,7 @@ def build_java():
 
     with open(os.path.join(st, "pack.mcmeta"), "w", encoding="utf-8") as f:
         json.dump({"pack": {"pack_format": 46,
-                            "description": f"{NOM} — the rock around you becomes a faint lattice",
+                            "description": f"{NOM} v1.0.1 — ores now show through the terrain",
                             "supported_formats": {"min_inclusive": 46, "max_inclusive": 99}}},
                   f, indent=2, ensure_ascii=False)
 
@@ -341,10 +408,10 @@ def build_bedrock():
     with open(os.path.join(st, "manifest.json"), "w", encoding="utf-8") as f:
         json.dump({
             "format_version": 2,
-            "header": {"name": f"§b{NOM}", "description": "The rock around you becomes invisible.",
-                       "uuid": str(uuid.uuid4()), "version": [1, 0, 0],
+            "header": {"name": f"§b{NOM}", "description": "Ores glow through the invisible rock.",
+                       "uuid": str(uuid.uuid4()), "version": [1, 0, 1],
                        "min_engine_version": [1, 21, 0]},
-            "modules": [{"type": "resources", "uuid": str(uuid.uuid4()), "version": [1, 0, 0],
+            "modules": [{"type": "resources", "uuid": str(uuid.uuid4()), "version": [1, 0, 1],
                          "description": "See through terrain"}],
             "metadata": {"authors": ["Fliflightmc"], "license": "All Rights Reserved"},
         }, f, indent=2, ensure_ascii=False)
@@ -359,6 +426,64 @@ def build_bedrock():
     with open(os.path.join(st, "ui", "hud_screen.json"), "w", encoding="utf-8") as f:
         json.dump({"namespace": "hud", "vignette_renderer": {"ignored": True}}, f, indent=2)
     print(f"    blocks.json : {len(BEDROCK_BLOCS)} blocs invisibles")
+
+    # Eclairage : sans lui, une grotte reste noire et on ne voit rien de ce qu'on vient de
+    # devoiler. C'est la contrepartie Bedrock de 443 blocs rendus transparents.
+    os.makedirs(os.path.join(st, "lighting"), exist_ok=True)
+    with open(os.path.join(st, "lighting", "global.json"), "w", encoding="utf-8") as f:
+        json.dump({
+            "format_version": "1.21.80",
+            "minecraft:lighting_settings": {
+                "description": {"identifier": "minecraft:default_lighting"},
+                "directional_lights": {
+                    "orbital": {
+                        "sun": {"illuminance": {k: 100.0 for k in
+                                                ("0.000000", "0.250000", "0.500000", "0.750000", "1.000000")},
+                                "color": {"0.000000": [255, 255, 255], "0.500000": [255, 255, 255],
+                                          "1.000000": [255, 255, 255]}},
+                        "moon": {"illuminance": {k: 10.0 for k in
+                                                 ("0.000000", "0.250000", "0.500000", "0.750000", "1.000000")},
+                                 "color": {"0.000000": [255, 255, 255], "1.000000": [255, 255, 255]}},
+                        "orbital_offset_degrees": 0.0},
+                    "flash": {"illuminance": 15.0, "color": [255, 255, 255]}},
+                "emissive": {"desaturation": 0.0},
+                "ambient": {"color": "#FFFFFF", "illuminance": 25.0},
+                "sky": {"intensity": 2.0},
+            },
+        }, f, indent=2)
+    print("    lighting/global.json : grottes eclairees")
+
+    # Minerais lumineux. Meme raison que cote Java : un bloc invisible ne "devoile" rien si ce
+    # qu'il cachait n'est pas dessine. Bedrock ne se contente pas de rendre la roche invisible —
+    # il faut que les minerais emettent, sinon ils restent noyes dans l'obscurite.
+    #   _mer = une carte 16x16 : R metalness, V emissif, B rugosite. On derive le canal emissif
+    #   de la luminosite de la texture du minerai, ce qui fait briller les filons et pas la gangue.
+    n_mer = 0
+    for cible, source in BEDROCK_MER.items():
+        try:
+            art = Image.open(io.BytesIO(vanilla(source))).convert("RGBA")
+        except KeyError:
+            print(f"    texture introuvable cote Java, ignore : {source}")
+            continue
+        lum = art.convert("L")
+        mer = Image.merge("RGBA", (
+            Image.new("L", art.size, 5),                                   # metalness
+            lum.point(lambda v: min(255, int(v * 0.55))),                  # emissif
+            Image.new("L", art.size, 0),                                   # rugosite
+            art.getchannel("A"),                                           # opacite
+        ))
+        sous = "deepslate/" if cible.startswith("deepslate_") else ""
+        d = os.path.join(st, "textures", "blocks", sous)
+        os.makedirs(d, exist_ok=True)
+        nom_bed = cible.split("/")[-1]
+        mer.save(os.path.join(d, nom_bed + "_mer.png"))
+        with open(os.path.join(d, nom_bed + ".texture_set.json"), "w", encoding="utf-8") as f:
+            json.dump({"format_version": "1.16.100",
+                       "minecraft:texture_set": {"color": nom_bed,
+                                                 "metalness_emissive_roughness": nom_bed + "_mer"}},
+                      f, indent=2)
+        n_mer += 1
+    print(f"    {n_mer} minerais lumineux (carte _mer + texture_set)")
 
     icone(256).save(os.path.join(st, "pack_icon.png"))
     out = os.path.join(PACKS, BED_SLUG)
@@ -421,35 +546,46 @@ def verifier(java, bed, ecrits):
             t = m.get("textures") or {}
             if "particle" not in t:
                 pb.append((n, "pas de texture 'particle' -> particules magenta"))
-            for face in ("down", "up", "north", "south", "east", "west"):
-                if face not in t:
-                    pb.append((n, f"face {face} absente"))
-                    break
+            # Les coques nomment leurs 6 faces une a une ; les minerais declarent une seule cle
+            # 'all' que le gabarit ore mappe sur les 6. Les deux formes sont valides.
+            if "all" not in t:
+                for face in ("down", "up", "north", "south", "east", "west"):
+                    if face not in t:
+                        pb.append((n, f"face {face} absente (aucune cle 'all')"))
+                        break
             for k, v in t.items():
                 if v.split(":", 1)[1] not in tex_jeu:
                     pb.append((n, f"texture inexistante : {v}"))
                     break
-        print(f"     blocs couverts : {len(mods)} (attendu {len(ecrits)}) ; problemes : {len(pb)}")
+        print(f"     blocs couverts : {len(mods)} (attendu {len(ecrits)} coques + minerais)")
         for n, r in pb[:8]:
             print(f"        {n} -> {r}")
-        ok &= not pb and len(mods) == len(ecrits)
+        ok &= not pb
 
-        # Garde-fou tire d'un vrai piege, pas d'une theorie : ecrire un gabarit (cube_all,
-        # cube_column...) dans le pack ECRASE le modele vanilla dont heritent les minerais, et
-        # les minerais deviennent transparents. On verifie donc les deux cotes : aucun gabarit,
-        # aucun minerai dans le pack.
+        # Garde-fou tire d'un vrai piege : ecrire un gabarit (cube_all, cube_column...) dans le
+        # pack ECRASE le modele vanilla dont heritent les minerais. Les gabarits restent donc
+        # interdits. Les minerais, eux, DOIVENT etre presents — surcharges avec le cube sans
+        # cullface, seule facon pour qu'un minerai enterre soit dessine.
         def nom_court(chemin):
             return chemin[:-5].rsplit("/", 1)[-1]
         gabarits = [n for n in mods if GABARITS.match(nom_court(n))]
-        minerais = [n for n in mods if MINERAIS.search(nom_court(n))]
+        modele_ore = json.loads(z.read(f"assets/minecraft/models/block/{ESPACE}/ore.json"))
+        culls_ore = sum(1 for e in modele_ore["elements"]
+                        for f in e["faces"].values() if "cullface" in f)
+        coques = [n for n in mods if json.loads(z.read(n)).get("parent") == f"minecraft:block/{ESPACE}/shell"]
+        minerais = [n for n in mods if json.loads(z.read(n)).get("parent") == f"minecraft:block/{ESPACE}/ore"]
+        mal = [n for n in mods if json.loads(z.read(n)).get("parent") not in
+               (f"minecraft:block/{ESPACE}/shell", f"minecraft:block/{ESPACE}/ore")]
+        print(f"     gabarits ecrits : {len(gabarits)} (doit etre 0)")
+        print(f"     faces SANS cullface sur le modele de minerai : "
+              f"{6*len(modele_ore['elements']) - culls_ore} (le cube doit en etre depourvu)")
+        print(f"     coques : {len(coques)} ; minerais surcharges : {len(minerais)}")
         for ore in ("diamond_ore", "coal_ore", "deepslate_gold_ore", "nether_quartz_ore"):
-            if f"assets/minecraft/models/block/{ore}.json" in noms:
-                minerais.append(ore)
-        print(f"     gabarits ecrits : {len(gabarits)} (doit etre 0) ; "
-              f"minerais ecrits : {len(minerais)} (doit etre 0)")
-        for n in (gabarits + minerais)[:6]:
-            print(f"        A RETIRER : {n}")
-        ok &= not gabarits and not minerais
+            if f"assets/minecraft/models/block/{ore}.json" not in noms:
+                print(f"        MANQUANT : {ore} resterait invisible sous terre")
+                minerais = []
+        ok &= not gabarits and culls_ore == 0 and not mal and len(minerais) >= 20
+        ok &= len(coques) == len(ecrits)
 
         tex_bloc = [n for n in noms if n.startswith("assets/minecraft/textures/block/")]
         print(f"     textures de bloc modifiees : {len(tex_bloc)} (doit etre 0)")
