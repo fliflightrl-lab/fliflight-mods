@@ -140,18 +140,22 @@ def icone(size, minerai="block/diamond_ore"):
     bbox = art.getbbox()
     if bbox:
         art = art.crop(bbox)
-    scale = max(1, int(size * 0.55) // max(art.size))
-    iw, ih = art.size[0] * scale, art.size[1] * scale
+    # Echelle ENTIERE, obligatoire : l'icone s'affiche a 32 px dans la liste des packs, donc le
+    # bloc doit y mesurer 16 px (1 texel = 1 pixel) ou 32 px (2 px par texel). Un facteur comme
+    # 0,55 donne 17 texels et un reechantillonnage non entier : net en 512, flou en jeu.
+    # size // 32 place exactement 16 texels dans la largeur affichee.
+    ech = max(1, size // 32)
+    iw = ih = art.size[0] * ech
     off = ((size - iw) // 2, (size - ih) // 2)
 
     glow = Image.new("L", (size, size), 0)
-    pad = max(2, int(max(iw, ih) * 0.22))
+    pad = max(3, int(max(iw, ih) * 0.30))
     ImageDraw.Draw(glow).rounded_rectangle(
         [off[0]-pad, off[1]-pad, off[0]+iw+pad, off[1]+ih+pad],
-        radius=int(max(iw, ih)*0.28), fill=120)
-    glow = glow.filter(ImageFilter.GaussianBlur(radius=max(2, max(iw, ih)//9)))
+        radius=int(max(iw, ih)*0.30), fill=125)
+    glow = glow.filter(ImageFilter.GaussianBlur(radius=max(3, max(iw, ih)//8)))
     cyan = Image.new("RGB", (size, size), (90, 220, 235))
-    img = Image.blend(img, Image.composite(cyan, img, glow), 0.38)
+    img = Image.blend(img, Image.composite(cyan, img, glow), 0.42)
 
     art = art.resize((iw, ih), Image.NEAREST)
     img.paste(art, off, art)
