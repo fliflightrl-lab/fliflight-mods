@@ -158,10 +158,16 @@ def icone(size, minerai="block/diamond_ore"):
     img = Image.blend(img, Image.composite(cyan, img, glow), 0.42)
 
     art = art.resize((iw, ih), Image.NEAREST)
+    # Ombre portee et contour dessines a l'echelle d'UN pixel d'icone (u), pas a l'echelle du
+    # fichier : tout trait plus fin disparait a l'affichage 32 px. L'ancien cadre etait trace en
+    # size//160, soit un cinquieme de pixel d'icone — invisible en jeu, il ne servait a rien.
+    u = max(1, size // 32)
+    d = ImageDraw.Draw(img)
+    d.rectangle([off[0] + u, off[1] + u, off[0] + iw - 1 + u, off[1] + ih - 1 + u], fill=(6, 7, 10))
     img.paste(art, off, art)
     ImageDraw.Draw(img).rectangle(
-        [off[0]-pad//2, off[1]-pad//2, off[0]+iw+pad//2, off[1]+ih+pad//2],
-        outline=(58, 62, 72), width=max(1, size // 160))
+        [off[0] - u, off[1] - u, off[0] + iw - 1 + u, off[1] + ih - 1 + u],
+        outline=(30, 34, 40), width=u)
     return img
 
 
