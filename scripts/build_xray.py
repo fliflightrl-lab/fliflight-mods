@@ -107,32 +107,34 @@ BEDROCK_MER = {
     "deepslate_iron_ore": "block/deepslate_iron_ore",
     "deepslate_lapis_ore": "block/deepslate_lapis_ore",
     "deepslate_redstone_ore": "block/deepslate_redstone_ore",
+    # Les blocs precieux restent visibles : leur donner une carte emissive les fait ressortir dans
+    # le noir, exactement comme les minerais.
+    "budding_amethyst": "block/budding_amethyst",
+    "mob_spawner": "block/spawner",
 }
 
-# Correspondances Java -> Bedrock pour les blocs pleins. Les deux editions ont diverge sur les
-# noms, et deviner ne pardonne pas : un identifiant inconnu dans blocks.json produit une erreur
-# de contenu. Chaque candidat est donc verifie contre la table d'identifiants du jeu avant d'etre
-# ecrit (voir blocs_bedrock), ce qui rend une faute de nom impossible a livrer.
+# Correspondances Java -> Bedrock pour les blocs pleins. Verifiees une par une contre la table du
+# jeu : "stonebrick" et "mossy_stonebrick" n'y existent PAS — le Bedrock moderne a les noms
+# aplatis stone_bricks / mossy_stone_bricks, et c'est donc le nom simple qu'il faut retenir. Ne
+# garder que les traductions reellement utiles evite d'annoncer comme perdus des blocs couverts.
 BEDROCK_RENAMES = {
     "dirt_path": "grass_path", "snow_block": "snow",
     "magma_block": "magma", "slime_block": "slime", "melon": "melon_block",
     "cobweb": "web", "spawner": "mob_spawner", "note_block": "noteblock",
-    "stone_bricks": "stonebrick", "mossy_stone_bricks": "mossy_stonebrick",
     "bricks": "brick_block", "end_stone_bricks": "end_bricks",
     "nether_bricks": "nether_brick", "red_nether_bricks": "red_nether_brick",
-    "polished_blackstone_bricks": "polished_blackstone_brick",
-    "deepslate_bricks": "deepslate_brick", "mud_bricks": "mud_brick",
     "terracotta": "hardened_clay", "jack_o_lantern": "lit_pumpkin",
+    "rooted_dirt": "dirt_with_roots",
+    "flowering_azalea_leaves": "azalea_leaves_flowered",
 }
 
-# Blocs pleins propres a Bedrock, absents de mon cote Java parce que les deux jeux ne partagent
-# pas tout (argile cuite, pierre taillee d'origine, etc.).
-BEDROCK_EN_PLUS = [
-    "hardened_clay", "stained_hardened_clay", "stonebrick", "mossy_stonebrick",
-    "brick_block", "nether_brick", "red_nether_brick", "end_bricks", "mob_spawner",
-    "noteblock", "lit_pumpkin", "web", "grass", "grass_path", "snow", "slime",
-    "magma", "melon_block", "glowingobsidian", "allow", "deny",
-]
+# Blocs pleins propres a Bedrock, sans equivalent cote Java dans ma liste.
+BEDROCK_EN_PLUS = ["hardened_clay", "grass_path", "glowingobsidian"]
+
+# Memes blocs precieux que cote Java : ils doivent RESTER VISIBLES, donc etre retires de la liste
+# des blocs rendus invisibles (leur nom Bedrock, pas leur nom Java).
+BEDROCK_PRECIEUX = ["mob_spawner", "trial_spawner", "vault", "budding_amethyst",
+                    "ancient_debris", "barrel", "reinforced_deepslate"]
 
 
 def blocs_bedrock(noms_java, chemins_extra=()):
@@ -167,6 +169,10 @@ def blocs_bedrock(noms_java, chemins_extra=()):
         out.append(nom.replace("stone_bricks", "stonebrick"))
         out.append(nom.replace("_bricks", "_brick"))
         out.append(nom.replace("_terracotta", "_terracotta"))
+        # Bedrock a garde l'ancien nom de teinture pour certains blocs vitres : ses identifiants
+        # de terre cuite emaillee sont silver_* et non light_gray_*. Controle verifie dans la table.
+        if "light_gray" in nom:
+            out.append(nom.replace("light_gray", "silver"))
         return out
 
     retenus, perdus = [], []
@@ -177,8 +183,26 @@ def blocs_bedrock(noms_java, chemins_extra=()):
                 retenus.append(trouve)
         else:
             perdus.append(nom)
+    # Meme logique que cote Java : les blocs precieux ne doivent pas etre masques. On les retire
+    # APRES resolution, une fois leur nom Bedrock connu.
+    retenus = [n for n in retenus if n not in BEDROCK_PRECIEUX]
     return sorted(retenus), perdus
 
+
+# Blocs precieux qui ne sont PAS des minerais mais que le pack masquait par erreur, parce que
+# la regle "tout bloc plein disparait" ne fait pas la difference entre de la roche et un butin.
+# Un Xray sert a trouver des ressources : cacher un spawner ou de l'ancient debris, c'est cacher
+# exactement ce qu'on cherchait. Ils recoivent donc le meme cube que les minerais : face visible
+# en toutes circonstances, plus l'emission lumineuse.
+PRECIEUX = [
+    "spawner",              # donjons, mineshafts, forteresses
+    "trial_spawner",        # chambres d'epreuve
+    "vault",                # coffres-forts des chambres d'epreuve
+    "budding_amethyst",     # geode, ressource limitee
+    "ancient_debris",       # la cible la plus recherchee du Nether
+    "barrel",               # conteneur de butin
+    "reinforced_deepslate",  # marqueur de cite antique
+]
 
 # Overlays qui masquent la vue. Ce sont de vraies textures a canal alpha : les vider fonctionne
 # (contrairement aux textures de blocs, voir l'en-tete).
@@ -369,11 +393,11 @@ def minerai():
     return {
         "parent": "minecraft:block/block",
         "ambientocclusion": False,
-        "textures": {"particle": "#all", "all": "#all"},
+        "textures": {"particle": "#particle"},
         "elements": [{
             "from": [0, 0, 0], "to": [16, 16, 16],
             "light_emission": 15,
-            "faces": {c: {"uv": [0, 0, 16, 16], "texture": "#all"} for c in
+            "faces": {c: {"uv": [0, 0, 16, 16], "texture": "#" + c} for c in
                       ("down", "up", "north", "south", "east", "west")},
         }],
     }
@@ -488,7 +512,7 @@ def build_java():
             json.dump(out, f, indent=1)
         return True
 
-    ecrits, minerais_ecrits, sans_tex, ecartes = [], [], [], []
+    ecrits, minerais_ecrits, precieux_ecrits, sans_tex, ecartes = [], [], [], [], []
     for nom in sorted(mods):
         if GABARITS.match(nom) or nom in DENYLIST:
             ecartes.append(nom)
@@ -500,20 +524,25 @@ def build_java():
             tex.update({k: ("minecraft:" + v if ":" not in v else v)
                         for k, v in SECOURS[nom].items()})
 
-        if MINERAIS.search(nom):
-            # Les minerais ne sont pas masques : ils recoivent le cube SANS 'cullface', sans quoi
-            # un minerai enterre n'est jamais dessine et le pack ne montre rien. C'est l'inverse
-            # de l'intention, mais le meme fichier : on change le parent, pas la texture.
-            tout = next((tex[k] for k in ("all", "side", "end", "top", "down", "up", "north")
-                         if k in tex), None)
-            if not tout or tout.split(":", 1)[1] not in tex_dispo:
+        if MINERAIS.search(nom) or nom in PRECIEUX:
+            # Minerais ET blocs precieux recoivent le cube SANS 'cullface'. Sans cela, un bloc
+            # enterre n'est jamais dessine : c'est le defaut qui rendait les minerais invisibles,
+            # et il frappait aussi les spawners, l'ancient debris ou les coffres-forts.
+            faces = faces_pour(tex)
+            if not faces:
+                sans_tex.append(nom)
+                continue
+            if any(t.split(":", 1)[1] not in tex_dispo for t in faces.values()):
                 sans_tex.append(nom)
                 continue
             with open(os.path.join(base, nom + ".json"), "w", encoding="utf-8") as f:
-                json.dump({"parent": f"minecraft:block/{ESPACE}/ore",
-                           "textures": {"all": tout, "particle": tout}}, f, indent=1)
+                json.dump({"parent": f"minecraft:block/{ESPACE}/ore", "textures": faces},
+                          f, indent=1)
             if ecrire_blockstate(nom):
-                minerais_ecrits.append(nom)
+                if MINERAIS.search(nom):
+                    minerais_ecrits.append(nom)
+                else:
+                    precieux_ecrits.append(nom)
             continue
 
         faces = faces_pour(tex)
@@ -533,7 +562,8 @@ def build_java():
             ecrits.append(nom)
 
     print(f"    {len(ecrits)} blocs poses rendus transparents (blockstate redirige, items intacts)")
-    print(f"    {len(minerais_ecrits)} minerais rendus visibles a travers (cube sans cullface)")
+    print(f"    {len(minerais_ecrits)} minerais + {len(precieux_ecrits)} blocs precieux laisses "
+          f"visibles : {sorted(precieux_ecrits)}")
     print(f"    ecartes : {len(ecartes)} (gabarits, blocs techniques)")
     if sans_tex:
         print(f"    ignores faute de texture resolue : {len(sans_tex)} -> {sorted(sans_tex)[:10]}")
@@ -550,9 +580,13 @@ def build_java():
     print("    overlays neutralises (pumpkinblur, underwater, vignette)")
 
     with open(os.path.join(st, "pack.mcmeta"), "w", encoding="utf-8") as f:
+        # pack_format 46 (1.21.4) pour l'acceptation automatique ; la plage declaree descend plus
+        # bas car la mecanique (blockstates + coques) ne depend pas de la version. Seule
+        # l'emission lumineuse exige 1.21.2+. Non teste sous 1.21.4 : c'est ecrit tel quel dans le
+        # README plutot que suppose.
         json.dump({"pack": {"pack_format": 46,
-                            "description": f"{NOM} v1.0.1 — ores now show through the terrain",
-                            "supported_formats": {"min_inclusive": 46, "max_inclusive": 99}}},
+                            "description": f"{NOM} v1.0.2 — ores and loot blocks visible",
+                            "supported_formats": {"min_inclusive": 15, "max_inclusive": 99}}},
                   f, indent=2, ensure_ascii=False)
 
     icone(128).save(os.path.join(st, "pack.png"))
@@ -785,6 +819,21 @@ def verifier(java, bed, ecrits):
                 print(f"        SANS TINTINDEX : {feuille} s'afficherait en gris")
                 ok = False
 
+        # Les blocs precieux doivent etre presents ET sur le cube sans cullface. Les laisser sur
+        # la coque les rendait invisibles : le pack cachait un spawner ou de l'ancient debris,
+        # c'est-a-dire exactement ce qu'un Xray doit montrer.
+        prec_ko = []
+        for prec in PRECIEUX:
+            f_nom = f"assets/minecraft/models/block/{ESPACE}/{prec}.json"
+            if f_nom not in noms:
+                prec_ko.append((prec, "absent du pack"))
+            elif not str(json.loads(z.read(f_nom)).get("parent", "")).endswith("/ore"):
+                prec_ko.append((prec, "reste sur la coque -> invisible"))
+        print(f"     blocs precieux verifies : {len(PRECIEUX) - len(prec_ko)}/{len(PRECIEUX)}")
+        for n, r in prec_ko:
+            print(f"        {n} -> {r}")
+        ok &= not prec_ko
+
         # Chaque blockstate doit pointer vers un de NOS modeles, et il doit en exister un par bloc.
         bs = [n for n in noms if n.startswith("assets/minecraft/blockstates/") and n.endswith(".json")]
         cibles_ko = []
@@ -848,6 +897,13 @@ def verifier(java, bed, ecrits):
         print(f"     identifiants absents de la table du jeu : {len(inconnus)} (doit etre 0)")
         for n in inconnus[:8]:
             print(f"        INCONNU : {n}")
+        # Les blocs precieux doivent RESTER visibles : les trouver dans la liste des blocs masques
+        # signifie que le pack cache encore le butin qu'il devrait montrer.
+        prec_masques = [n for n in BEDROCK_PRECIEUX if n in invis]
+        print(f"     blocs precieux masques par erreur : {len(prec_masques)} (doit etre 0)")
+        for n in prec_masques:
+            print(f"        A RETIRER : {n}")
+        ok &= not prec_masques
         attendus = ("stone", "deepslate", "grass_block", "netherrack", "end_stone", "obsidian",
                     "bedrock", "sculk", "tuff", "calcite", "gravel", "sand", "oak_leaves",
                     "spruce_leaves", "acacia_leaves")
