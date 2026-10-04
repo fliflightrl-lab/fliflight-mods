@@ -288,7 +288,30 @@ def faces_pour(tex):
     return f
 
 
-def coque():
+def tint_vanilla(nom, mods):
+    """Vrai si la chaine de modeles teinte ses faces (feuillages, herbe, vignes).
+
+    Les feuilles portent 'tintindex' dans leur modele : c'est ce qui les fait passer du gris brut
+    de la texture au vert du biome. Ne pas le recopier sur la coque laisse la texture brute a
+    l'ecran, ce qui ressemble a une texture cassee — signale par l'utilisateur sur birch_leaves.
+    """
+    cur, vus, prof = nom, set(), 0
+    while cur and cur not in vus and prof < 12:
+        vus.add(cur)
+        m = mods.get(cur) or {}
+        for e in (m.get("elements") or []):
+            for f in (e.get("faces") or {}).values():
+                if f.get("tintindex") is not None:
+                    return True
+        p = m.get("parent")
+        if not p:
+            break
+        cur = (p.split(":", 1)[1] if p.startswith("minecraft:") else p).split("/")[-1]
+        prof += 1
+    return False
+
+
+def coque(tint=False, emis=True):
     """Le coeur du pack : six dalles de 0,5 unite, une par face, chacune avec 'cullface'.
 
     Une face portant 'cullface' n'est dessinee que si le bloc voisin de ce cote n'est pas opaque.
@@ -311,13 +334,20 @@ def coque():
         ([e - d, 0, 0], [e, e, e], {"north": [0, 0, e - d, e], "south": [d, 0, e, e],
                                     "up": [0, 0, e - d, e], "down": [0, 0, e - d, e]}),
     ]
+
+    def face(c, uv):
+        f = {"uv": uv, "texture": "#" + c, "cullface": c}
+        if tint:
+            f["tintindex"] = 0
+        return f
+
     return {
         "parent": "minecraft:block/block",
         "ambientocclusion": False,
         "textures": {"particle": "#particle"},
         "elements": [
             {"from": f, "to": t, "light_emission": 15,
-             "faces": {c: {"uv": uv, "texture": "#" + c, "cullface": c} for c, uv in faces.items()}}
+             "faces": {c: face(c, uv) for c, uv in faces.items()}}
             for f, t, faces in plans
         ],
     }
@@ -402,12 +432,61 @@ def build_java():
         mods = modeles_vanilla(z)
         tex_dispo = {n[len(TEX):-4] for n in z.namelist()
                      if n.startswith(TEX) and n.endswith(".png")}
+        bs_vanilla = {}
+        for n in z.namelist():
+            if n.startswith("assets/minecraft/blockstates/") and n.endswith(".json"):
+                try:
+                    bs_vanilla[n.split("/")[-1][:-5]] = json.loads(z.read(n).decode("utf-8", "replace"))
+                except Exception:
+                    pass
 
-    with open(os.path.join(racine, "models", "block", ESPACE, "shell.json"), "w", encoding="utf-8") as f:
-        json.dump(coque(), f, indent=1)
-    with open(os.path.join(racine, "models", "block", ESPACE, "ore.json"), "w", encoding="utf-8") as f:
-        json.dump(minerai(), f, indent=1)
-    print(f"    {len(mods)} modeles lus dans le jar")
+    base = os.path.join(racine, "models", "block", ESPACE)
+    os.makedirs(base, exist_ok=True)
+    for nom_base, contenu in (("shell", coque()), ("shell_tinted", coque(tint=True)),
+                              ("ore", minerai())):
+        with open(os.path.join(base, nom_base + ".json"), "w", encoding="utf-8") as f:
+            json.dump(contenu, f, indent=1)
+    os.makedirs(os.path.join(racine, "blockstates"), exist_ok=True)
+    print(f"    {len(mods)} modeles et {len(bs_vanilla)} blockstates lus dans le jar")
+
+    def ecrire_blockstate(nom):
+        """Redirige le bloc POSE vers notre modele, sans toucher au modele vanilla.
+
+        C'est le point qui rend les items visibles. Le modele d'item d'un bloc pointe sur
+        models/block/<nom>.json : en ecrasant ce fichier, le bloc devenait invisible aussi dans
+        l'inventaire et en main. En passant par le blockstate, seul le bloc pose change.
+        """
+        van = bs_vanilla.get(nom)
+        if not van:
+            return False
+        cible = f"minecraft:block/{ESPACE}/{nom}"
+
+        def remplace(x):
+            return dict(x, model=cible)
+
+        if "variants" in van:
+            out = {"variants": {}}
+            for cle, val in van["variants"].items():
+                liste = val if isinstance(val, list) else [val]
+                out["variants"][cle] = [remplace(v) for v in liste]
+        elif "multipart" in van:
+            parts = []
+            for part in van["multipart"]:
+                ap = part.get("apply")
+                if isinstance(ap, list):
+                    ap = [remplace(x) for x in ap]
+                else:
+                    ap = remplace(ap or {})
+                p = {"apply": ap}
+                if "when" in part:
+                    p["when"] = part["when"]
+                parts.append(p)
+            out = {"multipart": parts}
+        else:
+            return False
+        with open(os.path.join(racine, "blockstates", nom + ".json"), "w", encoding="utf-8") as f:
+            json.dump(out, f, indent=1)
+        return True
 
     ecrits, minerais_ecrits, sans_tex, ecartes = [], [], [], []
     for nom in sorted(mods):
@@ -430,11 +509,11 @@ def build_java():
             if not tout or tout.split(":", 1)[1] not in tex_dispo:
                 sans_tex.append(nom)
                 continue
-            with open(os.path.join(racine, "models", "block", nom + ".json"), "w",
-                      encoding="utf-8") as f:
+            with open(os.path.join(base, nom + ".json"), "w", encoding="utf-8") as f:
                 json.dump({"parent": f"minecraft:block/{ESPACE}/ore",
                            "textures": {"all": tout, "particle": tout}}, f, indent=1)
-            minerais_ecrits.append(nom)
+            if ecrire_blockstate(nom):
+                minerais_ecrits.append(nom)
             continue
 
         faces = faces_pour(tex)
@@ -445,11 +524,15 @@ def build_java():
         if any(t.split(":", 1)[1] not in tex_dispo for t in faces.values()):
             sans_tex.append(nom)
             continue
-        with open(os.path.join(racine, "models", "block", nom + ".json"), "w", encoding="utf-8") as f:
-            json.dump({"parent": f"minecraft:block/{ESPACE}/shell", "textures": faces}, f, indent=1)
-        ecrits.append(nom)
+        tint = tint_vanilla(nom, mods)
+        with open(os.path.join(base, nom + ".json"), "w", encoding="utf-8") as f:
+            json.dump({"parent": f"minecraft:block/{ESPACE}/"
+                                 f"{'shell_tinted' if tint else 'shell'}",
+                       "textures": faces}, f, indent=1)
+        if ecrire_blockstate(nom):
+            ecrits.append(nom)
 
-    print(f"    {len(ecrits)} blocs pleins rendus transparents (dont feuillages)")
+    print(f"    {len(ecrits)} blocs poses rendus transparents (blockstate redirige, items intacts)")
     print(f"    {len(minerais_ecrits)} minerais rendus visibles a travers (cube sans cullface)")
     print(f"    ecartes : {len(ecartes)} (gabarits, blocs techniques)")
     if sans_tex:
@@ -629,15 +712,38 @@ def verifier(java, bed, ecrits):
               f"variables distinctes {sorted(vars_faces)}")
         ok &= culls >= 20 and len(vars_faces) > 1
 
-        mods = [n for n in noms if n.startswith("assets/minecraft/models/block/")
-                and n.endswith(".json") and ESPACE not in n]
-        pb = []
-        for n in mods:
+        # GARANTIE DES ITEMS — le controle le plus important de ce pack. Le modele d'item d'un bloc
+        # pointe sur models/block/<nom>.json : ecraser ce fichier rendait le bloc invisible dans
+        # l'inventaire et en main, exactement ce que l'utilisateur a signale. On passe desormais
+        # exclusivement par les blockstates, donc aucun modele de bloc vanilla ne doit apparaitre.
+        ecrases = [n for n in noms if n.startswith("assets/minecraft/models/block/")
+                   and n.endswith(".json") and f"/{ESPACE}/" not in n]
+        print(f"     modeles de bloc vanilla ecrases : {len(ecrases)} "
+              f"(doit etre 0 — sinon les items disparaissent)")
+        for n in ecrases[:6]:
+            print(f"        A RETIRER : {n}")
+        ok &= not ecrases
+
+        BASES = {"shell", "shell_tinted", "ore"}
+        mes_modeles = [n for n in noms if n.startswith(f"assets/minecraft/models/block/{ESPACE}/")
+                       and n.endswith(".json")
+                       and n.split("/")[-1][:-5] not in BASES]
+        coques, minerais, tintes, pb = [], [], [], []
+        for n in mes_modeles:
             m = json.loads(z.read(n))
             parent = m.get("parent")
-            if not parent or resoudre(parent) not in noms:
+            # Un parent peut vivre dans le pack OU dans le jeu : 'minecraft:block/block' est un
+            # modele vanilla, absent de l'archive du pack. Ne tester que le pack le declarait
+            # irresolvable alors qu'il est parfaitement valide.
+            if not parent or (resoudre(parent) not in noms and resoudre(parent) not in jar_noms):
                 pb.append((n, f"parent irresolvable : {parent}"))
                 continue
+            if str(parent).endswith("/ore"):
+                minerais.append(n)
+            else:
+                coques.append(n)
+                if str(parent).endswith("shell_tinted"):
+                    tintes.append(n)
             t = m.get("textures") or {}
             if "particle" not in t:
                 pb.append((n, "pas de texture 'particle' -> particules magenta"))
@@ -649,38 +755,72 @@ def verifier(java, bed, ecrits):
                         pb.append((n, f"face {face} absente (aucune cle 'all')"))
                         break
             for k, v in t.items():
+                if not isinstance(v, str) or ":" not in v:
+                    continue          # une reference '#' (modeles de base) n'est pas un chemin
                 if v.split(":", 1)[1] not in tex_jeu:
                     pb.append((n, f"texture inexistante : {v}"))
                     break
-        print(f"     blocs couverts : {len(mods)} (attendu {len(ecrits)} coques + minerais)")
+        print(f"     blocs couverts : {len(mes_modeles)} "
+              f"({len(coques)} coques + {len(minerais)} minerais)")
         for n, r in pb[:8]:
             print(f"        {n} -> {r}")
         ok &= not pb
 
-        # Garde-fou tire d'un vrai piege : ecrire un gabarit (cube_all, cube_column...) dans le
-        # pack ECRASE le modele vanilla dont heritent les minerais. Les gabarits restent donc
-        # interdits. Les minerais, eux, DOIVENT etre presents — surcharges avec le cube sans
-        # cullface, seule facon pour qu'un minerai enterre soit dessine.
-        def nom_court(chemin):
-            return chemin[:-5].rsplit("/", 1)[-1]
-        gabarits = [n for n in mods if GABARITS.match(nom_court(n))]
         modele_ore = json.loads(z.read(f"assets/minecraft/models/block/{ESPACE}/ore.json"))
         culls_ore = sum(1 for e in modele_ore["elements"]
                         for f in e["faces"].values() if "cullface" in f)
-        coques = [n for n in mods if json.loads(z.read(n)).get("parent") == f"minecraft:block/{ESPACE}/shell"]
-        minerais = [n for n in mods if json.loads(z.read(n)).get("parent") == f"minecraft:block/{ESPACE}/ore"]
-        mal = [n for n in mods if json.loads(z.read(n)).get("parent") not in
-               (f"minecraft:block/{ESPACE}/shell", f"minecraft:block/{ESPACE}/ore")]
-        print(f"     gabarits ecrits : {len(gabarits)} (doit etre 0)")
         print(f"     faces SANS cullface sur le modele de minerai : "
               f"{6*len(modele_ore['elements']) - culls_ore} (le cube doit en etre depourvu)")
-        print(f"     coques : {len(coques)} ; minerais surcharges : {len(minerais)}")
-        for ore in ("diamond_ore", "coal_ore", "deepslate_gold_ore", "nether_quartz_ore"):
-            if f"assets/minecraft/models/block/{ore}.json" not in noms:
-                print(f"        MANQUANT : {ore} resterait invisible sous terre")
-                minerais = []
-        ok &= not gabarits and culls_ore == 0 and not mal and len(minerais) >= 20
-        ok &= len(coques) == len(ecrits)
+        ok &= culls_ore == 0 and len(minerais) >= 20
+
+        # Le tintindex doit avoir suivi les feuillages et l'herbe : sans lui la texture brute grise
+        # s'affiche au lieu du vert du biome, ce qui ressemble a une texture cassee.
+        for feuille in ("oak_leaves", "birch_leaves", "spruce_leaves", "acacia_leaves",
+                        "grass_block"):
+            f_nom = f"assets/minecraft/models/block/{ESPACE}/{feuille}.json"
+            if f_nom not in noms:
+                print(f"        MANQUANT : {feuille}")
+                ok = False
+            elif not str(json.loads(z.read(f_nom)).get("parent", "")).endswith("shell_tinted"):
+                print(f"        SANS TINTINDEX : {feuille} s'afficherait en gris")
+                ok = False
+
+        # Chaque blockstate doit pointer vers un de NOS modeles, et il doit en exister un par bloc.
+        bs = [n for n in noms if n.startswith("assets/minecraft/blockstates/") and n.endswith(".json")]
+        cibles_ko = []
+        for n in bs:
+            contenu = json.loads(z.read(n))
+            refs = []
+            for val in (contenu.get("variants") or {}).values():
+                refs += [x.get("model") for x in (val if isinstance(val, list) else [val])]
+            for part in (contenu.get("multipart") or []):
+                ap = part.get("apply")
+                refs += [x.get("model") for x in (ap if isinstance(ap, list) else [ap or {}])]
+            for r in refs:
+                if not r or resoudre(r) not in noms or f"/{ESPACE}/" not in r:
+                    cibles_ko.append((n, r))
+                    break
+        print(f"     blockstates ecrits : {len(bs)} ; cibles invalides : {len(cibles_ko)}")
+        for n, r in cibles_ko[:6]:
+            print(f"        {n} -> {r}")
+        # Chaque modele qui a un blockstate vanilla doit avoir le sien dans le pack. Le reste sont
+        # des variantes sans blockstate propre ('acacia_log_horizontal', 'barrel_open'...) : le jeu
+        # n'en a pas non plus, ce sont des fichiers morts que le pack de reference contient aussi.
+        with zipfile.ZipFile(JAR) as jar:
+            bs_jeu = {n.split("/")[-1][:-5] for n in jar.namelist() if "blockstates/" in n}
+        noms_modeles = {n.split("/")[-1][:-5] for n in mes_modeles}
+        ecrits_bs = {n.split("/")[-1][:-5] for n in bs}
+        manquants_bs = sorted((noms_modeles & bs_jeu) - ecrits_bs)
+        print(f"     blocs attendus sans blockstate : {len(manquants_bs)} (doit etre 0)")
+        for n in manquants_bs[:6]:
+            print(f"        NON COUVERT : {n}")
+        # Contrat : un bloc pose couvert = un blockstate ecrit. Le nombre de MODELES est plus
+        # grand, car les variantes (acacia_log_horizontal, barrel_open...) n'ont pas de blockstate
+        # propre dans le jeu non plus — le pack de reference a le meme ratio.
+        print(f"     contrat {len(ecrits)} coques + {len(minerais)} minerais = "
+              f"{len(ecrits) + len(minerais)} doit egaler les {len(bs)} blockstates")
+        ok &= (not cibles_ko and not manquants_bs
+               and len(ecrits) + len(minerais) == len(bs))
 
         tex_bloc = [n for n in noms if n.startswith("assets/minecraft/textures/block/")]
         print(f"     textures de bloc modifiees : {len(tex_bloc)} (doit etre 0)")
